@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{AE45650B
 		..\default.build = ..\default.build
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupaCharge.Testing", "SupaCharge.Testing\SupaCharge.Testing.csproj", "{B6C16C4C-42B2-4D25-9A2C-71DF58CA9C1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{79649E83-3599-478D-9B9A-26CC15860686}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79649E83-3599-478D-9B9A-26CC15860686}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79649E83-3599-478D-9B9A-26CC15860686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6C16C4C-42B2-4D25-9A2C-71DF58CA9C1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6C16C4C-42B2-4D25-9A2C-71DF58CA9C1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6C16C4C-42B2-4D25-9A2C-71DF58CA9C1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6C16C4C-42B2-4D25-9A2C-71DF58CA9C1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

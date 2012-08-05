@@ -40,6 +40,20 @@
     </csc>
   </target>
 
+  <target name="Build.SupaCharge.Testing">
+    <csc debug="${debug.status}" target="library" output="${debug.dir}\SupaCharge.Testing.dll" warnaserror="true">
+      <sources basedir="${src.dir}">
+        <include name="SupaCharge.Testing\**\*.cs"/>
+        <include name="Properties\*.cs"/>
+      </sources>
+      <references>
+        <include name="${debug.dir}\nunit.framework.dll"/>
+        <include name="${debug.dir}\moq.dll"/>
+        <include name="${debug.dir}\Ploeh.AutoFixture.dll"/>
+      </references>
+    </csc>
+  </target>
+
   <target name="Build.SupaCharge.UnitTests" depends="Build.SupaCharge.Core">
     <csc debug="${debug.status}" target="library" output="${debug.dir}\SupaCharge.UnitTests.dll" warnaserror="true">
       <sources basedir="${src.dir}">
@@ -56,6 +70,7 @@
   </target>
 
   <target name="Build.All" depends="Build.SupaCharge.Core, 
+                                    Build.SupaCharge.Testing,
                                     Build.SupaCharge.UnitTests"/>
   
   <target name="Run.Tests">
