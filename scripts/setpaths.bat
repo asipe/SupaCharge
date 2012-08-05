@@ -1,0 +1,1 @@
+set PATH=%PATH%;thirdparty\nunit\bin;thirdparty\nant\bin

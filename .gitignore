@@ -1,0 +1,8 @@
+bin
+obj
+*.user
+*.suo
+_localonly
+TestResult.xml
+debug
+test_results

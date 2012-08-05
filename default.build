@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<project name="Build" basedir=".">
+  <property name="nant.settings.currentframework" value="net-3.5"/>
+  <property name="debug.status" value="Full"/>
+  <property name="root.dir" value="${project::get-base-directory()}" readonly="true"/>
+  <property name="src.dir" value="${root.dir}\src" readonly="true"/>
+  <property name="debug.dir" value="${root.dir}\debug" readonly="true"/>
+  <property name="lib.dir" value="${src.dir}\lib" readonly="true"/>
+  <property name="test.results.dir" value="${root.dir}\test_results" readonly="true"/>
+  <property name="nunit.test.assembly" value=""/>
+  <property name="nunit.exe" value="nunit-console.exe"/>
+  
+  <target name="ExecuteTests">
+    <exec program="thirdparty\nunit\bin\${nunit.exe}"
+          verbose="true"
+          commandline="${debug.dir}\${nunit.test.assembly} /xml=test_results/${nunit.test.assembly}_results.xml /noshadow"
+          workingdir="${root.dir}"
+          failonerror="true"/>
+  </target>
+  
+  <target name="Clean">
+    <delete dir="${debug.dir}"/>
+    <mkdir dir="${debug.dir}"/>
+    <delete dir="${test.results.dir}"/>
+    <mkdir dir="${test.results.dir}"/> 
+
+    <copy todir="${debug.dir}" flatten="true">
+      <fileset basedir="${lib.dir}">
+        <include name="*.*"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="Build.SupaCharge.Core">
+    <csc debug="${debug.status}" target="library" output="${debug.dir}\SupaCharge.Core.dll" warnaserror="true">
+      <sources basedir="${src.dir}">
+        <include name="SupaCharge.Core\**\*.cs"/>
+        <include name="Properties\*.cs"/>
+      </sources>
+    </csc>
+  </target>
+
+  <target name="Build.SupaCharge.UnitTests" depends="Build.SupaCharge.Core">
+    <csc debug="${debug.status}" target="library" output="${debug.dir}\SupaCharge.UnitTests.dll" warnaserror="true">
+      <sources basedir="${src.dir}">
+        <include name="SupaCharge.UnitTests\**\*.cs"/>
+        <include name="Properties\*.cs"/>
+      </sources>
+      <references>
+        <include name="${debug.dir}\SupaCharge.Core.dll"/>
+        <include name="${debug.dir}\nunit.framework.dll"/>
+        <include name="${debug.dir}\moq.dll"/>
+        <include name="${debug.dir}\Ploeh.AutoFixture.dll"/>
+      </references>
+    </csc>
+  </target>
+
+  <target name="Build.All" depends="Build.SupaCharge.Core, 
+                                    Build.SupaCharge.UnitTests"/>
+  
+  <target name="Run.Tests">
+    <property name="nunit.test.assembly" value="SupaCharge.UnitTests.dll"/>
+    <call target="ExecuteTests"/>
+  </target>
+  
+  <target name="Cycle" depends="Build.All, Run.Tests"/>
+</project>
+  
+  
