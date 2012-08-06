@@ -44,9 +44,13 @@
     <Compile Include="..\Properties\AssemblyInfo.cs">
       <Link>AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Core\ExceptionHandling\ExceptionDumperTest.cs" />
+    <Compile Include="Core\ExceptionHandling\ExceptionDumpTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SupaCharge.Core\SupaCharge.Core.csproj">
+      <Project>{D3795B3A-FA2E-446B-BB08-6971B82C73BA}</Project>
+      <Name>SupaCharge.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SupaCharge.Testing\SupaCharge.Testing.csproj">
       <Project>{B6C16C4C-42B2-4D25-9A2C-71DF58CA9C1A}</Project>
       <Name>SupaCharge.Testing</Name>
