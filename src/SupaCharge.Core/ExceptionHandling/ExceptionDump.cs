@@ -11,7 +11,20 @@ namespace SupaCharge.Core.ExceptionHandling {
     }
 
     public override string ToString() {
-      return mError.Message;
+      var parts = new List<string>();
+      parts.Add(mError.GetType().ToString());
+      parts.Add(mError.Message);
+      parts.Add(mError.StackTrace);
+
+      var result = parts
+        .Where(s => s != null)
+        .ToArray();
+
+      return string.Join(Environment.NewLine, result);
+    }
+
+    private string GetStack() {
+      return mError.StackTrace;
     }
 
     private Exception mError;
