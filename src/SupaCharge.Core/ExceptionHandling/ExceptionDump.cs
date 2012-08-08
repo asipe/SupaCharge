@@ -27,6 +27,7 @@ namespace SupaCharge.Core.ExceptionHandling {
         }
         exc = exc.InnerException;
       }
+
       var result = parts
         .Where(s => s != null)
         .ToArray();
@@ -37,10 +38,6 @@ namespace SupaCharge.Core.ExceptionHandling {
     public override string ToString() {
       var parts = SetUpExceptions(mError);
         return parts;
-    }
-
-    private string GetStack() {
-      return mError.StackTrace;
     }
 
     private Exception mError;
