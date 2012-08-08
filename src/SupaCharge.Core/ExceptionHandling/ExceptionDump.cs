@@ -10,17 +10,33 @@ namespace SupaCharge.Core.ExceptionHandling {
       ToString();
     }
 
-    public override string ToString() {
-      var parts = new List<string>();
-      parts.Add(mError.GetType().ToString());
-      parts.Add(mError.Message);
-      parts.Add(mError.StackTrace);
+    private bool HasInnerException(Exception exc) {
+      return exc.InnerException != null;
+    }
 
+    private string SetUpExceptions(Exception exc) {
+      var parts = new List<string>();
+
+      while (exc != null) {
+        parts.Add(exc.GetType().ToString());
+        parts.Add(exc.Message);
+        parts.Add(exc.StackTrace);
+
+        if (HasInnerException(exc)) {
+          parts.Add("----- Inner Exception");
+        }
+        exc = exc.InnerException;
+      }
       var result = parts
         .Where(s => s != null)
         .ToArray();
 
-      return string.Join(Environment.NewLine, result);
+      return string.Join(Environment.NewLine, parts.ToArray());
+    }
+
+    public override string ToString() {
+      var parts = SetUpExceptions(mError);
+        return parts;
     }
 
     private string GetStack() {
