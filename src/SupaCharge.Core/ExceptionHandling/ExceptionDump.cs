@@ -5,8 +5,8 @@ using System.Text;
 
 namespace SupaCharge.Core.ExceptionHandling {
   public class ExceptionDump {
-    public ExceptionDump(Exception error) {
-      mError = error;
+    public ExceptionDump(Exception Exception) {
+      mException = Exception;
       ToString();
     }
 
@@ -14,7 +14,7 @@ namespace SupaCharge.Core.ExceptionHandling {
       return exc.InnerException != null;
     }
 
-    private string SetUpExceptions(Exception exc) {
+    private string FormatException(Exception exc) {
       var parts = new List<string>();
 
       while (exc != null) {
@@ -40,10 +40,10 @@ namespace SupaCharge.Core.ExceptionHandling {
     }
 
     public override string ToString() {
-      var parts = SetUpExceptions(mError);
+      var parts = FormatException(mException);
         return parts;
     }
 
-    private Exception mError;
+    private Exception mException;
   }
 }
