@@ -29,10 +29,14 @@ namespace SupaCharge.Core.ExceptionHandling {
       }
 
       var result = parts
-        .Where(s => s != null)
+        .Where(s => s != null && FilterEmptyItem(s))
         .ToArray();
 
-      return string.Join(Environment.NewLine, parts.ToArray());
+      return string.Join(Environment.NewLine, result);
+    }
+
+    private bool FilterEmptyItem(string item) {
+      return (item.Length > 0 && item != string.Empty);
     }
 
     public override string ToString() {
