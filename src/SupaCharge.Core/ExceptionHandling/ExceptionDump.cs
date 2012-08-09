@@ -7,7 +7,11 @@ namespace SupaCharge.Core.ExceptionHandling {
   public class ExceptionDump {
     public ExceptionDump(Exception Exception) {
       mException = Exception;
-      ToString();
+      IsInnerException = false;
+      if (HasInnerException(Exception)) {
+        IsInnerException = true;
+      }
+
     }
 
     private bool HasInnerException(Exception exc) {
@@ -18,13 +22,15 @@ namespace SupaCharge.Core.ExceptionHandling {
       var parts = new List<string>();
 
       while (exc != null) {
+        
+        if (IsInnerException && exc != mException) {
+          parts.Add("----- Inner Exception");
+        }
+
         parts.Add(exc.GetType().ToString());
         parts.Add(exc.Message);
         parts.Add(exc.StackTrace);
 
-        if (HasInnerException(exc)) {
-          parts.Add("----- Inner Exception");
-        }
         exc = exc.InnerException;
       }
 
@@ -45,5 +51,6 @@ namespace SupaCharge.Core.ExceptionHandling {
     }
 
     private Exception mException;
+    private bool IsInnerException;
   }
 }

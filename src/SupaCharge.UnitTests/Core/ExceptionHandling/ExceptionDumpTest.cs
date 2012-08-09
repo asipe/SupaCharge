@@ -61,7 +61,6 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
     [Test]
     public void TestLengthyChainOfExceptions() {
       var ex = new Exception("hi", new Exception("bye", new Exception("Here", new Exception("yo", new Exception("last one")))));
-
       var dump = new ExceptionDump(ex);
       var actual = dump.ToString();
       var split = actual.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
