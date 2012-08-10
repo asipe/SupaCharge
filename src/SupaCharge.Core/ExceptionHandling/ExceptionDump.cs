@@ -16,15 +16,19 @@ namespace SupaCharge.Core.ExceptionHandling {
       var messages = new List<string>();
 
       while (exc != null) {
-        if (messages.Count > 0)
-          messages.Add("----- Inner Exception");
-        messages.Add(exc.GetType().ToString());
-        messages.Add(exc.Message);
-        messages.Add(exc.StackTrace);
+        GetMessagesForException(exc, messages);
         exc = exc.InnerException;
       }
 
       return CombineMessages(messages);
+    }
+
+    private static void GetMessagesForException(Exception exc, List<string> messages) {
+      if (messages.Count > 0)
+        messages.Add("----- Inner Exception");
+      messages.Add(exc.GetType().ToString());
+      messages.Add(exc.Message);
+      messages.Add(exc.StackTrace);
     }
 
     private static string CombineMessages(IEnumerable<string> parts) {
