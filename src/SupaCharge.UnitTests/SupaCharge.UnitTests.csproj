@@ -46,6 +46,7 @@
     </Compile>
     <Compile Include="Core\Collections\Extensions\ElementsAtTest.cs" />
     <Compile Include="Core\ExceptionHandling\ExceptionDumpTest.cs" />
+    <Compile Include="Web\Utility\FormUrlEncodedDataParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SupaCharge.Core\SupaCharge.Core.csproj">

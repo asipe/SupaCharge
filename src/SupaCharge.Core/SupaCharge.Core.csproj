@@ -43,6 +43,7 @@
     </Compile>
     <Compile Include="Collections\Extensions\ElementsAt.cs" />
     <Compile Include="ExceptionHandling\ExceptionDump.cs" />
+    <Compile Include="Web\Utility\FormUrlEncodedDataParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
