@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
-using SupaCharge.Core.ElementsAt;
+using NUnit.Framework;
+using SupaCharge.Core.Collections.Extensions;
 using SupaCharge.Testing;
 
-namespace SupaCharge.UnitTests.Core.ElementsAt {
+namespace SupaCharge.UnitTests.Core.Collections.Extensions {
   [TestFixture]
   public class ElementsAtTestcs : BaseTestCase {
     [Test]
