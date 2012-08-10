@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SupaCharge.Core.ExceptionHandling {
   public class ExceptionDump {
     public ExceptionDump(Exception Exception) {
       mException = Exception;
       IsInnerException = false;
-      if (HasInnerException(Exception)) {
+      if (HasInnerException(Exception))
         IsInnerException = true;
-      }
-
     }
 
     private bool HasInnerException(Exception exc) {
@@ -22,10 +19,8 @@ namespace SupaCharge.Core.ExceptionHandling {
       var parts = new List<string>();
 
       while (exc != null) {
-        
-        if (IsInnerException && exc != mException) {
+        if (IsInnerException && exc != mException)
           parts.Add("----- Inner Exception");
-        }
 
         parts.Add(exc.GetType().ToString());
         parts.Add(exc.Message);
@@ -47,10 +42,10 @@ namespace SupaCharge.Core.ExceptionHandling {
 
     public override string ToString() {
       var parts = FormatException(mException);
-        return parts;
+      return parts;
     }
 
-    private Exception mException;
-    private bool IsInnerException;
+    private readonly bool IsInnerException;
+    private readonly Exception mException;
   }
 }

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SupaCharge.Testing;
 using NUnit.Framework;
 using SupaCharge.Core.ExceptionHandling;
+using SupaCharge.Testing;
 
 namespace SupaCharge.UnitTests.Core.ExceptionHandling {
   [TestFixture]
@@ -13,10 +10,9 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
     public void TestSingleException() {
       var dump = new ExceptionDump(new Exception("hello world"));
       var actual = dump.ToString();
-      var split = actual.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-      Assert.That(split, Is.EqualTo(new [] {"System.Exception", "hello world"}));
+      var split = actual.Split(new[] {Environment.NewLine}, StringSplitOptions.None);
+      Assert.That(split, Is.EqualTo(new[] {"System.Exception", "hello world"}));
       Assert.That(split.Length, Is.EqualTo(2));
-    
     }
 
     [Test]
@@ -24,8 +20,8 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
       var ex = BuildException();
       var dump = new ExceptionDump(ex);
       var actual = dump.ToString();
-      var split = actual.Split(new [] {Environment.NewLine}, StringSplitOptions.None);
-      
+      var split = actual.Split(new[] {Environment.NewLine}, StringSplitOptions.None);
+
       Assert.That(split[1], Is.EqualTo("HI"));
       Assert.That(split[2], Is.StringContaining("at SupaCharge.UnitTests.Core.ExceptionHandling"));
       Assert.That(split.Length, Is.EqualTo(3));
@@ -36,8 +32,8 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
       var ex = BuildException();
       var dump = new ExceptionDump(ex);
       var actual = dump.ToString();
-      var split = actual.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-      
+      var split = actual.Split(new[] {Environment.NewLine}, StringSplitOptions.None);
+
       Assert.That(split[0], Is.EqualTo("System.Exception"));
       Assert.That(split[1], Is.EqualTo("HI"));
       Assert.That(split[2], Is.StringContaining("at SupaCharge.UnitTests.Core.ExceptionHandling"));
@@ -50,7 +46,7 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
 
       var dump = new ExceptionDump(ex);
       var actual = dump.ToString();
-      var split = actual.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+      var split = actual.Split(new[] {Environment.NewLine}, StringSplitOptions.None);
 
       Assert.That(split[0], Is.EqualTo("System.Exception"));
       Assert.That(split[1], Is.EqualTo("hi"));
@@ -63,7 +59,7 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
       var ex = new Exception("hi", new Exception("bye", new Exception("Here", new Exception("yo", new Exception("last one")))));
       var dump = new ExceptionDump(ex);
       var actual = dump.ToString();
-      var split = actual.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+      var split = actual.Split(new[] {Environment.NewLine}, StringSplitOptions.None);
 
       Console.WriteLine(split[0]);
       Console.WriteLine(split[1]);
@@ -89,15 +85,12 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
     private Exception BuildException() {
       try {
         throw new Exception("HI");
-      }
-      catch (Exception ex) {
+      } catch (Exception ex) {
         return ex;
       }
     }
-
   }
 }
-
 
 //exception type
 //message
