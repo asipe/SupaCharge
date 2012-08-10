@@ -4,48 +4,37 @@ using System.Linq;
 
 namespace SupaCharge.Core.ExceptionHandling {
   public class ExceptionDump {
-    public ExceptionDump(Exception Exception) {
-      mException = Exception;
-      mIsInnerException = false;
-      if (HasInnerException(Exception))
-        mIsInnerException = true;
+    public ExceptionDump(Exception exception) {
+      mException = exception;
     }
 
     public override string ToString() {
-      var parts = FormatException(mException);
-      return parts;
+      return FormatException(mException);
     }
 
-    private static bool HasInnerException(Exception exc) {
-      return exc.InnerException != null;
-    }
-
-    private string FormatException(Exception exc) {
-      var parts = new List<string>();
+    private static string FormatException(Exception exc) {
+      var messages = new List<string>();
 
       while (exc != null) {
-        if (mIsInnerException && exc != mException)
-          parts.Add("----- Inner Exception");
-
-        parts.Add(exc.GetType().ToString());
-        parts.Add(exc.Message);
-        parts.Add(exc.StackTrace);
-
+        if (messages.Count > 0)
+          messages.Add("----- Inner Exception");
+        messages.Add(exc.GetType().ToString());
+        messages.Add(exc.Message);
+        messages.Add(exc.StackTrace);
         exc = exc.InnerException;
       }
 
-      var result = parts
-        .Where(s => s != null && FilterEmptyItem(s))
-        .ToArray();
-
-      return string.Join(Environment.NewLine, result);
+      return CombineMessages(messages);
     }
 
-    private static bool FilterEmptyItem(string item) {
-      return (item.Length > 0 && item != string.Empty);
+    private static string CombineMessages(IEnumerable<string> parts) {
+      return string.Join(Environment.NewLine, parts.Where(s => IsValidMessage(s)).ToArray());
     }
 
-    private readonly bool mIsInnerException;
+    private static bool IsValidMessage(string message) {
+      return !string.IsNullOrEmpty(message);
+    }
+
     private readonly Exception mException;
   }
 }
