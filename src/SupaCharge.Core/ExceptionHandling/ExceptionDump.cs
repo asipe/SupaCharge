@@ -6,12 +6,17 @@ namespace SupaCharge.Core.ExceptionHandling {
   public class ExceptionDump {
     public ExceptionDump(Exception Exception) {
       mException = Exception;
-      IsInnerException = false;
+      mIsInnerException = false;
       if (HasInnerException(Exception))
-        IsInnerException = true;
+        mIsInnerException = true;
     }
 
-    private bool HasInnerException(Exception exc) {
+    public override string ToString() {
+      var parts = FormatException(mException);
+      return parts;
+    }
+
+    private static bool HasInnerException(Exception exc) {
       return exc.InnerException != null;
     }
 
@@ -19,7 +24,7 @@ namespace SupaCharge.Core.ExceptionHandling {
       var parts = new List<string>();
 
       while (exc != null) {
-        if (IsInnerException && exc != mException)
+        if (mIsInnerException && exc != mException)
           parts.Add("----- Inner Exception");
 
         parts.Add(exc.GetType().ToString());
@@ -36,16 +41,11 @@ namespace SupaCharge.Core.ExceptionHandling {
       return string.Join(Environment.NewLine, result);
     }
 
-    private bool FilterEmptyItem(string item) {
+    private static bool FilterEmptyItem(string item) {
       return (item.Length > 0 && item != string.Empty);
     }
 
-    public override string ToString() {
-      var parts = FormatException(mException);
-      return parts;
-    }
-
-    private readonly bool IsInnerException;
+    private readonly bool mIsInnerException;
     private readonly Exception mException;
   }
 }
