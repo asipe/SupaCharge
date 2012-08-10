@@ -61,11 +61,6 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
       var actual = dump.ToString();
       var split = actual.Split(new[] {Environment.NewLine}, StringSplitOptions.None);
 
-      Console.WriteLine(split[0]);
-      Console.WriteLine(split[1]);
-      Console.WriteLine(split[2]);
-      Console.WriteLine(split[3]);
-      Console.WriteLine(split[4]);
       Assert.That(split[0], Is.EqualTo("System.Exception"));
       Assert.That(split[1], Is.EqualTo("hi"));
       Assert.That(split[2], Is.EqualTo("----- Inner Exception"));
@@ -82,7 +77,7 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
       Assert.That(split[13], Is.EqualTo("last one"));
     }
 
-    private Exception BuildException() {
+    private static Exception BuildException() {
       try {
         throw new Exception("HI");
       } catch (Exception ex) {
@@ -91,13 +86,3 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
     }
   }
 }
-
-//exception type
-//message
-//stack trace
-//--- inner exception
-//    exception type
-//    message
-//    stack trace
-//    ---- inner exception
-//    repeat
