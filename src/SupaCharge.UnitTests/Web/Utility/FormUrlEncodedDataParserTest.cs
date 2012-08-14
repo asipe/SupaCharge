@@ -13,7 +13,7 @@ namespace SupaCharge.UnitTests.Web.Utility {
       var actual = mParser.Parse(data);
       Assert.That(actual.Count, Is.EqualTo(expected.Count));
       foreach (var key in expected.Keys)
-        Assert.That(expected[key], Is.EqualTo(actual[key]));
+        Assert.That(actual[key], Is.EqualTo(expected[key]));
     }
 
     public IEnumerable GetParsingTests() {
