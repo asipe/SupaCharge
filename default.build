@@ -74,12 +74,10 @@
                                     Build.SupaCharge.Testing,
                                     Build.SupaCharge.UnitTests"/>
   
-  <target name="Run.Tests">
+  <target name="Run.Tests" depends="Build.SupaCharge.UnitTests">
     <property name="nunit.test.assembly" value="SupaCharge.UnitTests.dll"/>
     <call target="ExecuteTests"/>
   </target>
-  
-  <target name="Cycle" depends="Build.All, Run.Tests"/>
 </project>
   
   
