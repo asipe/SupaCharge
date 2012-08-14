@@ -5,10 +5,17 @@ using SupaCharge.Core.Text.Extensions;
 
 namespace SupaCharge.Core.Web.Utility {
   public class MultipartFormDataParser {
-    public IDictionary<string, object> Parse(string boundary, string data) {
+    public IDictionary<string, object> Parse(string contentType, string data) {
       return data.IsNullOrEmptyTrim()
                ? new Dictionary<string, object>()
-               : ParseData(boundary, data);
+               : ParseData(GetBoundary(contentType), data);
+    }
+
+    private static string GetBoundary(string contentType) {
+      return new string(contentType
+                          .Split(new[] {"boundary="}, StringSplitOptions.None)[1]
+                          .TakeWhile(c => c != ';')
+                          .ToArray());
     }
 
     private static IDictionary<string, object> ParseData(string boundary, string data) {

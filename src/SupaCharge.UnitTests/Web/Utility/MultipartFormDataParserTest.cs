@@ -9,7 +9,7 @@ namespace SupaCharge.UnitTests.Web.Utility {
   public class MultipartFormDataParserTest : BaseTestCase {
     [TestCaseSource("GetParseTests")]
     public void TestParse(string data, Dictionary<string, object> expected) {
-      var actual = mParser.Parse("---xyz", data);
+      var actual = mParser.Parse("multipart/form-data; boundary=---xyz", data);
       Assert.That(actual.Count, Is.EqualTo(expected.Count));
       foreach (var key in expected.Keys)
         Assert.That(actual[key], Is.EqualTo(expected[key]));
@@ -41,7 +41,7 @@ namespace SupaCharge.UnitTests.Web.Utility {
       yield return new TestCaseData("\r\n-----xyz\r\ncontent-disposition: form-data; name=\"field1\"\r\ncontent-type: application/zip\r\n\r\nvalue1\r\n-----xyz--\r\n\r\n",
                                     new Dictionary<string, object> {{"field1", "value1"}}).SetName("TestSingleValueWithContentType");
       yield return new TestCaseData("\r\n-----xyz\r\ncontent-disposition: form-data; name=\"field1\"\r\ncontent-type: application/zip\r\ncontent-transfer-encoding: binary\r\n\r\nvalue1\r\n-----xyz--\r\n\r\n",
-                                    new Dictionary<string, object> { { "field1", "value1" } }).SetName("TestSingleValueWithContentEncoding");
+                                    new Dictionary<string, object> {{"field1", "value1"}}).SetName("TestSingleValueWithContentEncoding");
     }
 
     private MultipartFormDataParser mParser;
