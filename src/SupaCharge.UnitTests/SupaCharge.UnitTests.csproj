@@ -48,6 +48,7 @@
     <Compile Include="Core\ExceptionHandling\ExceptionDumpTest.cs" />
     <Compile Include="Core\Text\Extensions\IsNullOrEmptyTrimExtensionTest.cs" />
     <Compile Include="Web\Utility\FormUrlEncodedDataParserTest.cs" />
+    <Compile Include="Web\Utility\MultipartEncodedDataParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SupaCharge.Core\SupaCharge.Core.csproj">
