@@ -4,7 +4,7 @@ using System.Linq;
 using SupaCharge.Core.Text.Extensions;
 
 namespace SupaCharge.Core.Web.Utility {
-  public class MultipartEncodedDataParser {
+  public class MultipartFormDataParser {
     public IDictionary<string, object> Parse(string boundary, string data) {
       return data.IsNullOrEmptyTrim()
                ? new Dictionary<string, object>()

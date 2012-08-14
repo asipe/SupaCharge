@@ -6,7 +6,7 @@ using SupaCharge.Testing;
 
 namespace SupaCharge.UnitTests.Web.Utility {
   [TestFixture]
-  public class MultipartEncodedDataParserTest : BaseTestCase {
+  public class MultipartFormDataParserTest : BaseTestCase {
     [TestCaseSource("GetParseTests")]
     public void TestParse(string data, Dictionary<string, object> expected) {
       var actual = mParser.Parse("---xyz", data);
@@ -17,7 +17,7 @@ namespace SupaCharge.UnitTests.Web.Utility {
 
     [SetUp]
     public void DoSetup() {
-      mParser = new MultipartEncodedDataParser();
+      mParser = new MultipartFormDataParser();
     }
 
     public IEnumerable GetParseTests() {
@@ -44,6 +44,6 @@ namespace SupaCharge.UnitTests.Web.Utility {
                                     new Dictionary<string, object> { { "field1", "value1" } }).SetName("TestSingleValueWithContentEncoding");
     }
 
-    private MultipartEncodedDataParser mParser;
+    private MultipartFormDataParser mParser;
   }
 }
