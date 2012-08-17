@@ -21,22 +21,9 @@ namespace SupaCharge.UnitTests.Core.Collections.Extensions {
     }
 
    [Test]
-     public void TestIfExceptionIsThrown() {
-       var ary = new[] { "a", "b", "c" };
-
-       try {
-         ary.ElementsAt(150).ToArray();
-         Assert.Fail("should have thrown exception");
-       }
-       catch (ArgumentOutOfRangeException) {
-       }
-
-    }
-
-   [Test]
    public void TestIfExceptionIsThrown2() {
      var ary = new[] { "a", "b", "c" };
-     var ex = Assert.Throws<Exception>(() => ary.ElementsAt(150).ToArray());
+     var ex = Assert.Throws<ArgumentOutOfRangeException>(() => ary.ElementsAt(150).ToArray());
    }
   }
 }
