@@ -10,7 +10,7 @@ namespace SupaCharge.UnitTests.Core.Text.Extensions {
     [TestCase(null, true)]
     [TestCase("hello", false)]
     [TestCase("  hello     ", false)]
-    public void TestName(string value, bool expected) {
+    public void TestExtensionMethod(string value, bool expected) {
       Assert.That(value.IsNullOrEmptyTrim(), Is.EqualTo(expected));
     }
   }
