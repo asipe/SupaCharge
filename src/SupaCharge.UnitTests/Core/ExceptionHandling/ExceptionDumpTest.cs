@@ -52,6 +52,7 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
       Assert.That(split[1], Is.EqualTo("hi"));
       Assert.That(split[2], Is.EqualTo("----- Inner Exception"));
       Assert.That(split[3], Is.EqualTo("System.Exception"));
+      Assert.That(split.Length, Is.EqualTo(5));
     }
 
     [Test]
