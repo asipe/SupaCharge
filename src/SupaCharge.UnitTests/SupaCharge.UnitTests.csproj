@@ -49,6 +49,7 @@
     <Compile Include="Core\Text\Extensions\IsNullOrEmptyTrimExtensionTest.cs" />
     <Compile Include="Web\Utility\FormUrlEncodedDataParserTest.cs" />
     <Compile Include="Web\Utility\MultipartFormDataParserTest.cs" />
+    <Compile Include="Web\Utility\MultipartFormDataBuilderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SupaCharge.Core\SupaCharge.Core.csproj">
