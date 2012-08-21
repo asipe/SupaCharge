@@ -46,6 +46,7 @@
     <Compile Include="Text\Extensions\IsNullOrEmptyTrimExtension.cs" />
     <Compile Include="ExceptionHandling\ExceptionDump.cs" />
     <Compile Include="Web\Utility\FormUrlEncodedDataParser.cs" />
+    <Compile Include="Web\Utility\MultipartFormDataBuilder.cs" />
     <Compile Include="Web\Utility\MultipartFormDataParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
