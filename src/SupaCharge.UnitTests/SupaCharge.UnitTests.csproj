@@ -45,6 +45,7 @@
       <Link>AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Core\Collections\Extensions\ElementsAtTest.cs" />
+    <Compile Include="Core\Converter\ValueConverterTest.cs" />
     <Compile Include="Core\ExceptionHandling\ExceptionDumpTest.cs" />
     <Compile Include="Core\Text\Extensions\IsNullOrEmptyTrimExtensionTest.cs" />
     <Compile Include="Core\Collections\Extensions\TruncateExtensionTest.cs" />
