@@ -10,4 +10,5 @@ namespace SupaCharge.Core.Collections.Extensions {
       return item.TakeWhile((i, x) => x < count - amount);
     }
   }
+
 }
