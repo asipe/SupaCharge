@@ -25,7 +25,7 @@ namespace SupaCharge.UnitTests.Core.Converter {
     public void TestDefValues() {
       var converter = new ValueConverter();
 
-      Assert.That(converter.Get<int>("yo yo", 3), Is.EqualTo(3));
+      Assert.That(converter.Get<int>(null, 3), Is.EqualTo(3));
     }
     
   }

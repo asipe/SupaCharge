@@ -10,17 +10,11 @@ namespace SupaCharge.Core.Converter {
     }
 
     public T Get<T>(object val, T defVal) {
-      try {
-        var result = (T)Convert.ChangeType(val, typeof(T));
-      }
-
-      catch {
+      if (val == null) {
         return defVal;
       }
 
-      return (T) Convert.ChangeType(val, typeof(T));
+      return (T)Convert.ChangeType(val, typeof(T));
     }
-
-    //public T Get<T>(object val, T defval) 
   }
 }
