@@ -27,6 +27,5 @@ namespace SupaCharge.UnitTests.Core.Converter {
 
       Assert.That(converter.Get<int>(null, 3), Is.EqualTo(3));
     }
-    
   }
 }
