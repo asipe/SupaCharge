@@ -17,7 +17,9 @@ namespace SupaCharge.Core.ConfigurationWrapper {
     }
 
     public T Get<T>(string key, T defValue) {
-      return (ConfigurationManager.AppSettings[key] == null ? _Converter.Get<T>(defValue) : _Converter.Get<T>(ConfigurationManager.AppSettings[key]));
+      return ConfigurationManager.AppSettings[key] == null 
+        ? defValue 
+        : _Converter.Get<T>(ConfigurationManager.AppSettings[key]);
     }
 
     
