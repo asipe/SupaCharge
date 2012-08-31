@@ -68,6 +68,8 @@
         <include name="${debug.dir}\Ploeh.AutoFixture.dll"/>
       </references>
     </csc>
+
+    <copy file="${src.dir}\SupaCharge.UnitTests\app.config" tofile="${debug.dir}\SupaCharge.UnitTests.dll.config"/>
   </target>
 
   <target name="Build.All" depends="Build.SupaCharge.Core, 
