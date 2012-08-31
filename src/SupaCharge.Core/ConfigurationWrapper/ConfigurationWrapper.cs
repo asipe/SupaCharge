@@ -21,9 +21,7 @@ namespace SupaCharge.Core.ConfigurationWrapper {
         ? defValue 
         : _Converter.Get<T>(ConfigurationManager.AppSettings[key]);
     }
-
     
-
     private static readonly ValueConverter _Converter = new ValueConverter();
   }
 }
