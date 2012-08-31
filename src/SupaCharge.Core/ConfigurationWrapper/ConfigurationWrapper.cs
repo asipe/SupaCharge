@@ -18,10 +18,10 @@ namespace SupaCharge.Core.ConfigurationWrapper {
     }
 
     public T Get<T>(string key, T defValue) {
-      if (ConfigurationManager.AppSettings[key] == null)
-        return defValue;
-      return _Converter.Get<T>(ConfigurationManager.AppSettings[key]);
+      return (ConfigurationManager.AppSettings[key] == null ? _Converter.Get<T>(defValue) : _Converter.Get<T>(ConfigurationManager.AppSettings[key]));
     }
+
+    
 
     private static readonly ValueConverter _Converter = new ValueConverter();
   }
