@@ -10,26 +10,26 @@ namespace SupaCharge.UnitTests.Core.ConfigWrapper {
   class ConfigWrapperTest {
     [Test]
     public void BasicContains() {
-      var CWrapper = new ConfigurationWrapper();
+      var cWrapper = new ConfigurationWrapper();
 
-      Assert.That(CWrapper.Contains("name"), Is.True);
-      Assert.That(CWrapper.Contains("num"), Is.True);
+      Assert.That(cWrapper.Contains("name"), Is.True);
+      Assert.That(cWrapper.Contains("num"), Is.True);
     }
 
     [Test]
     public void BasicGet() {
-      var CWrapper = new ConfigurationWrapper();
+      var cWrapper = new ConfigurationWrapper();
 
-      Assert.That(CWrapper.Get<string>("name"), Is.EqualTo("joe"));
-      Assert.That(CWrapper.Get<int>("num"), Is.EqualTo(123));
+      Assert.That(cWrapper.Get<string>("name"), Is.EqualTo("joe"));
+      Assert.That(cWrapper.Get<int>("num"), Is.EqualTo(123));
     }
 
     [Test]
     public void BasicGetWithDefualtVals() {
-      var CWrapper = new ConfigurationWrapper();
+      var cWrapper = new ConfigurationWrapper();
 
-      Assert.That(CWrapper.Get<string>("nam", "harold"), Is.EqualTo("harold"));
-      Assert.That(CWrapper.Get<int>("nom-nom", 321), Is.EqualTo(321));
+      Assert.That(cWrapper.Get<string>("nam", "harold"), Is.EqualTo("harold"));
+      Assert.That(cWrapper.Get<int>("nom-nom", 321), Is.EqualTo(321));
     }
   }
 }
