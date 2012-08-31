@@ -9,7 +9,7 @@ namespace SupaCharge.Core.ConfigurationWrapper {
   public class ConfigurationWrapper {
     public bool Contains(string key) {
 
-      if (ConfigurationSettings.AppSettings[key].Length > 0) {
+      if (ConfigurationSettings.AppSettings[key] != null) {
         return true;
       }
 
