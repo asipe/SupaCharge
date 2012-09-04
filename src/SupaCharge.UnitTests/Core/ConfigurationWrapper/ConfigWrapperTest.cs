@@ -44,7 +44,7 @@ namespace SupaCharge.UnitTests.Core.ConfigWrapper {
       Assert.That(mWrapper.Get<string>("name", "bo-bop"), Is.EqualTo("joe"));
     }
     
-    private ConfigurationWrapper mWrapper = new ConfigurationWrapper();
+    private AppConfig mWrapper = new AppConfig();
   }
 }
 
