@@ -9,20 +9,20 @@ namespace SupaCharge.UnitTests.Core.ConfigWrapper {
   [TestFixture]
   class ConfigWrapperTest {
     [Test]
-    public void BasicContains() {
+    public void TestBasicContains() {
       Assert.That(mWrapper.Contains("name"), Is.True);
       Assert.That(mWrapper.Contains("num"), Is.True);
       Assert.That(mWrapper.Contains("nom-nom"), Is.False);
     }
 
     [Test]
-    public void BasicGet() {
+    public void TestBasicGet() {
       Assert.That(mWrapper.Get<string>("name"), Is.EqualTo("joe"));
       Assert.That(mWrapper.Get<int>("num"), Is.EqualTo(123));
     }
 
     [Test]
-    public void BasicGetWithDefualtVals() {
+    public void TestBasicGetWithDefualtVals() {
       Assert.That(mWrapper.Get<string>("nam", "harold"), Is.EqualTo("harold"));
       Assert.That(mWrapper.Get<int>("nom-nom", 321), Is.EqualTo(321));
       Assert.That(mWrapper.Get<string>("name", "bo-bop"), Is.EqualTo("joe"));
