@@ -5,7 +5,7 @@ using System.Text;
 using System.Configuration;
 using SupaCharge.Core.Converter;
 
-namespace SupaCharge.Core.ConfigurationWrapper {
+namespace SupaCharge.Core.Config {
   public class AppConfig {
     public bool Contains(string key) {
       return ConfigurationManager.AppSettings[key] != null;

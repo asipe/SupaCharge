@@ -42,7 +42,7 @@
     <Compile Include="..\Properties\AssemblyInfo.cs">
       <Link>AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ConfigurationWrapper\ConfigurationWrapper.cs" />
+    <Compile Include="Config\Config.cs" />
     <Compile Include="Converter\ValueConverter.cs" />
     <Compile Include="Collections\Extensions\ElementsAt.cs" />
     <Compile Include="Collections\Extensions\TruncateExtension.cs" />
