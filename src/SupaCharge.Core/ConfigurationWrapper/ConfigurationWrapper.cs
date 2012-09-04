@@ -7,9 +7,8 @@ using SupaCharge.Core.Converter;
 
 namespace SupaCharge.Core.ConfigurationWrapper {
   public class ConfigurationWrapper {
-
     public bool Contains(string key) {
-      return (ConfigurationManager.AppSettings[key] != null);
+      return ConfigurationManager.AppSettings[key] != null;
     }
 
     public T Get<T>(string key) {
