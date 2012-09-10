@@ -45,6 +45,7 @@
       <Link>AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Core\Collections\Extensions\ElementsAtTest.cs" />
+    <Compile Include="Core\Config\ConfigTest.cs" />
     <Compile Include="Core\Converter\ValueConverterTest.cs" />
     <Compile Include="Core\ExceptionHandling\ExceptionDumpTest.cs" />
     <Compile Include="Core\Text\Extensions\IsNullOrEmptyTrimExtensionTest.cs" />
@@ -62,6 +63,9 @@
       <Project>{B6C16C4C-42B2-4D25-9A2C-71DF58CA9C1A}</Project>
       <Name>SupaCharge.Testing</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
