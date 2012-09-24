@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using SupaCharge.Core.Config;
 
-namespace SupaCharge.UnitTests.Core.ConfigWrapper {
+namespace SupaCharge.UnitTests.Core.Config {
   [TestFixture]
   internal class ConfigWrapperTest {
     [Test]

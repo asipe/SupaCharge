@@ -2,7 +2,7 @@
 using SupaCharge.Core.Text.Extensions;
 using SupaCharge.Testing;
 
-namespace SupaCharge.UnitTests.Core.Collections.Extensions {
+namespace SupaCharge.UnitTests.Core.Text.Extensions {
   [TestFixture]
   public class IsNullOrEmptyTrimExtensionTest : BaseTestCase {
     [TestCase("", true)]

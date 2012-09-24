@@ -14,14 +14,12 @@ namespace SupaCharge.UnitTests.Core.Collections.Extensions {
     [TestCase(new[] {0, 1, 0}, new[] {"a", "b", "a"})]
     [TestCase(new[] {0, 1, 0, 0, 1, 0, 1}, new[] {"a", "b", "a", "a", "b", "a", "b"})]
     public void TestElementsAt(int[] indexes, string[] expected) {
-      var ary = new[] {"a", "b", "c"};
-      Assert.That(ary.ElementsAt(indexes), Is.EqualTo(expected));
+      Assert.That(new[] {"a", "b", "c"}.ElementsAt(indexes), Is.EqualTo(expected));
     }
 
     [Test]
     public void TestIfExceptionIsThrown2() {
-      var ary = new[] {"a", "b", "c"};
-      var ex = Assert.Throws<ArgumentOutOfRangeException>(() => ary.ElementsAt(150).ToArray());
+      Assert.Throws<ArgumentOutOfRangeException>(() => new[] {"a", "b", "c"}.ElementsAt(150).ToArray());
     }
   }
 }
