@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <project name="Build" basedir=".">
-  <property name="nant.settings.currentframework" value="net-3.5"/>
+  <property name="current.framework" value="net-3.5" overwrite="false"/>
+  <property name="nant.settings.currentframework" value="${current.framework}" readonly="false"/>  
   <property name="debug.status" value="Full"/>
   <property name="root.dir" value="${project::get-base-directory()}" readonly="true"/>
   <property name="src.dir" value="${root.dir}\src" readonly="true"/>
   <property name="debug.dir" value="${root.dir}\debug" readonly="true"/>
-  <property name="lib.dir" value="${src.dir}\lib" readonly="true"/>
+  <property name="lib.dir" value="${src.dir}\lib" overwrite="false"/>
   <property name="test.results.dir" value="${root.dir}\test_results" readonly="true"/>
   <property name="nunit.test.assembly" value=""/>
   <property name="nunit.exe" value="nunit-console.exe"/>
@@ -81,5 +82,3 @@
     <call target="ExecuteTests"/>
   </target>
 </project>
-  
-  
