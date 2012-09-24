@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SupaCharge.Core.Collections.Extensions {
   public static class TruncateExtension {
@@ -10,5 +8,4 @@ namespace SupaCharge.Core.Collections.Extensions {
       return item.TakeWhile((i, x) => x < count - amount);
     }
   }
-
 }

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using NUnit.Framework;
 using SupaCharge.Core.Config;
-using NUnit.Framework;
 
 namespace SupaCharge.UnitTests.Core.ConfigWrapper {
   [TestFixture]
-  class ConfigWrapperTest {
+  internal class ConfigWrapperTest {
     [Test]
     public void TestContainsTrue() {
       Assert.That(mWrapper.Contains("name"), Is.True);
@@ -31,20 +27,19 @@ namespace SupaCharge.UnitTests.Core.ConfigWrapper {
 
     [Test]
     public void TestGetWithDefaultValueReturnsDefaultIfKeyNotFoundString() {
-      Assert.That(mWrapper.Get<string>("nam", "harold"), Is.EqualTo("harold"));
+      Assert.That(mWrapper.Get("nam", "harold"), Is.EqualTo("harold"));
     }
 
-    [Test] 
+    [Test]
     public void TestGetWithDefaultValueReturnsDefaultIfKeyNotFoundInt() {
-      Assert.That(mWrapper.Get<int>("nom-nom", 321), Is.EqualTo(321));
+      Assert.That(mWrapper.Get("nom-nom", 321), Is.EqualTo(321));
     }
-    
+
     [Test]
     public void TestGetWithDefaultValueReturnsValueIfKeyFound() {
-      Assert.That(mWrapper.Get<string>("name", "bo-bop"), Is.EqualTo("joe"));
+      Assert.That(mWrapper.Get("name", "bo-bop"), Is.EqualTo("joe"));
     }
-    
-    private AppConfig mWrapper = new AppConfig();
+
+    private readonly AppConfig mWrapper = new AppConfig();
   }
 }
-
