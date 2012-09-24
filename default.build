@@ -9,11 +9,17 @@
   <property name="lib.dir" value="${src.dir}\lib" overwrite="false"/>
   <property name="test.results.dir" value="${root.dir}\test_results" readonly="true"/>
   <property name="nunit.test.assembly" value=""/>
-  <property name="nunit.exe" value="nunit-console.exe"/>
-  
+  <property name="nunit.exe" value="thirdparty\nunit\bin\nunit-console.exe" overwrite="false"/>
+  <property name="verbose" value="false" overwrite="false"/>
+
+  <echo message="current.framework = ${current.framework}"/>
+  <echo message="lib.dir = ${lib.dir}"/>
+  <echo message="nunit.exe = ${nunit.exe}"/>
+  <echo message="verbose = ${verbose}"/>
+
   <target name="ExecuteTests">
-    <exec program="thirdparty\nunit\bin\${nunit.exe}"
-          verbose="true"
+    <exec program="${nunit.exe}"
+          verbose="${verbose}"
           commandline="${debug.dir}\${nunit.test.assembly} /xml=test_results/${nunit.test.assembly}_results.xml /noshadow"
           workingdir="${root.dir}"
           failonerror="true"/>
@@ -25,15 +31,17 @@
     <delete dir="${test.results.dir}"/>
     <mkdir dir="${test.results.dir}"/> 
 
-    <copy todir="${debug.dir}" flatten="true">
+    <copy todir="${debug.dir}" flatten="true" verbose="${verbose}">
       <fileset basedir="${lib.dir}">
-        <include name="*.*"/>
+        <include name="moq.dll"/>
+        <include name="Ploeh.AutoFixture.dll"/>
+        <include name="nunit.framework.dll"/>
       </fileset>
     </copy>
   </target>
   
   <target name="Build.SupaCharge.Core">
-    <csc debug="${debug.status}" target="library" output="${debug.dir}\SupaCharge.Core.dll" warnaserror="true">
+    <csc debug="${debug.status}" target="library" output="${debug.dir}\SupaCharge.Core.dll" warnaserror="true"  verbose="${verbose}">
       <sources basedir="${src.dir}">
         <include name="SupaCharge.Core\**\*.cs"/>
         <include name="Properties\*.cs"/>
@@ -42,7 +50,7 @@
   </target>
 
   <target name="Build.SupaCharge.Testing">
-    <csc debug="${debug.status}" target="library" output="${debug.dir}\SupaCharge.Testing.dll" warnaserror="true">
+    <csc debug="${debug.status}" target="library" output="${debug.dir}\SupaCharge.Testing.dll" warnaserror="true"  verbose="${verbose}">
       <sources basedir="${src.dir}">
         <include name="SupaCharge.Testing\**\*.cs"/>
         <include name="Properties\*.cs"/>
@@ -56,7 +64,7 @@
   </target>
 
   <target name="Build.SupaCharge.UnitTests" depends="Build.SupaCharge.Core, Build.SupaCharge.Testing">
-    <csc debug="${debug.status}" target="library" output="${debug.dir}\SupaCharge.UnitTests.dll" warnaserror="true">
+    <csc debug="${debug.status}" target="library" output="${debug.dir}\SupaCharge.UnitTests.dll" warnaserror="true"  verbose="${verbose}">
       <sources basedir="${src.dir}">
         <include name="SupaCharge.UnitTests\**\*.cs"/>
         <include name="Properties\*.cs"/>
