@@ -48,6 +48,8 @@
       <Link>AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="BaseTestCase.cs" />
+    <Compile Include="DotNetDirectory.cs" />
+    <Compile Include="IDirectory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

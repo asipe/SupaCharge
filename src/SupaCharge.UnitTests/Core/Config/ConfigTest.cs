@@ -40,6 +40,6 @@ namespace SupaCharge.UnitTests.Core.Config {
       Assert.That(mWrapper.Get("name", "bo-bop"), Is.EqualTo("joe"));
     }
 
-    private readonly AppConfig mWrapper = new AppConfig();
+    private readonly AppletConfig mWrapper = new AppletConfig();
   }
 }

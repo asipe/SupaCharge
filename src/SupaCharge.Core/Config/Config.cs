@@ -2,8 +2,8 @@
 using SupaCharge.Core.Converter;
 
 namespace SupaCharge.Core.Config {
-  public class AppConfig {
-    public interface IConfig {}
+  public class AppletConfig {
+    //public interface IConfig {}
 
     public bool Contains(string key) {
       return ConfigurationManager.AppSettings[key] != null;
