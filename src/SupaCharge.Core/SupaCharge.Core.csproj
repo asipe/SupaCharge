@@ -42,6 +42,7 @@
     <Compile Include="..\Properties\AssemblyInfo.cs">
       <Link>AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Collections\Extensions\ToQueue.cs" />
     <Compile Include="Config\Config.cs" />
     <Compile Include="Converter\ValueConverter.cs" />
     <Compile Include="Collections\Extensions\ElementsAt.cs" />

@@ -45,6 +45,7 @@
       <Link>AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Core\Collections\Extensions\ElementsAtTest.cs" />
+    <Compile Include="Core\Collections\Extensions\ToQueueTest.cs" />
     <Compile Include="Core\Config\ConfigTest.cs" />
     <Compile Include="Core\Converter\ValueConverterTest.cs" />
     <Compile Include="Core\ExceptionHandling\ExceptionDumpTest.cs" />

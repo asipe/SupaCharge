@@ -2,7 +2,7 @@
 using SupaCharge.Core.Converter;
 
 namespace SupaCharge.Core.Config {
-  public class AppletConfig {
+  public class AppConfig {
     //public interface IConfig {}
 
     public bool Contains(string key) {
