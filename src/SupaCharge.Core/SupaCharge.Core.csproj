@@ -47,6 +47,8 @@
     <Compile Include="Converter\ValueConverter.cs" />
     <Compile Include="Collections\Extensions\ElementsAt.cs" />
     <Compile Include="Collections\Extensions\TruncateExtension.cs" />
+    <Compile Include="IOAbstractions\DotNetDirectory.cs" />
+    <Compile Include="IOAbstractions\IDirectory.cs" />
     <Compile Include="Text\Extensions\IsNullOrEmptyTrimExtension.cs" />
     <Compile Include="ExceptionHandling\ExceptionDump.cs" />
     <Compile Include="Web\Utility\FormUrlEncodedDataParser.cs" />

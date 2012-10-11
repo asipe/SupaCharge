@@ -1,21 +1,20 @@
 ﻿using System;
-using System.Linq;
 using NUnit.Framework;
 using SupaCharge.Core.Collections.Extensions;
-using System.Collections.Generic;
 using SupaCharge.Testing;
 
 namespace SupaCharge.UnitTests.Core.Collections.Extensions {
   [TestFixture]
-  public class ToQueue: BaseTestCase {
+  public class ToQueue : BaseTestCase {
     [Test]
     public void TestQueueHasCorrectElements() {
-      var arry = new int[] { 1, 2, 3 };
+      var arry = new[] {1, 2, 3};
       var queue = arry.ToQueue();
 
       Assert.That(queue.Dequeue(), Is.EqualTo(1));
       Assert.That(queue.Dequeue(), Is.EqualTo(2));
       Assert.That(queue.Dequeue(), Is.EqualTo(3));
+      Assert.That(queue.Count, Is.EqualTo(0));
     }
 
     [Test]
@@ -28,7 +27,7 @@ namespace SupaCharge.UnitTests.Core.Collections.Extensions {
 
     [Test]
     public void TestQueueReturnsASingelElementQueue() {
-      var arry = new int[] {1};
+      var arry = new[] {1};
       var queue = arry.ToQueue();
 
       Assert.That(queue.Dequeue(), Is.EqualTo(1));

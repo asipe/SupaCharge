@@ -1,7 +1,7 @@
-﻿using System.IO;
+using System.IO;
 
-namespace SupaCharge.Testing {
-  internal class DotNetDirectory : IDirectory {
+namespace SupaCharge.Core.IOAbstractions {
+  public class DotNetDirectory : IDirectory {
     public string[] GetFiles(string path, string searchPattern) {
       return Directory.GetFiles(path, searchPattern);
     }
