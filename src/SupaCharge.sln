@@ -6,9 +6,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupaCharge.UnitTests", "SupaCharge.UnitTests\SupaCharge.UnitTests.csproj", "{79649E83-3599-478D-9B9A-26CC15860686}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{AE45650B-A4AE-4279-A2EA-5F7CDE1AC6D0}"
-	ProjectSection(SolutionItems) = preProject
-		..\default.build = ..\default.build
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupaCharge.Testing", "SupaCharge.Testing\SupaCharge.Testing.csproj", "{B6C16C4C-42B2-4D25-9A2C-71DF58CA9C1A}"
 EndProject
