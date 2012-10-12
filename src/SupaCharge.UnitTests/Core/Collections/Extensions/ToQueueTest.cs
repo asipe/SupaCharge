@@ -1,36 +1,18 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SupaCharge.Core.Collections.Extensions;
 using SupaCharge.Testing;
 
 namespace SupaCharge.UnitTests.Core.Collections.Extensions {
   [TestFixture]
   public class ToQueueExtensionTest : BaseTestCase {
-    [Test]
-    public void TestQueueHasCorrectElements() {
-      var arry = new[] {1, 2, 3};
-      var queue = arry.ToQueue();
-
-      Assert.That(queue.Dequeue(), Is.EqualTo(1));
-      Assert.That(queue.Dequeue(), Is.EqualTo(2));
-      Assert.That(queue.Dequeue(), Is.EqualTo(3));
-      Assert.That(queue.Count, Is.EqualTo(0));
-    }
-
-    [Test]
-    public void TestQueueReturnsAnEmptyQueue() {
-      var arry = new int[] {};
-      var queue = arry.ToQueue();
-
-      Assert.Throws<InvalidOperationException>(() => queue.Dequeue());
-    }
-
-    [Test]
-    public void TestQueueReturnsASingelElementQueue() {
-      var arry = new[] {1};
-      var queue = arry.ToQueue();
-
-      Assert.That(queue.Dequeue(), Is.EqualTo(1));
+    [TestCase(new int[0])]
+    [TestCase(new[] {1})]
+    [TestCase(new[] {1, 2, 3})]
+    public void TestToQueueExtension(int[] initial) {
+      var queue = initial.ToQueue();
+      foreach (var x in initial)
+        Assert.That(queue.Dequeue(), Is.EqualTo(x));
+      Assert.That(queue, Is.Empty);
     }
   }
 }
