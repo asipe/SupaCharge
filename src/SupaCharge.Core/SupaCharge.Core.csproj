@@ -48,7 +48,9 @@
     <Compile Include="Collections\Extensions\ElementsAtExtension.cs" />
     <Compile Include="Collections\Extensions\TruncateExtension.cs" />
     <Compile Include="IOAbstractions\DotNetDirectory.cs" />
+    <Compile Include="IOAbstractions\DotNetFile.cs" />
     <Compile Include="IOAbstractions\IDirectory.cs" />
+    <Compile Include="IOAbstractions\IFile.cs" />
     <Compile Include="Text\Extensions\IsNullOrEmptyTrimExtension.cs" />
     <Compile Include="ExceptionHandling\ExceptionDump.cs" />
     <Compile Include="Web\Utility\FormUrlEncodedDataParser.cs" />
