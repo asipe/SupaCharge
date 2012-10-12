@@ -6,7 +6,7 @@ using SupaCharge.Testing;
 
 namespace SupaCharge.UnitTests.Core.Collections.Extensions {
   [TestFixture]
-  public class ElementsAtTest : BaseTestCase {
+  public class ElementsAtExtensionTest : BaseTestCase {
     [TestCase(new int[0], new string[0])]
     [TestCase(new[] {0}, new[] {"a"})]
     [TestCase(new[] {0, 0}, new[] {"a", "a"})]

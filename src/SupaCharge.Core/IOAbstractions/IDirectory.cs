@@ -1,5 +1,5 @@
 namespace SupaCharge.Core.IOAbstractions {
-  interface IDirectory {
+  internal interface IDirectory {
     string[] GetFiles(string path, string searchPattern);
     string GetCurrentDirectory();
   }

@@ -5,7 +5,7 @@ using SupaCharge.Testing;
 
 namespace SupaCharge.UnitTests.Core.Collections.Extensions {
   [TestFixture]
-  public class ToQueue : BaseTestCase {
+  public class ToQueueExtensionTest : BaseTestCase {
     [Test]
     public void TestQueueHasCorrectElements() {
       var arry = new[] {1, 2, 3};
