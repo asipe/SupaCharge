@@ -10,14 +10,24 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
     public void TestOpen() {
       var path = Path.Combine(TempDir, "abc.txt");
       File.WriteAllText(path, "data");
-      using (var strm = new DotNetFile().Open(path, FileMode.Open))
+      using (var strm = mFile.Open(path, FileMode.Open))
       using (var rdr = new StreamReader(strm))
         Assert.That(rdr.ReadToEnd(), Is.EqualTo("data"));
+    }
+
+    [Test]
+    public void TestReadAllText() {
+      var path = Path.Combine(TempDir, "abc.txt");
+      File.WriteAllText(path, "data");
+      Assert.That(mFile.ReadAllText(path), Is.EqualTo("data"));
     }
 
     [SetUp]
     public void DoSetup() {
       CreateTempDir();
+      mFile = new DotNetFile();
     }
+
+    private DotNetFile mFile;
   }
 }

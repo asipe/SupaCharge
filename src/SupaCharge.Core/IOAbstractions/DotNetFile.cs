@@ -5,5 +5,9 @@ namespace SupaCharge.Core.IOAbstractions {
     public FileStream Open(string path, FileMode mode) {
       return File.Open(path, mode);
     }
+
+    public string ReadAllText(string path) {
+      return File.ReadAllText(path);
+    }
   }
 }
