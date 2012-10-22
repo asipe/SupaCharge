@@ -9,5 +9,25 @@ namespace SupaCharge.Core.IOAbstractions {
     public string ReadAllText(string path) {
       return File.ReadAllText(path);
     }
+
+    public StreamReader OpenText(string path) {
+      return File.OpenText(path);
+    }
+
+    public byte[] ReadAllBytes(string path) {
+      return File.ReadAllBytes(path);
+    }
+
+    public void WriteAllBytes(string path, byte[] bytes) {
+      File.WriteAllBytes(path, bytes);
+    }
+
+    public void WriteAllText(string path, string text) {
+      File.WriteAllText(path, text);
+    }
+
+    public void Copy(string sourceFileName, string destFileName) {
+      File.Copy(sourceFileName, destFileName);
+    }
   }
 }

@@ -20,6 +20,14 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(mDir.GetFiles(TempDir, "*.txt")[0], Is.StringEnding("abc.txt"));
     }
 
+    [Test]
+    public void TestCreateDirectory() {
+      var path = Path.Combine(TempDir, "adir");
+      var info = mDir.CreateDirectory(path);
+      Assert.That(Directory.Exists(path), Is.True);
+      Assert.That(info.Exists, Is.True);
+    }
+
     [SetUp]
     public void DoSetup() {
       CreateTempDir();

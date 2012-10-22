@@ -9,5 +9,9 @@ namespace SupaCharge.Core.IOAbstractions {
     public string GetCurrentDirectory() {
       return Directory.GetCurrentDirectory();
     }
+
+    public DirectoryInfo CreateDirectory(string path) {
+      return Directory.CreateDirectory(path);
+    }
   }
 }
