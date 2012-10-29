@@ -9,5 +9,6 @@ namespace SupaCharge.Core.IOAbstractions {
     void WriteAllBytes(string path, byte[] bytes);
     void WriteAllText(string path, string text);
     void Copy(string sourceFileName, string destFileName);
+    bool Exists(string path);
   }
 }

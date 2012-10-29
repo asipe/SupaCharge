@@ -51,6 +51,12 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(File.ReadAllText(mPath), Is.EqualTo("data"));
     }
 
+    [Test]
+    public void TestExists() {
+      Assert.That(mFile.Exists(mPath + ".tmp"), Is.False);
+      Assert.That(mFile.Exists(mPath), Is.True);
+    }
+
     [SetUp]
     public void DoSetup() {
       CreateTempDir();
