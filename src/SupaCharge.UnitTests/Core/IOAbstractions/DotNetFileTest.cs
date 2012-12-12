@@ -20,6 +20,12 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
     }
 
     [Test]
+    public void TestReadAllLines() {
+      Assert.That(mFile.ReadAllLines(mPath)[0], Is.EqualTo("datap"));
+      Assert.That(mFile.ReadAllLines(mPath).Length, Is.EqualTo(1));
+    }
+
+    [Test]
     public void TestOpenText() {
       using (var rdr = mFile.OpenText(mPath))
         Assert.That(rdr.ReadToEnd(), Is.EqualTo("data"));
