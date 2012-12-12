@@ -21,7 +21,7 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
 
     [Test]
     public void TestReadAllLines() {
-      Assert.That(mFile.ReadAllLines(mPath)[0], Is.EqualTo("datap"));
+      Assert.That(mFile.ReadAllLines(mPath)[0], Is.EqualTo("data"));
       Assert.That(mFile.ReadAllLines(mPath).Length, Is.EqualTo(1));
     }
 
