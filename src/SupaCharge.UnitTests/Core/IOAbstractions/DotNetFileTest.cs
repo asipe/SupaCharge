@@ -22,6 +22,13 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(mFile.ReadAllText(path), Is.EqualTo("data"));
     }
 
+    [Test]
+    public void TestReadAllLines() {
+      var path = Path.Combine(TempDir, "abc.txt");
+      File.WriteAllText(path, "data");
+      Assert.That(mFile.ReadAllLines(path)[0], Is.EqualTo("data"));
+    }
+
     [SetUp]
     public void DoSetup() {
       CreateTempDir();
