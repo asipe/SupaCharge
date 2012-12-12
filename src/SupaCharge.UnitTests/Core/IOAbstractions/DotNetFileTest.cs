@@ -16,10 +16,10 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
     }
 
     [Test]
-    public void TestReadAllText() {
+    public void TestReadAllLines() {
       var path = Path.Combine(TempDir, "abc.txt");
       File.WriteAllText(path, "data");
-      Assert.That(mFile.ReadAllText(path), Is.EqualTo("data"));
+      Assert.That(mFile.ReadAllLines(path)[0], Is.EqualTo("data"));
     }
 
     [SetUp]

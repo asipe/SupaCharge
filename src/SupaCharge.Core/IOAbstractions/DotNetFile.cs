@@ -6,8 +6,8 @@ namespace SupaCharge.Core.IOAbstractions {
       return File.Open(path, mode);
     }
 
-    public string ReadAllText(string path) {
-      return File.ReadAllText(path);
+    public string[] ReadAllLines(string path) {
+      return File.ReadAllLines(path);
     }
   }
 }
