@@ -10,6 +10,10 @@ namespace SupaCharge.Core.IOAbstractions {
       return File.ReadAllText(path);
     }
 
+    public string[] ReadAllLines(string path) {
+      return File.ReadAllLines(path);
+    }
+
     public StreamReader OpenText(string path) {
       return File.OpenText(path);
     }
