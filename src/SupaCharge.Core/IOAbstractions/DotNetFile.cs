@@ -33,5 +33,9 @@ namespace SupaCharge.Core.IOAbstractions {
     public bool Exists(string path) {
       return File.Exists(path);
     }
+
+    public void Delete(string path) {
+      File.Delete(path);
+    }
   }
 }

@@ -57,6 +57,12 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(mFile.Exists(mPath), Is.True);
     }
 
+    [Test]
+    public void TestDelete() {
+      mFile.Delete(mPath);
+      Assert.That(mFile.Exists(mPath), Is.False);
+    }
+
     [SetUp]
     public void DoSetup() {
       CreateTempDir();
