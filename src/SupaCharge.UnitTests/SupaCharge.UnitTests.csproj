@@ -51,6 +51,7 @@
     <Compile Include="Core\ExceptionHandling\ExceptionDumpTest.cs" />
     <Compile Include="Core\IOAbstractions\DotNetDirectoryTest.cs" />
     <Compile Include="Core\IOAbstractions\DotNetFileTest.cs" />
+    <Compile Include="Core\OID\GuidOIDProviderTest.cs" />
     <Compile Include="Core\Text\Extensions\IsNullOrEmptyTrimExtensionTest.cs" />
     <Compile Include="Core\Collections\Extensions\TruncateExtensionTest.cs" />
     <Compile Include="Web\Utility\FormUrlEncodedDataParserTest.cs" />
