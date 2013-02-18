@@ -18,7 +18,7 @@ namespace SupaCharge.UnitTests.Core.Collections.Extensions {
     }
 
     [Test]
-    public void TestIfExceptionIsThrown2() {
+    public void TestOutOfRangeIndexThrowsException() {
       Assert.Throws<ArgumentOutOfRangeException>(() => new[] {"a", "b", "c"}.ElementsAt(150).ToArray());
     }
   }
