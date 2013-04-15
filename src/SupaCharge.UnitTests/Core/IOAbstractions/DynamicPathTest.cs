@@ -17,6 +17,8 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
     }
 
     [TestCase(@"c:\apps\myapp\data\")]
+    [TestCase(@"apps\myapp\data\yo.txt")]
+    [TestCase(@"c:\apps\myapp\data\yo.txt")]
     [TestCase(@"c:\apps\my231app\data\")]
     [TestCase(@"\\10.1.1.1\d$\myapp\data\")]
     public void TestCurrentPathAfterRefreshEqualsOriginals(string path) {
@@ -33,14 +35,6 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(path.CurrentPath, Is.EqualTo("Refreshed"));
     } 
     
-    //[Test]
-    //public void TestRefreshingUncPathWithHostNameCallsIdnsEx() {
-    //  var path = Init(@"\\zbeast\d$\myapp\data");
-    //  mDns.Setup(i => i.GetIPAddress("zbeast")).Returns("121.1.1.1");
-    //  path.Refresh();
-    //  Assert.That(path.CurrentPath, Is.EqualTo(@"\\121.1.1.1\d$\myapp\data"));
-    //}
-
     [Test]
     public void TestFindHostName() {
       var path = Init(@"\\zbeast\d$\myapp\data");
