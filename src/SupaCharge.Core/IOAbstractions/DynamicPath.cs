@@ -3,30 +3,31 @@ using System.IO;
 
 namespace SupaCharge.Core.IOAbstractions {
   public class DynamicPath {
-   public DynamicPath(string path, IDns dotNetDns) {
-     OriginalPath = path;
-     CurrentPath = path;
-     mDotNetDns = dotNetDns;
-     mWellFormed = false;
-     mPath = path;
-     if (Path.IsPathRooted(path))
-       mWellFormed = true;
-   }
+    public DynamicPath(string path, IDns dotNetDns) {
+      OriginalPath = CurrentPath = path;
+      mDotNetDns = dotNetDns;
+      mRootedPath = Path.IsPathRooted(path);
+    }
+
+    public void Refresh() {
+      if (mRootedPath)
+       DoRefresh();
+    }
+
+    private void DoRefresh() {
+      mUri = new Uri(OriginalPath);
+
+      if (mUri.HostNameType.ToString() == "Dns") {
+        var ip = mDotNetDns.GetIPAddress(mUri.Host);
+        CurrentPath = CurrentPath.Replace(mUri.Host, ip);
+      }
+    }
 
     public string OriginalPath { get; private set; }
     public string CurrentPath { get; private set; }
 
-    public void Refresh() {
-      if (mWellFormed) {
-        mUri = new Uri(mPath);
-        if (mUri.HostNameType.ToString() == "Dns" && mWellFormed)
-          CurrentPath = mDotNetDns.GetIPAddress(mUri.Host);
-      }
-    }
-
     private readonly IDns mDotNetDns;
+    private readonly bool mRootedPath;
     private Uri mUri;
-    private bool mWellFormed;
-    private string mPath;
   }
 }
