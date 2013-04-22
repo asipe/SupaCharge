@@ -17,9 +17,8 @@ namespace SupaCharge.Core.IOAbstractions {
     private void DoRefresh() {
       var uri = new Uri(OriginalPath);
 
-      if (uri.HostNameType.ToString() == "Dns") {
+      if (uri.HostNameType.ToString() == "Dns")
         CurrentPath = OriginalPath.Replace(uri.Host, mDotNetDns.GetIPAddress(uri.Host));
-      }
     }
 
     public string OriginalPath { get; private set; }

@@ -31,9 +31,7 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
     public void TestCurrentPathUsesAnIPAddressAfterBeingRefreshed() {
       var path = Init(@"\\zbeast\d$\myapp\data");
       mDns.Setup(i => i.GetIPAddress("zbeast")).Returns("12.345.67.890");
-     
       path.Refresh();
-      
       Assert.That(path.CurrentPath, Is.EqualTo(@"\\12.345.67.890\d$\myapp\data"));
     }
 
