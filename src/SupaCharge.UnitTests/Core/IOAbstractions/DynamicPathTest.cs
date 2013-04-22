@@ -28,14 +28,6 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
     }
 
     [Test]
-    public void TestRefreshingUncPathWithHostNameCallsIdns() {
-      var path = Init(@"\\zbeast\d$\myapp\data");
-      mDns.Setup(i => i.GetIPAddress("zbeast")).Returns("Refreshed");
-      path.Refresh();
-      Assert.That(path.CurrentPath, Is.EqualTo(@"\\Refreshed\d$\myapp\data"));
-    } 
-
-    [Test]
     public void TestCurrentPathUsesAnIPAddressAfterBeingRefreshed() {
       var path = Init(@"\\zbeast\d$\myapp\data");
       mDns.Setup(i => i.GetIPAddress("zbeast")).Returns("12.345.67.890");
@@ -45,13 +37,13 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(path.CurrentPath, Is.EqualTo(@"\\12.345.67.890\d$\myapp\data"));
     }
 
-    private DynamicPath Init(string path) {
-      return new DynamicPath(path, mDns.Object);
-    }
-
     [SetUp]
     public void DoSetup() {
       mDns = Mok<IDns>();
+    }
+
+    private DynamicPath Init(string path) {
+      return new DynamicPath(path, mDns.Object);
     }
 
     private Mock<IDns> mDns;
