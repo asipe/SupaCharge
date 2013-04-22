@@ -15,11 +15,10 @@ namespace SupaCharge.Core.IOAbstractions {
     }
 
     private void DoRefresh() {
-      mUri = new Uri(OriginalPath);
+      var uri = new Uri(OriginalPath);
 
-      if (mUri.HostNameType.ToString() == "Dns") {
-        var ip = mDotNetDns.GetIPAddress(mUri.Host);
-        CurrentPath = CurrentPath.Replace(mUri.Host, ip);
+      if (uri.HostNameType.ToString() == "Dns") {
+        CurrentPath = OriginalPath.Replace(uri.Host, mDotNetDns.GetIPAddress(uri.Host));
       }
     }
 
@@ -28,6 +27,5 @@ namespace SupaCharge.Core.IOAbstractions {
 
     private readonly IDns mDotNetDns;
     private readonly bool mRootedPath;
-    private Uri mUri;
   }
 }
