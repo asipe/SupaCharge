@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq, Version=3.1.416.3, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL" />
     <Reference Include="nunit.framework">
       <HintPath>..\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -51,6 +52,7 @@
     <Compile Include="Core\ExceptionHandling\ExceptionDumpTest.cs" />
     <Compile Include="Core\IOAbstractions\DotNetDirectoryTest.cs" />
     <Compile Include="Core\IOAbstractions\DotNetFileTest.cs" />
+    <Compile Include="Core\IOAbstractions\DynamicPathTest.cs" />
     <Compile Include="Core\OID\GuidOIDProviderTest.cs" />
     <Compile Include="Core\Text\Extensions\IsNullOrEmptyTrimExtensionTest.cs" />
     <Compile Include="Core\Collections\Extensions\TruncateExtensionTest.cs" />
