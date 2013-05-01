@@ -28,6 +28,12 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(info.Exists, Is.True);
     }
 
+    [Test]
+    public void TestExists() {
+      Assert.That(mDir.Exists(TempDir), Is.True);
+      Assert.That(mDir.Exists("abc"), Is.False);
+    }
+
     [SetUp]
     public void DoSetup() {
       CreateTempDir();
