@@ -53,6 +53,7 @@
     <Compile Include="Core\IOAbstractions\DotNetDirectoryTest.cs" />
     <Compile Include="Core\IOAbstractions\DotNetFileTest.cs" />
     <Compile Include="Core\IOAbstractions\DynamicPathTest.cs" />
+    <Compile Include="Core\IOAbstractions\NoOpDotDnsTest.cs" />
     <Compile Include="Core\OID\GuidOIDProviderTest.cs" />
     <Compile Include="Core\Text\Extensions\IsNullOrEmptyTrimExtensionTest.cs" />
     <Compile Include="Core\Collections\Extensions\TruncateExtensionTest.cs" />

@@ -47,6 +47,7 @@
     <Compile Include="Converter\ValueConverter.cs" />
     <Compile Include="Collections\Extensions\ElementsAtExtension.cs" />
     <Compile Include="Collections\Extensions\TruncateExtension.cs" />
+    <Compile Include="IOAbstractions\NoOpDotNetDns.cs" />
     <Compile Include="IOAbstractions\DotNetDirectory.cs" />
     <Compile Include="IOAbstractions\DotNetDns.cs" />
     <Compile Include="IOAbstractions\DotNetFile.cs" />
