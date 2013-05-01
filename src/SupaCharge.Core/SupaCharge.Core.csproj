@@ -51,7 +51,7 @@
     <Compile Include="IOAbstractions\DotNetDirectory.cs" />
     <Compile Include="IOAbstractions\DotNetDns.cs" />
     <Compile Include="IOAbstractions\DotNetFile.cs" />
-    <Compile Include="IOAbstractions\DynamicPath.cs" />
+    <Compile Include="Net\DynamicPath.cs" />
     <Compile Include="IOAbstractions\IDirectory.cs" />
     <Compile Include="IOAbstractions\IDns.cs" />
     <Compile Include="IOAbstractions\IFile.cs" />
