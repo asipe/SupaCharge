@@ -2,7 +2,7 @@
 using SupaCharge.Core.IOAbstractions;
 using SupaCharge.Testing;
 
-namespace SupaCharge.UnitTests.Core.IOAbstractions {
+namespace SupaCharge.UnitTests.Core.Net {
   [TestFixture]
   public class NoOpDotDnsTest : BaseTestCase {
     [Test]
