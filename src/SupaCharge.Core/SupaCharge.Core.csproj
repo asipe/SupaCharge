@@ -47,12 +47,13 @@
     <Compile Include="Converter\ValueConverter.cs" />
     <Compile Include="Collections\Extensions\ElementsAtExtension.cs" />
     <Compile Include="Collections\Extensions\TruncateExtension.cs" />
+    <Compile Include="Net\NoOpDotNetDns.cs" />
     <Compile Include="IOAbstractions\DotNetDirectory.cs" />
-    <Compile Include="IOAbstractions\DotNetDns.cs" />
+    <Compile Include="Net\DotNetDns.cs" />
     <Compile Include="IOAbstractions\DotNetFile.cs" />
-    <Compile Include="IOAbstractions\DynamicPath.cs" />
+    <Compile Include="Net\DynamicPath.cs" />
     <Compile Include="IOAbstractions\IDirectory.cs" />
-    <Compile Include="IOAbstractions\IDns.cs" />
+    <Compile Include="Net\IDns.cs" />
     <Compile Include="IOAbstractions\IFile.cs" />
     <Compile Include="OID\GuidOIDProvider.cs" />
     <Compile Include="OID\IOIDProvider.cs" />

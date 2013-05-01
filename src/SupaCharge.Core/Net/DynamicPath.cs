@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace SupaCharge.Core.IOAbstractions {
+namespace SupaCharge.Core.Net {
   public class DynamicPath {
     public DynamicPath(string path, IDns dotNetDns) {
       OriginalPath = CurrentPath = path;
