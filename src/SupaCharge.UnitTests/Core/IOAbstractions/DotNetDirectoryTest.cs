@@ -34,6 +34,14 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(mDir.Exists("abc"), Is.False);
     }
 
+    [Test]
+    public void TestGetDirectories() {
+      Assert.That(mDir.GetDirectories(TempDir), Is.Empty);
+      mDir.CreateDirectory(Path.Combine(TempDir, "a"));
+      mDir.CreateDirectory(Path.Combine(TempDir, "b"));
+      Assert.That(mDir.GetDirectories(TempDir), Is.EqualTo(BA(Path.Combine(TempDir, "a"), Path.Combine(TempDir, "b"))));
+    }
+
     [SetUp]
     public void DoSetup() {
       CreateTempDir();

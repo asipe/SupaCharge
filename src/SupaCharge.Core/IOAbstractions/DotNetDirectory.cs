@@ -17,5 +17,9 @@ namespace SupaCharge.Core.IOAbstractions {
     public bool Exists(string path) {
       return Directory.Exists(path);
     }
+
+    public string[] GetDirectories(string path) {
+      return Directory.GetDirectories(path);
+    }
   }
 }

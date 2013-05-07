@@ -6,5 +6,6 @@ namespace SupaCharge.Core.IOAbstractions {
     string GetCurrentDirectory();
     DirectoryInfo CreateDirectory(string path);
     bool Exists(string path);
+    string[] GetDirectories(string path);
   }
 }
