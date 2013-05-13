@@ -48,6 +48,7 @@
     <Compile Include="Core\Collections\Extensions\ElementsAtExtensionTest.cs" />
     <Compile Include="Core\Collections\Extensions\ToQueueTest.cs" />
     <Compile Include="Core\Config\AppConfigTest.cs" />
+    <Compile Include="Core\Config\ConfigWriterTest.cs" />
     <Compile Include="Core\Converter\ValueConverterTest.cs" />
     <Compile Include="Core\ExceptionHandling\ExceptionDumpTest.cs" />
     <Compile Include="Core\IOAbstractions\DotNetDirectoryTest.cs" />
