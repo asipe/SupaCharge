@@ -21,7 +21,6 @@ namespace SupaCharge.Core.Config {
     public void Set(string nodeToChange, string newValue) {
       var node = mDoc.XPathSelectElement(BuildQuery(nodeToChange));
       node.Attribute("value").Value = newValue;
-      node.Attribute("value").Value = newValue;
     }
 
     private string BuildQuery(string strToFormat) {
