@@ -15,16 +15,17 @@ namespace SupaCharge.Core.Config {
       using (var writer = new StringWriter()) {
         mDoc.Save(writer);
         mFile.WriteAllText(mPath, writer.ToString());
+        writer.Close();
       }
     }
 
-    public void Set(string nodeToChange, string newValue) {
-      var node = mDoc.XPathSelectElement(BuildQuery(nodeToChange));
-      node.Attribute("value").Value = newValue;
+    public void Set(string key, string value) {
+      var node = mDoc.XPathSelectElement(BuildQuery(key));
+      node.Attribute("value").Value = value;
     }
 
-    private string BuildQuery(string strToFormat) {
-      return string.Format("//configuration/appSettings/add[@key='{0}']", strToFormat);
+    private string BuildQuery(string key) {
+      return string.Format("//configuration/appSettings/add[@key='{0}']", key);
     }
 
     private readonly XDocument mDoc;
