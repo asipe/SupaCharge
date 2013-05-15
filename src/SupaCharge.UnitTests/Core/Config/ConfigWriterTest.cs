@@ -11,88 +11,91 @@ namespace SupaCharge.UnitTests.Core.Config {
   internal class ConfigWriterTests : BaseTestCase {
     [Test]
     public void TestSaveUnchangedConfigSavesSameXML() {
-      mFile.Setup(f => f.WriteAllText("config.xml", It.IsAny<string>()));
+      mWriter = CreateWriter(_SingleEntryXml);
       mWriter.Save();
-      CheckConfigStatus("config.xml", "//configuration/appSettings/add", "joe");
+      CheckConfigStatus("config.xml", "user1", "joe");
     }
 
     [Test]
     public void TestSavingAChangedConfigChangesTheValuesOnASingleEntryConfig() {
-      mFile.Setup(f => f.WriteAllText("config.xml", It.IsAny<string>()));
-      mWriter.Set("name", "bob");
+      mWriter = CreateWriter(_SingleEntryXml);
+      mWriter.Set("user1", "bob");
       mWriter.Save();
-      CheckConfigStatus("config.xml", "//configuration/appSettings/add", "bob");
+      CheckConfigStatus("config.xml", "user1", "bob");
     }
-
+    
     [Test]
     public void TestSavingAnUnchangedConfigGivesTheSameXMLWithMultipleEntries() {
-      mFile.Setup(f => f.WriteAllText("bigConfig.xml", It.IsAny<string>()));
-      mBigWriter.Save();
-      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user1']", "joe");
-      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user2']", "bob");
-      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user3']", "hal");
+      mWriter = CreateWriter(_MultiEntryXml);
+      mWriter.Save();
+      CheckConfigStatus("config.xml", "user1", "joe");
+      CheckConfigStatus("config.xml", "user2", "bob");
+      CheckConfigStatus("config.xml", "user3", "hal");
     }
-
+    
     [Test]
     public void TestSavingASingleConfigHasCorrectlyAlteredEntryAmongMultipleEntries() {
-      mFile.Setup(f => f.WriteAllText("bigConfig.xml", It.IsAny<string>()));
-      mBigWriter.Set("user1", "sam");
-      mBigWriter.Save();
-      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user1']", "sam");
+      mWriter = CreateWriter(_MultiEntryXml);
+      mWriter.Set("user1", "sam");
+      mWriter.Save();
+      CheckConfigStatus("config.xml", "user1", "sam");
     }
-
+             
     [Test]
     public void TestSavingMultipleChangedConfigsHasCorrectlyChangedValues() {
-      mFile.Setup(f => f.WriteAllText("bigConfig.xml", It.IsAny<string>()));
-      mBigWriter.Set("user1", "sam");
-      mBigWriter.Set("user2", "tim");
-      mBigWriter.Set("user3", "ted");
-      mBigWriter.Save();
-      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user1']", "sam");
-      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user2']", "tim");
-      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user3']", "ted");
+      mWriter = CreateWriter(_MultiEntryXml);
+      mWriter.Set("user1", "sam");
+      mWriter.Set("user2", "tim");
+      mWriter.Set("user3", "ted");
+      mWriter.Save();
+      CheckConfigStatus("config.xml", "user1", "sam");
+      CheckConfigStatus("config.xml", "user2", "tim");
+      CheckConfigStatus("config.xml", "user3", "ted");
     }
 
     [Test]
     public void TestFullFunctionalityGivenMultipleSavesAndSetsInMixedOrder() {
-      mFile.Setup(f => f.WriteAllText("bigConfig.xml", It.IsAny<string>()));
-      mBigWriter.Set("user1", "sam");
-      mBigWriter.Set("user2", "tim");
-      mBigWriter.Save();
-      mBigWriter.Set("user3", "ted");
-      mBigWriter.Save();
-      mBigWriter.Save();
-      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user1']", "sam");
-      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user2']", "tim");
-      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user3']", "ted");
+      mWriter = CreateWriter(_MultiEntryXml);
+      mWriter.Set("user1", "sam");
+      mWriter.Set("user2", "tim");
+      mWriter.Save();
+      mWriter.Set("user3", "ted");
+      mWriter.Save();
+      mWriter.Save();
+      CheckConfigStatus("config.xml", "user1", "sam");
+      CheckConfigStatus("config.xml", "user2", "tim");
+      CheckConfigStatus("config.xml", "user3", "ted");
     }
+     
+ 
 
     [SetUp]
     public void DoSetup() {
       mFile = Mok<IFile>();
-      mFile.Setup(f => f.ReadAllText("config.xml")).Returns(_SingleEntryXml);
-      mFile.Setup(f => f.ReadAllText("bigConfig.xml")).Returns(_MultiEntryXml);
-      mWriter = new ConfigWriter(mFile.Object, "config.xml");
-      mBigWriter = new ConfigWriter(mFile.Object, "bigConfig.xml");
+      mFile.Setup(f => f.WriteAllText("config.xml", It.IsAny<string>()));
     }
 
-    private void CheckConfigStatus(string configName, string elementToCheck, string value) {
+    private void CheckConfigStatus(string configName, string key, string value) {
       mFile.Verify(f => f.WriteAllText(configName, It.Is<string>(s => XDocument
                                                                              .Parse(s)
-                                                                             .XPathSelectElement(elementToCheck)
+                                                                             .XPathSelectElement(string.Format("//configuration/appSettings/add[@key='{0}']", key))
                                                                              .Attribute("value")
                                                                              .Value == value)));
     }
 
+    private ConfigWriter CreateWriter(string config) {
+      mFile.Setup(f => f.ReadAllText("config.xml")).Returns(config);
+      return new ConfigWriter(mFile.Object, "config.xml");
+    }
+
     private Mock<IFile> mFile;
     private ConfigWriter mWriter;
-    private ConfigWriter mBigWriter;
 
     private const string _SingleEntryXml =
       @"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <appSettings>
-    <add key=""name"" value=""joe"" />
+    <add key=""user1"" value=""joe"" />
   </appSettings>
 </configuration>";
 
