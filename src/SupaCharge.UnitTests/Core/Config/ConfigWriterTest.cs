@@ -37,20 +37,20 @@ namespace SupaCharge.UnitTests.Core.Config {
       mFile.Setup(f => f.WriteAllText("bigConfig.xml", It.IsAny<string>()));
       mBigWriter.Save();
       mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                          .Parse(s)
-                                                                          .XPathSelectElement("//configuration/appSettings/add[@key='user1']")
-                                                                          .Attribute("value")
-                                                                          .Value == "joe")));
+                                                                             .Parse(s)
+                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user1']")
+                                                                             .Attribute("value")
+                                                                             .Value == "joe")));
       mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                          .Parse(s)
-                                                                          .XPathSelectElement("//configuration/appSettings/add[@key='user2']")
-                                                                          .Attribute("value")
-                                                                          .Value == "bob")));
+                                                                             .Parse(s)
+                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user2']")
+                                                                             .Attribute("value")
+                                                                             .Value == "bob")));
       mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                         .Parse(s)
-                                                                         .XPathSelectElement("//configuration/appSettings/add[@key='user3']")
-                                                                         .Attribute("value")
-                                                                         .Value == "hal")));
+                                                                             .Parse(s)
+                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user3']")
+                                                                             .Attribute("value")
+                                                                             .Value == "hal")));
     }
 
     [Test]
@@ -59,10 +59,10 @@ namespace SupaCharge.UnitTests.Core.Config {
       mBigWriter.Set("user1", "sam");
       mBigWriter.Save();
       mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                          .Parse(s)
-                                                                          .XPathSelectElement("//configuration/appSettings/add[@key='user1']")
-                                                                          .Attribute("value")
-                                                                          .Value == "sam")));
+                                                                             .Parse(s)
+                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user1']")
+                                                                             .Attribute("value")
+                                                                             .Value == "sam")));
     }
 
     [Test]
@@ -73,20 +73,20 @@ namespace SupaCharge.UnitTests.Core.Config {
       mBigWriter.Set("user3", "ted");
       mBigWriter.Save();
       mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                          .Parse(s)
-                                                                          .XPathSelectElement("//configuration/appSettings/add[@key='user1']")
-                                                                          .Attribute("value")
-                                                                          .Value == "sam")));
+                                                                             .Parse(s)
+                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user1']")
+                                                                             .Attribute("value")
+                                                                             .Value == "sam")));
       mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                          .Parse(s)
-                                                                          .XPathSelectElement("//configuration/appSettings/add[@key='user2']")
-                                                                          .Attribute("value")
-                                                                          .Value == "tim")));
+                                                                             .Parse(s)
+                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user2']")
+                                                                             .Attribute("value")
+                                                                             .Value == "tim")));
       mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                          .Parse(s)
-                                                                          .XPathSelectElement("//configuration/appSettings/add[@key='user3']")
-                                                                          .Attribute("value")
-                                                                          .Value == "ted")));
+                                                                             .Parse(s)
+                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user3']")
+                                                                             .Attribute("value")
+                                                                             .Value == "ted")));
     }
 
     [Test]
@@ -99,28 +99,22 @@ namespace SupaCharge.UnitTests.Core.Config {
       mBigWriter.Save();
       mBigWriter.Save();
       mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                          .Parse(s)
-                                                                          .XPathSelectElement("//configuration/appSettings/add[@key='user1']")
-                                                                          .Attribute("value")
-                                                                          .Value == "sam")));
+                                                                             .Parse(s)
+                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user1']")
+                                                                             .Attribute("value")
+                                                                             .Value == "sam")));
       mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                          .Parse(s)
-                                                                          .XPathSelectElement("//configuration/appSettings/add[@key='user2']")
-                                                                          .Attribute("value")
-                                                                          .Value == "tim")));
+                                                                             .Parse(s)
+                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user2']")
+                                                                             .Attribute("value")
+                                                                             .Value == "tim")));
       mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                          .Parse(s)
-                                                                          .XPathSelectElement("//configuration/appSettings/add[@key='user3']")
-                                                                          .Attribute("value")
-                                                                          .Value == "ted")));
+                                                                             .Parse(s)
+                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user3']")
+                                                                             .Attribute("value")
+                                                                             .Value == "ted")));
     }
 
-
-
-    //var writer  =  new Writer(..., 'abc.xml')
-    //writer.set("aac_leave_on_exit", "true");
-    //writer.set("aac_ppg_portz", "1234");
-    //writer.Commit()
     [SetUp]
     public void DoSetup() {
       mFile = Mok<IFile>();
@@ -141,7 +135,7 @@ namespace SupaCharge.UnitTests.Core.Config {
     <add key=""name"" value=""joe"" />
   </appSettings>
 </configuration>";
-    
+
     private const string _MultiEntryXml =
       @"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>

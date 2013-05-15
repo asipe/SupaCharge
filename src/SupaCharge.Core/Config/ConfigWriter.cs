@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using SupaCharge.Core.IOAbstractions;
@@ -24,7 +22,7 @@ namespace SupaCharge.Core.Config {
       var query = string.Format("//configuration/appSettings/add[@key='{0}']", nodeToChange);
       var node = mDoc.XPathSelectElement(query);
       node.Attribute("value").Value = newValue;
-      
+      node.Attribute("value").Value = newValue;
     }
 
     private readonly XDocument mDoc;
