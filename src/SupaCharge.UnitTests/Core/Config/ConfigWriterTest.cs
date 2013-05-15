@@ -13,11 +13,7 @@ namespace SupaCharge.UnitTests.Core.Config {
     public void TestSaveUnchangedConfigSavesSameXML() {
       mFile.Setup(f => f.WriteAllText("config.xml", It.IsAny<string>()));
       mWriter.Save();
-      mFile.Verify(f => f.WriteAllText("config.xml", It.Is<string>(s => XDocument
-                                                                          .Parse(s)
-                                                                          .XPathSelectElement("//configuration/appSettings/add")
-                                                                          .Attribute("value")
-                                                                          .Value == "joe")));
+      CheckConfigStatus("config.xml", "//configuration/appSettings/add", "joe");
     }
 
     [Test]
@@ -25,32 +21,16 @@ namespace SupaCharge.UnitTests.Core.Config {
       mFile.Setup(f => f.WriteAllText("config.xml", It.IsAny<string>()));
       mWriter.Set("name", "bob");
       mWriter.Save();
-      mFile.Verify(f => f.WriteAllText("config.xml", It.Is<string>(s => XDocument
-                                                                          .Parse(s)
-                                                                          .XPathSelectElement("//configuration/appSettings/add")
-                                                                          .Attribute("value")
-                                                                          .Value == "bob")));
+      CheckConfigStatus("config.xml", "//configuration/appSettings/add", "bob");
     }
 
     [Test]
     public void TestSavingAnUnchangedConfigGivesTheSameXMLWithMultipleEntries() {
       mFile.Setup(f => f.WriteAllText("bigConfig.xml", It.IsAny<string>()));
       mBigWriter.Save();
-      mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                             .Parse(s)
-                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user1']")
-                                                                             .Attribute("value")
-                                                                             .Value == "joe")));
-      mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                             .Parse(s)
-                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user2']")
-                                                                             .Attribute("value")
-                                                                             .Value == "bob")));
-      mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                             .Parse(s)
-                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user3']")
-                                                                             .Attribute("value")
-                                                                             .Value == "hal")));
+      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user1']", "joe");
+      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user2']", "bob");
+      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user3']", "hal");
     }
 
     [Test]
@@ -58,11 +38,7 @@ namespace SupaCharge.UnitTests.Core.Config {
       mFile.Setup(f => f.WriteAllText("bigConfig.xml", It.IsAny<string>()));
       mBigWriter.Set("user1", "sam");
       mBigWriter.Save();
-      mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                             .Parse(s)
-                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user1']")
-                                                                             .Attribute("value")
-                                                                             .Value == "sam")));
+      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user1']", "sam");
     }
 
     [Test]
@@ -72,21 +48,9 @@ namespace SupaCharge.UnitTests.Core.Config {
       mBigWriter.Set("user2", "tim");
       mBigWriter.Set("user3", "ted");
       mBigWriter.Save();
-      mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                             .Parse(s)
-                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user1']")
-                                                                             .Attribute("value")
-                                                                             .Value == "sam")));
-      mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                             .Parse(s)
-                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user2']")
-                                                                             .Attribute("value")
-                                                                             .Value == "tim")));
-      mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                             .Parse(s)
-                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user3']")
-                                                                             .Attribute("value")
-                                                                             .Value == "ted")));
+      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user1']", "sam");
+      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user2']", "tim");
+      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user3']", "ted");
     }
 
     [Test]
@@ -98,21 +62,9 @@ namespace SupaCharge.UnitTests.Core.Config {
       mBigWriter.Set("user3", "ted");
       mBigWriter.Save();
       mBigWriter.Save();
-      mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                             .Parse(s)
-                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user1']")
-                                                                             .Attribute("value")
-                                                                             .Value == "sam")));
-      mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                             .Parse(s)
-                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user2']")
-                                                                             .Attribute("value")
-                                                                             .Value == "tim")));
-      mFile.Verify(f => f.WriteAllText("bigConfig.xml", It.Is<string>(s => XDocument
-                                                                             .Parse(s)
-                                                                             .XPathSelectElement("//configuration/appSettings/add[@key='user3']")
-                                                                             .Attribute("value")
-                                                                             .Value == "ted")));
+      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user1']", "sam");
+      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user2']", "tim");
+      CheckConfigStatus("bigConfig.xml", "//configuration/appSettings/add[@key='user3']", "ted");
     }
 
     [SetUp]
@@ -122,6 +74,14 @@ namespace SupaCharge.UnitTests.Core.Config {
       mFile.Setup(f => f.ReadAllText("bigConfig.xml")).Returns(_MultiEntryXml);
       mWriter = new ConfigWriter(mFile.Object, "config.xml");
       mBigWriter = new ConfigWriter(mFile.Object, "bigConfig.xml");
+    }
+
+    private void CheckConfigStatus(string configName, string elementToCheck, string value) {
+      mFile.Verify(f => f.WriteAllText(configName, It.Is<string>(s => XDocument
+                                                                             .Parse(s)
+                                                                             .XPathSelectElement(elementToCheck)
+                                                                             .Attribute("value")
+                                                                             .Value == value)));
     }
 
     private Mock<IFile> mFile;
