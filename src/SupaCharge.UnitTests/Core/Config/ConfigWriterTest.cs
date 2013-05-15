@@ -23,7 +23,7 @@ namespace SupaCharge.UnitTests.Core.Config {
       mWriter.Save();
       VerifyKeyValue("user1", "bob");
     }
-    
+
     [Test]
     public void TestSavingAnUnchangedConfigGivesTheSameXMLWithMultipleEntries() {
       mWriter = CreateWriter(_MultiEntryXml);
@@ -32,7 +32,7 @@ namespace SupaCharge.UnitTests.Core.Config {
       VerifyKeyValue("user2", "bob");
       VerifyKeyValue("user3", "hal");
     }
-    
+
     [Test]
     public void TestSavingASingleConfigHasCorrectlyAlteredEntryAmongMultipleEntries() {
       mWriter = CreateWriter(_MultiEntryXml);
@@ -40,7 +40,7 @@ namespace SupaCharge.UnitTests.Core.Config {
       mWriter.Save();
       VerifyKeyValue("user1", "sam");
     }
-             
+
     [Test]
     public void TestSavingMultipleChangedConfigsHasCorrectlyChangedValues() {
       mWriter = CreateWriter(_MultiEntryXml);
@@ -66,8 +66,6 @@ namespace SupaCharge.UnitTests.Core.Config {
       VerifyKeyValue("user2", "tim");
       VerifyKeyValue("user3", "ted");
     }
-     
- 
 
     [SetUp]
     public void DoSetup() {
@@ -77,10 +75,10 @@ namespace SupaCharge.UnitTests.Core.Config {
 
     private void VerifyKeyValue(string key, string value) {
       mFile.Verify(f => f.WriteAllText("config.xml", It.Is<string>(s => XDocument
-                                                                             .Parse(s)
-                                                                             .XPathSelectElement(string.Format("//configuration/appSettings/add[@key='{0}']", key))
-                                                                             .Attribute("value")
-                                                                             .Value == value)));
+                                                                          .Parse(s)
+                                                                          .XPathSelectElement(string.Format("//configuration/appSettings/add[@key='{0}']", key))
+                                                                          .Attribute("value")
+                                                                          .Value == value)));
     }
 
     private ConfigWriter CreateWriter(string config) {
