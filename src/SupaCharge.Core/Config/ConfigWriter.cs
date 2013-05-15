@@ -19,10 +19,13 @@ namespace SupaCharge.Core.Config {
     }
 
     public void Set(string nodeToChange, string newValue) {
-      var query = string.Format("//configuration/appSettings/add[@key='{0}']", nodeToChange);
-      var node = mDoc.XPathSelectElement(query);
+      var node = mDoc.XPathSelectElement(BuildQuery(nodeToChange));
       node.Attribute("value").Value = newValue;
       node.Attribute("value").Value = newValue;
+    }
+
+    private string BuildQuery(string strToFormat) {
+      return string.Format("//configuration/appSettings/add[@key='{0}']", strToFormat);
     }
 
     private readonly XDocument mDoc;
