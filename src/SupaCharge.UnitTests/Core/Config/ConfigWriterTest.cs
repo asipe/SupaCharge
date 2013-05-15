@@ -13,7 +13,7 @@ namespace SupaCharge.UnitTests.Core.Config {
     public void TestSaveUnchangedConfigSavesSameXML() {
       mWriter = CreateWriter(_SingleEntryXml);
       mWriter.Save();
-      CheckConfigStatus("config.xml", "user1", "joe");
+      VerifyKeyValue("user1", "joe");
     }
 
     [Test]
@@ -21,16 +21,16 @@ namespace SupaCharge.UnitTests.Core.Config {
       mWriter = CreateWriter(_SingleEntryXml);
       mWriter.Set("user1", "bob");
       mWriter.Save();
-      CheckConfigStatus("config.xml", "user1", "bob");
+      VerifyKeyValue("user1", "bob");
     }
     
     [Test]
     public void TestSavingAnUnchangedConfigGivesTheSameXMLWithMultipleEntries() {
       mWriter = CreateWriter(_MultiEntryXml);
       mWriter.Save();
-      CheckConfigStatus("config.xml", "user1", "joe");
-      CheckConfigStatus("config.xml", "user2", "bob");
-      CheckConfigStatus("config.xml", "user3", "hal");
+      VerifyKeyValue("user1", "joe");
+      VerifyKeyValue("user2", "bob");
+      VerifyKeyValue("user3", "hal");
     }
     
     [Test]
@@ -38,7 +38,7 @@ namespace SupaCharge.UnitTests.Core.Config {
       mWriter = CreateWriter(_MultiEntryXml);
       mWriter.Set("user1", "sam");
       mWriter.Save();
-      CheckConfigStatus("config.xml", "user1", "sam");
+      VerifyKeyValue("user1", "sam");
     }
              
     [Test]
@@ -48,9 +48,9 @@ namespace SupaCharge.UnitTests.Core.Config {
       mWriter.Set("user2", "tim");
       mWriter.Set("user3", "ted");
       mWriter.Save();
-      CheckConfigStatus("config.xml", "user1", "sam");
-      CheckConfigStatus("config.xml", "user2", "tim");
-      CheckConfigStatus("config.xml", "user3", "ted");
+      VerifyKeyValue("user1", "sam");
+      VerifyKeyValue("user2", "tim");
+      VerifyKeyValue("user3", "ted");
     }
 
     [Test]
@@ -62,9 +62,9 @@ namespace SupaCharge.UnitTests.Core.Config {
       mWriter.Set("user3", "ted");
       mWriter.Save();
       mWriter.Save();
-      CheckConfigStatus("config.xml", "user1", "sam");
-      CheckConfigStatus("config.xml", "user2", "tim");
-      CheckConfigStatus("config.xml", "user3", "ted");
+      VerifyKeyValue("user1", "sam");
+      VerifyKeyValue("user2", "tim");
+      VerifyKeyValue("user3", "ted");
     }
      
  
@@ -75,8 +75,8 @@ namespace SupaCharge.UnitTests.Core.Config {
       mFile.Setup(f => f.WriteAllText("config.xml", It.IsAny<string>()));
     }
 
-    private void CheckConfigStatus(string configName, string key, string value) {
-      mFile.Verify(f => f.WriteAllText(configName, It.Is<string>(s => XDocument
+    private void VerifyKeyValue(string key, string value) {
+      mFile.Verify(f => f.WriteAllText("config.xml", It.Is<string>(s => XDocument
                                                                              .Parse(s)
                                                                              .XPathSelectElement(string.Format("//configuration/appSettings/add[@key='{0}']", key))
                                                                              .Attribute("value")
