@@ -1,21 +1,29 @@
 ﻿using System.IO;
+using System.Text;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using SupaCharge.Core.IOAbstractions;
 
 namespace SupaCharge.Core.Config {
   public class ConfigWriter {
+    private class NullEncodeStrWriter : StringWriter {
+      public override Encoding Encoding {
+        get { return null; }
+      }
+    }
+
     public ConfigWriter(IFile file, string filePath) {
       mDoc = XDocument.Parse(file.ReadAllText(filePath));
+      mDoc.Declaration = new XDeclaration("1.0", null, null);
       mFile = file;
       mPath = filePath;
     }
 
     public void Save() {
-      using (var writer = new StringWriter()) {
-        mDoc.Save(writer);
-        mFile.WriteAllText(mPath, writer.ToString());
-        writer.Close();
+      using (var strWriter = new NullEncodeStrWriter()) {
+        mDoc.Save(strWriter);
+        mFile.WriteAllText(mPath, strWriter.ToString());
+        strWriter.Close();
       }
     }
 

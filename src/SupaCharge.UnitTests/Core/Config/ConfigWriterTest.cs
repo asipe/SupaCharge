@@ -14,6 +14,7 @@ namespace SupaCharge.UnitTests.Core.Config {
       mWriter = CreateWriter(_SingleEntryXml);
       mWriter.Save();
       VerifyKeyValue("user1", "joe");
+      VerifyNoEncoding();
     }
 
     [Test]
@@ -22,8 +23,9 @@ namespace SupaCharge.UnitTests.Core.Config {
       mWriter.Set("user1", "bob");
       mWriter.Save();
       VerifyKeyValue("user1", "bob");
+      VerifyNoEncoding();
     }
-    
+
     [Test]
     public void TestSavingAnUnchangedConfigGivesTheSameXMLWithMultipleEntries() {
       mWriter = CreateWriter(_MultiEntryXml);
@@ -31,16 +33,18 @@ namespace SupaCharge.UnitTests.Core.Config {
       VerifyKeyValue("user1", "joe");
       VerifyKeyValue("user2", "bob");
       VerifyKeyValue("user3", "hal");
+      VerifyNoEncoding();
     }
-    
+
     [Test]
     public void TestSavingASingleConfigHasCorrectlyAlteredEntryAmongMultipleEntries() {
       mWriter = CreateWriter(_MultiEntryXml);
       mWriter.Set("user1", "sam");
       mWriter.Save();
       VerifyKeyValue("user1", "sam");
+      VerifyNoEncoding();
     }
-             
+
     [Test]
     public void TestSavingMultipleChangedConfigsHasCorrectlyChangedValues() {
       mWriter = CreateWriter(_MultiEntryXml);
@@ -51,6 +55,7 @@ namespace SupaCharge.UnitTests.Core.Config {
       VerifyKeyValue("user1", "sam");
       VerifyKeyValue("user2", "tim");
       VerifyKeyValue("user3", "ted");
+      VerifyNoEncoding();
     }
 
     [Test]
@@ -65,9 +70,8 @@ namespace SupaCharge.UnitTests.Core.Config {
       VerifyKeyValue("user1", "sam");
       VerifyKeyValue("user2", "tim");
       VerifyKeyValue("user3", "ted");
+      VerifyNoEncoding();
     }
-     
- 
 
     [SetUp]
     public void DoSetup() {
@@ -77,10 +81,14 @@ namespace SupaCharge.UnitTests.Core.Config {
 
     private void VerifyKeyValue(string key, string value) {
       mFile.Verify(f => f.WriteAllText("config.xml", It.Is<string>(s => XDocument
-                                                                             .Parse(s)
-                                                                             .XPathSelectElement(string.Format("//configuration/appSettings/add[@key='{0}']", key))
-                                                                             .Attribute("value")
-                                                                             .Value == value)));
+                                                                          .Parse(s)
+                                                                          .XPathSelectElement(string.Format("//configuration/appSettings/add[@key='{0}']", key))
+                                                                          .Attribute("value")
+                                                                          .Value == value)));
+    }
+
+    private void VerifyNoEncoding() {
+      mFile.Verify(f => f.WriteAllText("config.xml", It.Is<string>(s => !s.Contains("utf-16"))));
     }
 
     private ConfigWriter CreateWriter(string config) {
