@@ -14,6 +14,7 @@ namespace SupaCharge.UnitTests.Core.Config {
       mWriter = CreateWriter(_SingleEntryXml);
       mWriter.Save();
       VerifyKeyValue("user1", "joe");
+      VerifyNoEncoding();
     }
 
     [Test]
@@ -22,6 +23,7 @@ namespace SupaCharge.UnitTests.Core.Config {
       mWriter.Set("user1", "bob");
       mWriter.Save();
       VerifyKeyValue("user1", "bob");
+      VerifyNoEncoding();
     }
 
     [Test]
@@ -31,6 +33,7 @@ namespace SupaCharge.UnitTests.Core.Config {
       VerifyKeyValue("user1", "joe");
       VerifyKeyValue("user2", "bob");
       VerifyKeyValue("user3", "hal");
+      VerifyNoEncoding();
     }
 
     [Test]
@@ -39,6 +42,7 @@ namespace SupaCharge.UnitTests.Core.Config {
       mWriter.Set("user1", "sam");
       mWriter.Save();
       VerifyKeyValue("user1", "sam");
+      VerifyNoEncoding();
     }
 
     [Test]
@@ -51,6 +55,7 @@ namespace SupaCharge.UnitTests.Core.Config {
       VerifyKeyValue("user1", "sam");
       VerifyKeyValue("user2", "tim");
       VerifyKeyValue("user3", "ted");
+      VerifyNoEncoding();
     }
 
     [Test]
@@ -83,7 +88,7 @@ namespace SupaCharge.UnitTests.Core.Config {
     }
 
     private void VerifyNoEncoding() {
-      mFile.Verify(f => f.WriteAllText("config.xml", It.Is<string>(s => s.Contains("utf-16"))));
+      mFile.Verify(f => f.WriteAllText("config.xml", It.Is<string>(s => !s.Contains("utf-16"))));
     }
 
     private ConfigWriter CreateWriter(string config) {
