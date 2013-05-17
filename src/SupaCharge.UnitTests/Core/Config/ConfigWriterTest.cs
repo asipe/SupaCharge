@@ -65,6 +65,7 @@ namespace SupaCharge.UnitTests.Core.Config {
       VerifyKeyValue("user1", "sam");
       VerifyKeyValue("user2", "tim");
       VerifyKeyValue("user3", "ted");
+      VerifyNoEncoding();
     }
 
     [SetUp]
@@ -79,6 +80,10 @@ namespace SupaCharge.UnitTests.Core.Config {
                                                                           .XPathSelectElement(string.Format("//configuration/appSettings/add[@key='{0}']", key))
                                                                           .Attribute("value")
                                                                           .Value == value)));
+    }
+
+    private void VerifyNoEncoding() {
+      mFile.Verify(f => f.WriteAllText("config.xml", It.Is<string>(s => s.Contains("utf-16"))));
     }
 
     private ConfigWriter CreateWriter(string config) {
