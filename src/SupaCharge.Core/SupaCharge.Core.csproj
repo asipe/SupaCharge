@@ -50,6 +50,8 @@
     <Compile Include="Converter\ValueConverter.cs" />
     <Compile Include="Collections\Extensions\ElementsAtExtension.cs" />
     <Compile Include="Collections\Extensions\TruncateExtension.cs" />
+    <Compile Include="DiagnosticAbstractions\DotNetStopwatch.cs" />
+    <Compile Include="DiagnosticAbstractions\IStopwatch.cs" />
     <Compile Include="Net\NoOpDotNetDns.cs" />
     <Compile Include="IOAbstractions\DotNetDirectory.cs" />
     <Compile Include="Net\DotNetDns.cs" />
