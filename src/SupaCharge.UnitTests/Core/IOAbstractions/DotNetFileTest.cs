@@ -69,6 +69,18 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(mFile.Exists(mPath), Is.False);
     }
 
+    [Test]
+    public void TestSize() {
+      Assert.That(mFile.GetSize(mPath), Is.EqualTo(4));
+      File.WriteAllText(mPath, "");
+      Assert.That(mFile.GetSize(mPath), Is.EqualTo(0));
+    }
+
+    [Test]
+    public void TestSizeFileDoesNotExist() {
+      Assert.Throws<FileNotFoundException>(() => mFile.GetSize(mPath + "_"));
+    }
+
     [SetUp]
     public void DoSetup() {
       CreateTempDir();

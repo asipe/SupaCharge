@@ -41,5 +41,9 @@ namespace SupaCharge.Core.IOAbstractions {
     public void Delete(string path) {
       File.Delete(path);
     }
+
+    public long GetSize(string path) {
+      return new FileInfo(path).Length;
+    }
   }
 }
