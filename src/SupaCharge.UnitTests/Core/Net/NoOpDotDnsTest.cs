@@ -11,6 +11,5 @@ namespace SupaCharge.UnitTests.Core.Net {
 
       Assert.That(dns.GetIPAddress("zbeast"), Is.EqualTo("zbeast"));
     }
-
   }
 }

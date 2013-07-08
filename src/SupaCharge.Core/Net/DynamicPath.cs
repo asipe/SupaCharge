@@ -9,9 +9,12 @@ namespace SupaCharge.Core.Net {
       mRootedPath = Path.IsPathRooted(path);
     }
 
+    public string OriginalPath{get;private set;}
+    public string CurrentPath{get;private set;}
+
     public void Refresh() {
       if (mRootedPath)
-       DoRefresh();
+        DoRefresh();
     }
 
     private void DoRefresh() {
@@ -20,9 +23,6 @@ namespace SupaCharge.Core.Net {
       if (uri.HostNameType.ToString() == "Dns")
         CurrentPath = OriginalPath.Replace(uri.Host, mDotNetDns.GetIPAddress(uri.Host));
     }
-
-    public string OriginalPath { get; private set; }
-    public string CurrentPath { get; private set; }
 
     private readonly IDns mDotNetDns;
     private readonly bool mRootedPath;

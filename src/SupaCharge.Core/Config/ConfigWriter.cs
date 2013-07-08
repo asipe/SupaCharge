@@ -8,7 +8,7 @@ namespace SupaCharge.Core.Config {
   public class ConfigWriter {
     private class NullEncodeStrWriter : StringWriter {
       public override Encoding Encoding {
-        get { return null; }
+        get {return null;}
       }
     }
 
