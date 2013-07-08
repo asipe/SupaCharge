@@ -32,7 +32,7 @@ namespace SupaCharge.Core.Config {
       node.Attribute("value").Value = value;
     }
 
-    private string BuildQuery(string key) {
+    private static string BuildQuery(string key) {
       return string.Format("//configuration/appSettings/add[@key='{0}']", key);
     }
 

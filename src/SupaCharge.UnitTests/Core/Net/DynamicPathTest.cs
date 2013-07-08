@@ -1,6 +1,5 @@
 ﻿using Moq;
 using NUnit.Framework;
-using SupaCharge.Core.IOAbstractions;
 using SupaCharge.Core.Net;
 using SupaCharge.Testing;
 
