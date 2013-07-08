@@ -31,12 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Moq, Version=3.1.416.3, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\3.5\Moq.3.1.416.3\lib\Moq.dll</HintPath>
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\net-3.5\Moq.3.1.416.3\lib\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\3.5\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\..\packages\net-3.5\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

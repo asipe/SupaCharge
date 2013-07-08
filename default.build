@@ -20,7 +20,7 @@
   <target name="ExecuteTests">
     <exec program="${nunit.exe}"
           verbose="${verbose}"
-          commandline="${debug.dir}\${nunit.test.assembly} /xml=test_results/${nunit.test.assembly}_results.xml /noshadow"
+          commandline="${debug.dir}\${current.framework}\${nunit.test.assembly} /xml=test_results/${nunit.test.assembly}_results.xml /noshadow"
           workingdir="${root.dir}"
           failonerror="true"/>
   </target>
@@ -28,20 +28,21 @@
   <target name="Clean">
     <delete dir="${debug.dir}"/>
     <mkdir dir="${debug.dir}"/>
+    <mkdir dir="${debug.dir}\${current.framework}"/>
     <delete dir="${test.results.dir}"/>
-    <mkdir dir="${test.results.dir}"/> 
+    <mkdir dir="${test.results.dir}"/>
 
-    <copy todir="${debug.dir}" flatten="true">
+    <copy todir="${debug.dir}\${current.framework}" flatten="true">
       <fileset basedir="${root.dir}">
-        <include name="packages\3.5\AutoFixture.2.11.0\lib\Ploeh.AutoFixture.dll"/>
-        <include name="packages\3.5\Moq.3.1.416.3\lib\Moq.dll"/>
-        <include name="packages\3.5\NUnit.2.6.1\lib\nunit.framework.dll"/>
+        <include name="packages\${current.framework}\AutoFixture.2.11.0\lib\Ploeh.AutoFixture.dll"/>
+        <include name="packages\${current.framework}\Moq.3.1.416.3\lib\Moq.dll"/>
+        <include name="packages\${current.framework}\NUnit.2.6.1\lib\nunit.framework.dll"/>
       </fileset>
     </copy>
   </target>
   
   <target name="Build.SupaCharge.Core">
-    <csc debug="${debug.status}" target="library" output="${debug.dir}\SupaCharge.Core.dll" warnaserror="true"  verbose="${verbose}">
+    <csc debug="${debug.status}" target="library" output="${debug.dir}\${current.framework}\SupaCharge.Core.dll" warnaserror="true"  verbose="${verbose}">
       <sources basedir="${src.dir}">
         <include name="SupaCharge.Core\**\*.cs"/>
         <include name="Properties\*.cs"/>
@@ -50,35 +51,35 @@
   </target>
 
   <target name="Build.SupaCharge.Testing">
-    <csc debug="${debug.status}" target="library" output="${debug.dir}\SupaCharge.Testing.dll" warnaserror="true"  verbose="${verbose}">
+    <csc debug="${debug.status}" target="library" output="${debug.dir}\${current.framework}\SupaCharge.Testing.dll" warnaserror="true"  verbose="${verbose}">
       <sources basedir="${src.dir}">
         <include name="SupaCharge.Testing\**\*.cs"/>
         <include name="Properties\*.cs"/>
       </sources>
       <references>
-        <include name="${debug.dir}\nunit.framework.dll"/>
-        <include name="${debug.dir}\moq.dll"/>
-        <include name="${debug.dir}\Ploeh.AutoFixture.dll"/>
+        <include name="${debug.dir}\${current.framework}\nunit.framework.dll"/>
+        <include name="${debug.dir}\${current.framework}\moq.dll"/>
+        <include name="${debug.dir}\${current.framework}\Ploeh.AutoFixture.dll"/>
       </references>
     </csc>
   </target>
 
   <target name="Build.SupaCharge.UnitTests" depends="Build.SupaCharge.Core, Build.SupaCharge.Testing">
-    <csc debug="${debug.status}" target="library" output="${debug.dir}\SupaCharge.UnitTests.dll" warnaserror="true"  verbose="${verbose}">
+    <csc debug="${debug.status}" target="library" output="${debug.dir}\${current.framework}\SupaCharge.UnitTests.dll" warnaserror="true"  verbose="${verbose}">
       <sources basedir="${src.dir}">
         <include name="SupaCharge.UnitTests\**\*.cs"/>
         <include name="Properties\*.cs"/>
       </sources>
       <references>
-        <include name="${debug.dir}\SupaCharge.Core.dll"/>
-        <include name="${debug.dir}\SupaCharge.Testing.dll"/>
-        <include name="${debug.dir}\nunit.framework.dll"/>
-        <include name="${debug.dir}\moq.dll"/>
-        <include name="${debug.dir}\Ploeh.AutoFixture.dll"/>
+        <include name="${debug.dir}\${current.framework}\SupaCharge.Core.dll"/>
+        <include name="${debug.dir}\${current.framework}\SupaCharge.Testing.dll"/>
+        <include name="${debug.dir}\${current.framework}\nunit.framework.dll"/>
+        <include name="${debug.dir}\${current.framework}\moq.dll"/>
+        <include name="${debug.dir}\${current.framework}\Ploeh.AutoFixture.dll"/>
       </references>
     </csc>
 
-    <copy file="${src.dir}\SupaCharge.UnitTests\app.config" tofile="${debug.dir}\SupaCharge.UnitTests.dll.config"/>
+    <copy file="${src.dir}\SupaCharge.UnitTests\app.config" tofile="${debug.dir}\${current.framework}\SupaCharge.UnitTests.dll.config"/>
   </target>
 
   <target name="Build.All" depends="Build.SupaCharge.Core, 
