@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET35</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -32,13 +32,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Moq">
-      <HintPath>..\..\packages\net-3.5\Moq.3.1.416.3\lib\Moq.dll</HintPath>
+      <HintPath>..\..\packages\net-3.5\Moq\lib\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\net-3.5\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\..\packages\net-3.5\NUnit\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Ploeh.AutoFixture">
-      <HintPath>..\..\packages\net-3.5\AutoFixture.2.11.0\lib\Ploeh.AutoFixture.dll</HintPath>
+      <HintPath>..\..\packages\net-3.5\AutoFixture\lib\Ploeh.AutoFixture.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -8,12 +8,20 @@ using Ploeh.AutoFixture;
 namespace SupaCharge.Testing {
   public abstract class BaseTestCase {
     protected Fixture ObjectFixture{get;private set;}
+#if NET35
     protected MockFactory MokFac{get;private set;}
+#else
+    protected MockRepository MokFac {get; private set;}
+#endif
     protected string TempDir{get;private set;}
 
     [SetUp]
     public void BaseSetup() {
+#if NET35
       MokFac = new MockFactory(MockBehavior.Strict);
+#else
+      MokFac = new MockRepository(MockBehavior.Strict);
+#endif
       ObjectFixture = new Fixture();
     }
 
@@ -24,8 +32,7 @@ namespace SupaCharge.Testing {
     }
 
     private void VerifyMocks() {
-      if (TestContext.CurrentContext.Result.Status == TestStatus.Passed)
-        MokFac.VerifyAll();
+      MokFac.VerifyAll();
     }
 
     private void CleanTempDirectory() {
@@ -46,7 +53,11 @@ namespace SupaCharge.Testing {
     }
 
     protected T CA<T>() {
+#if NET35
       return ObjectFixture.CreateAnonymous<T>();
+#else
+      return ObjectFixture.Create<T>();
+#endif
     }
 
     protected T[] BA<T>(params T[] objects) {

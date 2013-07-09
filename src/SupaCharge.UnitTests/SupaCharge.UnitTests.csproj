@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Moq">
-      <HintPath>..\..\packages\net-3.5\Moq.3.1.416.3\lib\Moq.dll</HintPath>
+      <HintPath>..\..\packages\net-3.5\Moq\lib\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\net-3.5\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\..\packages\net-3.5\NUnit\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

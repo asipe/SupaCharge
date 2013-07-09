@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <project name="Build" basedir=".">
   <property name="current.framework" value="net-3.5" overwrite="false"/>
-  <property name="nant.settings.currentframework" value="${current.framework}" readonly="false"/>  
+  <property name="nant.settings.currentframework" value="${current.framework}" readonly="false"/>
+  <property name="compile.defines" value=""/>
   <property name="debug.status" value="Full"/>
   <property name="root.dir" value="${project::get-base-directory()}" readonly="true"/>
   <property name="src.dir" value="${root.dir}\src" readonly="true"/>
@@ -9,11 +10,9 @@
   <property name="lib.dir" value="${src.dir}\lib" overwrite="false"/>
   <property name="test.results.dir" value="${root.dir}\test_results" readonly="true"/>
   <property name="nunit.test.assembly" value=""/>
-  <property name="nunit.exe" value="${root.dir}\packages\common\NUnit.Runners.2.6.1\tools\nunit-console.exe" overwrite="false"/>
+  <property name="nunit.exe" value="${root.dir}\packages\common\NUnit.Runners\tools\nunit-console.exe" overwrite="false"/>
   <property name="verbose" value="false" overwrite="false"/>
 
-  <echo message="current.framework = ${current.framework}"/>
-  <echo message="lib.dir = ${lib.dir}"/>
   <echo message="nunit.exe = ${nunit.exe}"/>
   <echo message="verbose = ${verbose}"/>
 
@@ -28,19 +27,28 @@
   <target name="Clean">
     <delete dir="${debug.dir}"/>
     <mkdir dir="${debug.dir}"/>
-    <mkdir dir="${debug.dir}\${current.framework}"/>
     <delete dir="${test.results.dir}"/>
     <mkdir dir="${test.results.dir}"/>
 
-    <copy todir="${debug.dir}\${current.framework}" flatten="true">
+    <mkdir dir="${debug.dir}\net-3.5"/>
+    <copy todir="${debug.dir}\net-3.5" flatten="true">
       <fileset basedir="${root.dir}">
-        <include name="packages\${current.framework}\AutoFixture.2.11.0\lib\Ploeh.AutoFixture.dll"/>
-        <include name="packages\${current.framework}\Moq.3.1.416.3\lib\Moq.dll"/>
-        <include name="packages\${current.framework}\NUnit.2.6.1\lib\nunit.framework.dll"/>
+        <include name="packages\net-3.5\AutoFixture\lib\Ploeh.AutoFixture.dll"/>
+        <include name="packages\net-3.5\Moq\lib\Moq.dll"/>
+        <include name="packages\net-3.5\NUnit\lib\nunit.framework.dll"/>
+      </fileset>
+    </copy>
+    
+    <mkdir dir="${debug.dir}\net-4.0"/>
+    <copy todir="${debug.dir}\net-4.0" flatten="true">
+      <fileset basedir="${root.dir}">
+        <include name="packages\net-4.0\AutoFixture\lib\net40\Ploeh.AutoFixture.dll"/>
+        <include name="packages\net-4.0\Moq\lib\net40\Moq.dll"/>
+        <include name="packages\net-4.0\NUnit\lib\nunit.framework.dll"/>
       </fileset>
     </copy>
   </target>
-  
+
   <target name="Build.SupaCharge.Core">
     <csc debug="${debug.status}" target="library" output="${debug.dir}\${current.framework}\SupaCharge.Core.dll" warnaserror="true"  verbose="${verbose}">
       <sources basedir="${src.dir}">
@@ -51,7 +59,7 @@
   </target>
 
   <target name="Build.SupaCharge.Testing">
-    <csc debug="${debug.status}" target="library" output="${debug.dir}\${current.framework}\SupaCharge.Testing.dll" warnaserror="true"  verbose="${verbose}">
+    <csc debug="${debug.status}" target="library" define="${compile.defines}" output="${debug.dir}\${current.framework}\SupaCharge.Testing.dll" warnaserror="true"  verbose="${verbose}">
       <sources basedir="${src.dir}">
         <include name="SupaCharge.Testing\**\*.cs"/>
         <include name="Properties\*.cs"/>
@@ -90,4 +98,25 @@
     <property name="nunit.test.assembly" value="SupaCharge.UnitTests.dll"/>
     <call target="ExecuteTests"/>
   </target>
+
+  <target name="Build.And.Test.net-3.5">
+    <property name="current.framework" value="net-3.5"/>
+    <property name="nant.settings.currentframework" value="${current.framework}"/>
+    <property name="compile.defines" value="NET35"/>
+    <echo message="current.framework = ${current.framework}"/>
+    <call target="Build.All"/>
+    <call target="Run.Tests"/>
+  </target>
+  
+  <target name="Build.And.Test.net-4.0">
+    <property name="current.framework" value="net-4.0"/>
+    <property name="nant.settings.currentframework" value="${current.framework}"/>
+    <property name="compile.defines" value=""/>
+    <echo message="current.framework = ${current.framework}"/>
+    <call target="Build.All"/>
+    <call target="Run.Tests"/>
+  </target>
+  
+  <target name="Build.And.Test.All.Versions" depends="Build.And.Test.net-3.5,
+                                                      Build.And.Test.net-4.0" />
 </project>
