@@ -122,7 +122,7 @@
   <target name="Build.And.Test.All.Versions" depends="Build.And.Test.net-3.5,
                                                       Build.And.Test.net-4.0" />
 
-  <target name="Build.Nuget.Package" depends="Clean Build.And.Test.All.Versions">
+  <target name="Build.Nuget.Packages" depends="Clean Build.And.Test.All.Versions">
     <delete dir="${nuget.working.dir}" verbose="${verbose}" />
     <copy todir="${nuget.working.dir}\core\lib\net35" file="${debug.dir}\net-3.5\SupaCharge.Core.dll" verbose="${verbose}"/>
     <copy todir="${nuget.working.dir}\core\lib\net40" file="${debug.dir}\net-3.5\SupaCharge.Core.dll" verbose="${verbose}"/>
@@ -131,6 +131,16 @@
     <exec program="thirdparty\nuget\nuget.exe"
           verbose="${verbose}"
           commandline="pack ${nuget.working.dir}\core\SupaCharge.Core.dll.nuspec -OutputDirectory ${nuget.working.dir}\core"
+          workingdir="${root.dir}"
+          failonerror="true"/>
+
+    <copy todir="${nuget.working.dir}\testing\lib\net35" file="${debug.dir}\net-3.5\SupaCharge.Testing.dll" verbose="${verbose}"/>
+    <copy todir="${nuget.working.dir}\testing\lib\net40" file="${debug.dir}\net-3.5\SupaCharge.Testing.dll" verbose="${verbose}"/>
+    <copy todir="${nuget.working.dir}\testing" file="${nuget.spec.dir}\SupaCharge.Testing.dll.nuspec" verbose="${verbose}"/>
+
+    <exec program="thirdparty\nuget\nuget.exe"
+          verbose="${verbose}"
+          commandline="pack ${nuget.working.dir}\testing\SupaCharge.Testing.dll.nuspec -OutputDirectory ${nuget.working.dir}\testing"
           workingdir="${root.dir}"
           failonerror="true"/>
   </target>

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SupaCharge.Testing</id>
-    <version>1.0.0.0</version>
+    <version>1.0.0.1</version>
     <authors>asipe</authors>
     <owners>asipe</owners>
     <licenseUrl>https://github.com/asipe/SupaCharge/blob/master/LICENSE.txt</licenseUrl>
@@ -12,6 +12,17 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>utility</tags>
-    <dependencies/>
+    <dependencies>
+      <group targetFramework="net35">
+        <dependency id="AutoFixture" version="[2.11.0]" />
+        <dependency id="Moq" version="[3.1.416.3]" />
+        <dependency id="NUnit" version="[2.6.1]" />
+      </group>
+      <group targetFramework="net40">
+        <dependency id="AutoFixture" version="[3.5.1]" />
+        <dependency id="Moq" version="[4.0.10827]" />
+        <dependency id="NUnit" version="[2.6.2]" />     
+      </group>      
+    </dependencies>
   </metadata>
 </package>
