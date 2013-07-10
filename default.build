@@ -12,6 +12,8 @@
   <property name="nunit.test.assembly" value=""/>
   <property name="nunit.exe" value="${root.dir}\packages\common\NUnit.Runners\tools\nunit-console.exe" overwrite="false"/>
   <property name="verbose" value="false" overwrite="false"/>
+  <property name="nuget.spec.dir" value="${src.dir}\SupaCharge.Nuget.Specs" />
+  <property name="nuget.working.dir" value="${root.dir}\nugetworking" />
 
   <echo message="nunit.exe = ${nunit.exe}"/>
   <echo message="verbose = ${verbose}"/>
@@ -119,4 +121,17 @@
   
   <target name="Build.And.Test.All.Versions" depends="Build.And.Test.net-3.5,
                                                       Build.And.Test.net-4.0" />
+
+  <target name="Build.Nuget.Package" depends="Clean Build.And.Test.All.Versions">
+    <delete dir="${nuget.working.dir}" verbose="${verbose}" />
+    <copy todir="${nuget.working.dir}\core\lib\net35" file="${debug.dir}\net-3.5\SupaCharge.Core.dll" verbose="${verbose}"/>
+    <copy todir="${nuget.working.dir}\core\lib\net40" file="${debug.dir}\net-3.5\SupaCharge.Core.dll" verbose="${verbose}"/>
+    <copy todir="${nuget.working.dir}\core" file="${nuget.spec.dir}\SupaCharge.Core.dll.nuspec" verbose="${verbose}"/>
+
+    <exec program="thirdparty\nuget\nuget.exe"
+          verbose="${verbose}"
+          commandline="pack ${nuget.working.dir}\core\SupaCharge.Core.dll.nuspec -OutputDirectory ${nuget.working.dir}\core"
+          workingdir="${root.dir}"
+          failonerror="true"/>
+  </target>
 </project>
