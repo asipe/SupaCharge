@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" InitialTargets="EchoInfo;ValidateFrameworkVersion" DefaultTargets="Clean;Build;CleanTemp" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="SupaCharge.props" />
+  
+  <PropertyGroup>
+    <ProjectGuid>{79649E83-3599-478D-9B9A-26CC15860686}</ProjectGuid>
+    <RootNamespace>SupaCharge.UnitTests</RootNamespace>
+    <AssemblyName>SupaCharge.UnitTests</AssemblyName>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="$(DebugDir)\supacharge.core.dll" />
+    <Reference Include="$(DebugDir)\supacharge.testing.dll" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(FrameworkVersion)' == 'v3.5'">
+    <Reference Include="$(PackagesDir)\moq\lib\moq.dll" />
+    <Reference Include="$(PackagesDir)\nunit\lib\nunit.framework.dll" />
+    <Reference Include="$(PackagesDir)\autofixture\lib\ploeh.autofixture.dll" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(FrameworkVersion)' == 'v4.0'">
+    <Reference Include="$(PackagesDir)\moq\lib\net40\moq.dll" />
+    <Reference Include="$(PackagesDir)\nunit\lib\nunit.framework.dll" />
+    <Reference Include="$(PackagesDir)\autofixture\lib\net40\ploeh.autofixture.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="$(SrcDir)\SupaCharge.UnitTests\**\*.cs"/>
+    <Compile Include="$(SrcDir)\Properties\*.cs"/>
+  </ItemGroup>
+
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
