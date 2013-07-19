@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" InitialTargets="EchoInfo;ValidateFrameworkVersion" DefaultTargets="Clean;Build;CleanTemp" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <Import Project="SupaCharge.props" />
+  <Import Project="..\SupaCharge.props" />
   
   <PropertyGroup>
-    <ProjectGuid>{79649E83-3599-478D-9B9A-26CC15860686}</ProjectGuid>
-    <RootNamespace>SupaCharge.UnitTests</RootNamespace>
-    <AssemblyName>SupaCharge.UnitTests</AssemblyName>
+    <ProjectGuid>{B6C16C4C-42B2-4D25-9A2C-71DF58CA9C1A}</ProjectGuid>
+    <RootNamespace>SupaCharge.Testing</RootNamespace>
+    <AssemblyName>SupaCharge.Testing</AssemblyName>
   </PropertyGroup>
   
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="$(DebugDir)\supacharge.core.dll" />
-    <Reference Include="$(DebugDir)\supacharge.testing.dll" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(FrameworkVersion)' == 'v3.5'">
@@ -31,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="$(SrcDir)\SupaCharge.UnitTests\**\*.cs"/>
+    <Compile Include="$(SrcDir)\SupaCharge.Testing\**\*.cs"/>
     <Compile Include="$(SrcDir)\Properties\*.cs"/>
   </ItemGroup>
 

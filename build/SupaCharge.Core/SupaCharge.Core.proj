@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" InitialTargets="EchoInfo;ValidateFrameworkVersion;" DefaultTargets="Clean;Build;CleanTemp" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <Import Project="SupaCharge.props" />
+  <Import Project="..\SupaCharge.props" />
   
   <PropertyGroup>
     <ProjectGuid>{DBBD21C6-898C-4F93-8FA9-B7D99FD383C0}</ProjectGuid>
