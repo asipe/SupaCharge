@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="BuildStage1;BuildStage2" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Frameworks Include="v3.5"/>
     <Frameworks Include="v4.0"/>
@@ -7,19 +7,21 @@
 
   <ItemGroup>
     <Stage1 Include="SupaCharge.Core\SupaCharge.Core.proj" />
-    <Stage2 Include="SupaCharge.Testing\SupaCharge.Testing.proj" />
+    <Stage1 Include="SupaCharge.Testing\SupaCharge.Testing.proj" />
     <Stage2 Include="SupaCharge.UnitTests\SupaCharge.UnitTests.proj" />
   </ItemGroup>
   
-  <Target Name="Build" Outputs="%(Frameworks.Identity)">
+  <Target Name="BuildStage1" Outputs="%(Frameworks.Identity)">
     <MSBuild BuildInParallel="true"
              Projects="@(Stage1)"
              Properties="FrameworkVersion=%(Frameworks.Identity)"
-             StopOnFirstFailure="true"/>
+             StopOnFirstFailure="false"/>
+  </Target>
 
+  <Target Name="BuildStage2" Outputs="%(Frameworks.Identity)">
     <MSBuild BuildInParallel="true"
              Projects="@(Stage2)"
              Properties="FrameworkVersion=%(Frameworks.Identity)"
-             StopOnFirstFailure="true"/>
+             StopOnFirstFailure="false"/>
   </Target>
 </Project>

@@ -31,28 +31,12 @@
   <PropertyGroup>
     <DebugDir>$(Rootdir)\debug\$(TargetFrameworkVersionName)</DebugDir>
     <PackagesDir>$(Rootdir)\packages\$(TargetFrameworkVersionName)</PackagesDir>
-    <OutputPath>$(DebugDir)</OutputPath>
+    <OutputPath>$(DebugDir)\$(AssemblyName)</OutputPath>
+    <BaseIntermediaryOutputPath>$(TargetFrameworkVersionName)\obj</BaseIntermediaryOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediaryOutputPath)</IntermediateOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <Binaries Include="obj"></Binaries>
+    <Binaries Include="$(TargetFrameworkVersionName)\obj"></Binaries>
   </ItemGroup>
-
-  <Target Name="EchoInfo">
-    <Message Text="FrameworkVersion: $(FrameworkVersion)"/>
-    <Message Text="TargetFrameworkVersion: $(TargetFrameworkVersion)"/>
-    <Message Text="TargetFrameworkVersionName: $(TargetFrameworkVersionName)"/>
-    <Message Text="RootDir: $(RootDir)"/>
-    <Message Text="DebugDir: $(DebugDir)"/>
-    <Message Text="SrcDir: $(SrcDir)"/>
-    <Message Text="PackagesDir: $(PackagesDir)"/>
-  </Target>
-
-  <Target Name="ValidateFrameworkVersion">
-    <Error Condition="'$(FrameworkVersion)' == ''" Text="FrameworkVersion must be defined" />
-  </Target>
-
-  <Target Name="CleanTemp">
-    <RemoveDir Directories="@(Binaries)"/>
-  </Target>
 </Project>
