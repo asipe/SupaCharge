@@ -22,7 +22,12 @@
         <dependency id="AutoFixture" version="[3.5.1]" />
         <dependency id="Moq" version="[4.0.10827]" />
         <dependency id="NUnit" version="[2.6.2]" />     
-      </group>      
+      </group>
+      <group targetFramework="net45">
+        <dependency id="AutoFixture" version="[3.5.1]" />
+        <dependency id="Moq" version="[4.0.10827]" />
+        <dependency id="NUnit" version="[2.6.2]" />     
+      </group>   
     </dependencies>
   </metadata>
 </package>
