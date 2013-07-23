@@ -20,3 +20,10 @@ Write-Host '------------net-4.0------------' -ForegroundColor DarkYellow
 CheckLastExitCode
 Write-Host '-------------------------------' -ForegroundColor DarkYellow
 Write-Host ''
+
+Write-Host ''
+Write-Host '------------net-4.5------------' -ForegroundColor DarkYellow
+.\packages\common\NUnit.Runners\tools\nunit-console.exe debug\net-4.5\supacharge.unittests\supacharge.unittests.dll /nologo | Write-Host
+CheckLastExitCode
+Write-Host '-------------------------------' -ForegroundColor DarkYellow
+Write-Host ''

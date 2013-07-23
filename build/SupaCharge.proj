@@ -3,6 +3,7 @@
   <ItemGroup>
     <Frameworks Include="v3.5"/>
     <Frameworks Include="v4.0"/>
+    <Frameworks Include="v4.5"/>
   </ItemGroup>
 
   <ItemGroup>

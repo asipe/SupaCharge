@@ -27,6 +27,12 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(FrameworkVersion)' == 'v4.5'">
+    <TargetFrameworkVersionName>net-4.5</TargetFrameworkVersionName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
 
   <PropertyGroup>
     <DebugDir>$(Rootdir)\debug\$(TargetFrameworkVersionName)</DebugDir>
