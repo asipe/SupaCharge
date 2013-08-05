@@ -7,5 +7,5 @@ TestResult.xml
 debug
 test_results
 src/_ReSharper.Supacharge
-packages
+thirdparty/packages
 nugetworking

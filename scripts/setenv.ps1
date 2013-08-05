@@ -1,1 +1,1 @@
-$env:PATH += ";.\packages\common\NAnt.Portable\;.\packages\common\NUnit.Runners\tools"
+$env:PATH += ";.\thirdparty\packages\common\NUnit.Runners\tools"
