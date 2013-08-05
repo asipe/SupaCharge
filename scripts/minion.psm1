@@ -113,6 +113,25 @@ function BuildNugetPackages() {
   CheckLastExitCode
 }
 
+function PushNugetPackages() {
+  Write-Host -ForegroundColor Yellow '--------------------!!!!!!!------------------------'
+  Write-Host -ForegroundColor Yellow 'Push Nuget Packages'
+  Write-Host -ForegroundColor Yellow 'Are You Sure?  Enter YES to Continue'
+  $response = Read-Host
+
+  if ($response -eq 'YES') {
+    Write-Host -ForegroundColor Yellow 'Pushing'
+
+    thirdparty\nuget\nuget.exe push .\nugetworking\core\SupaCharge.Core.1.0.0.4.nupkg | Write-Host
+    CheckLastExitCode
+
+    thirdparty\nuget\nuget.exe push .\nugetworking\testing\SupaCharge.Testing.1.0.0.4.nupkg | Write-Host
+    CheckLastExitCode
+  } else {
+    Write-Host -ForegroundColor Yellow 'Cancelled - Nothing Pushed'
+  }
+}
+
 function Minion {
   param([string[]] $commands)
 
@@ -140,6 +159,7 @@ function Minion {
         'build.all' { Build }
         'build.nuget.packages' { BuildNugetPackages }
         'cycle' { Cycle }
+        'push.nuget.packages' { PushNugetPackages }
         default { Write-Host -ForegroundColor Red "command not known: $command" }
       }
     }
