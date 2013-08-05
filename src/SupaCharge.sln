@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "license", "license", "{8141
 		..\LICENSE.txt = ..\LICENSE.txt
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "properties", "properties", "{6AB09FF4-5C68-4CAF-B8E5-708C9821915B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common.Properties", "Common.Properties", "{8976A41E-ED1D-4078-90E3-97D496B6517F}"
 	ProjectSection(SolutionItems) = preProject
-		Properties\AssemblyInfo.cs = Properties\AssemblyInfo.cs
+		Common.Properties\AssemblyInfo.cs = Common.Properties\AssemblyInfo.cs
 	EndProjectSection
 EndProject
 Global

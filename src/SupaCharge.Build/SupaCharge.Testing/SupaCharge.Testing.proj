@@ -36,7 +36,7 @@
 
   <ItemGroup>
     <Compile Include="$(SrcDir)\SupaCharge.Testing\**\*.cs"/>
-    <Compile Include="$(SrcDir)\Properties\*.cs"/>
+    <Compile Include="$(SrcDir)\Common.Properties\*.cs"/>
   </ItemGroup>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
