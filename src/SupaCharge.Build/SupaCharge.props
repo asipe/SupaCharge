@@ -43,6 +43,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Binaries Include="$(TargetFrameworkVersionName)\obj"></Binaries>
+    <Binaries Include="$(TargetFrameworkVersionName)"></Binaries>
   </ItemGroup>
 </Project>
