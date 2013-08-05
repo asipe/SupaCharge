@@ -49,6 +49,13 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       mFile.WriteAllText(mPath, "data");
       Assert.That(File.ReadAllText(mPath), Is.EqualTo("data"));
     }
+    
+    [Test]
+    public void TestWriteAllLines() {
+      File.Delete(mPath);
+      mFile.WriteAllLines(mPath, "one", "two", "three");
+      Assert.That(File.ReadAllLines(mPath), Is.EqualTo(BA("one", "two", "three")));
+    }
 
     [Test]
     public void TestCopy() {

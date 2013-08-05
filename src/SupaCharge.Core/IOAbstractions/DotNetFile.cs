@@ -30,6 +30,10 @@ namespace SupaCharge.Core.IOAbstractions {
       File.WriteAllText(path, text);
     }
 
+    public void WriteAllLines(string path, params string[] contents) {
+      File.WriteAllLines(path, contents);
+    }
+
     public void Copy(string sourceFileName, string destFileName) {
       File.Copy(sourceFileName, destFileName);
     }
