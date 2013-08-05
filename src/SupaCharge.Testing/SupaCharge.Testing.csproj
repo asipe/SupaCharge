@@ -32,13 +32,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Moq">
-      <HintPath>..\..\packages\net-3.5\Moq\lib\Moq.dll</HintPath>
+      <HintPath>..\..\thirdparty\packages\net-3.5\Moq\lib\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\net-3.5\NUnit\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\..\thirdparty\packages\net-3.5\NUnit\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Ploeh.AutoFixture">
-      <HintPath>..\..\packages\net-3.5\AutoFixture\lib\Ploeh.AutoFixture.dll</HintPath>
+      <HintPath>..\..\thirdparty\packages\net-3.5\AutoFixture\lib\Ploeh.AutoFixture.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
