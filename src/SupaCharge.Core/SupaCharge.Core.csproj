@@ -53,6 +53,7 @@
     <Compile Include="DiagnosticAbstractions\DotNetStopwatch.cs" />
     <Compile Include="DiagnosticAbstractions\IStopwatch.cs" />
     <Compile Include="DiagnosticAbstractions\ITickCountProvider.cs" />
+    <Compile Include="DiagnosticAbstractions\RecordingEventList.cs" />
     <Compile Include="DiagnosticAbstractions\StopwatchTickCountProvider.cs" />
     <Compile Include="Net\NoOpDotNetDns.cs" />
     <Compile Include="IOAbstractions\DotNetDirectory.cs" />
