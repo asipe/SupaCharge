@@ -58,6 +58,7 @@
     <Compile Include="Core\Config\ConfigWriterTest.cs" />
     <Compile Include="Core\Converter\ValueConverterTest.cs" />
     <Compile Include="Core\DiagnosticAbstractions\DotNetStopWatchTest.cs" />
+    <Compile Include="Core\DiagnosticAbstractions\StopwatchTickCountProviderTest.cs" />
     <Compile Include="Core\ExceptionHandling\ExceptionDumpTest.cs" />
     <Compile Include="Core\IOAbstractions\DotNetDirectoryTest.cs" />
     <Compile Include="Core\IOAbstractions\DotNetFileTest.cs" />
