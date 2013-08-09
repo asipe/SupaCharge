@@ -1,7 +1,12 @@
 ﻿using System.Collections.Generic;
 
 namespace SupaCharge.Core.DiagnosticAbstractions {
-  public class RecordingEventList {
+  public interface IRecordingEventList {
+    void AddEvent(string msg);
+    string[] GetEvents();
+  }
+
+  public class RecordingEventList : IRecordingEventList {
     public RecordingEventList(ITickCountProvider provider) {
       mProvider = provider;
       mStart = mProvider.GetTicks();
