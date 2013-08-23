@@ -15,6 +15,13 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
     }
 
     [Test]
+    public void TestOpenWithAccess() {
+      using (var strm = mFile.Open(mPath, FileMode.Open, FileAccess.Read))
+      using (var rdr = new StreamReader(strm))
+        Assert.That(rdr.ReadToEnd(), Is.EqualTo("data"));
+    }
+
+    [Test]
     public void TestReadAllText() {
       Assert.That(mFile.ReadAllText(mPath), Is.EqualTo("data"));
     }
@@ -49,7 +56,7 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       mFile.WriteAllText(mPath, "data");
       Assert.That(File.ReadAllText(mPath), Is.EqualTo("data"));
     }
-    
+
     [Test]
     public void TestWriteAllLines() {
       File.Delete(mPath);

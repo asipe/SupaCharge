@@ -49,5 +49,9 @@ namespace SupaCharge.Core.IOAbstractions {
     public long GetSize(string path) {
       return new FileInfo(path).Length;
     }
+
+    public FileStream Open(string path, FileMode mode, FileAccess access) {
+      return File.Open(path, mode, access);
+    }
   }
 }
