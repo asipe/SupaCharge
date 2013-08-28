@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>SupaCharge.Testing</id>
-    <version>1.0.0.7</version>
+    <version>1.0.0.8</version>
     <authors>asipe</authors>
     <owners>asipe</owners>
     <licenseUrl>https://github.com/asipe/SupaCharge/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/asipe/SupaCharge</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Testing Utility Library</description>
-    <releaseNotes>Few new utility classes/functions, Build changes</releaseNotes>
+    <releaseNotes></releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>utility</tags>
     <dependencies>
