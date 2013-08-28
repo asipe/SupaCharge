@@ -2,8 +2,8 @@ using System.IO;
 
 namespace SupaCharge.Core.IOAbstractions {
   public interface IFile {
-    FileStream Open(string path, FileMode mode);
-    FileStream Open(string path, FileMode mode, FileAccess access);
+    Stream Open(string path, FileMode mode);
+    Stream Open(string path, FileMode mode, FileAccess access);
     string ReadAllText(string path);
     string[] ReadAllLines(string path);
     StreamReader OpenText(string path);

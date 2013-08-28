@@ -2,7 +2,7 @@ using System.IO;
 
 namespace SupaCharge.Core.IOAbstractions {
   public class DotNetFile : IFile {
-    public FileStream Open(string path, FileMode mode) {
+    public Stream Open(string path, FileMode mode) {
       return File.Open(path, mode);
     }
 
@@ -50,7 +50,7 @@ namespace SupaCharge.Core.IOAbstractions {
       return new FileInfo(path).Length;
     }
 
-    public FileStream Open(string path, FileMode mode, FileAccess access) {
+    public Stream Open(string path, FileMode mode, FileAccess access) {
       return File.Open(path, mode, access);
     }
   }
