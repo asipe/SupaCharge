@@ -70,6 +70,7 @@
     <Compile Include="Core\Collections\Extensions\TruncateExtensionTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\EmptyFutureTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\ResultFutureTest.cs" />
+    <Compile Include="Core\ThreadingAbstractions\SynchronousWorkQueueTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\ThreadPoolWorkQueueTest.cs" />
     <Compile Include="Web\Utility\FormUrlEncodedDataParserTest.cs" />
     <Compile Include="Web\Utility\MultipartFormDataParserTest.cs" />
