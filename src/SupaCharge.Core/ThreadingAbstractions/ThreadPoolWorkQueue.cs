@@ -5,7 +5,7 @@ namespace SupaCharge.Core.ThreadingAbstractions {
   public class ThreadPoolWorkQueue : IWorkQueue {
     public EmptyFuture Enqueue(Action work) {
       var future = new EmptyFuture();
-      ThreadPool.QueueUserWorkItem(w => DoWork(work, future));
+      ThreadPool.QueueUserWorkItem(o => DoWork(work, future));
       return future;
     }
 
@@ -17,7 +17,7 @@ namespace SupaCharge.Core.ThreadingAbstractions {
 
     public ResultFuture<T> Enqueue<T>(Func<T> work) {
       var future = new ResultFuture<T>();
-      ThreadPool.QueueUserWorkItem(w => DoWork(work, future));
+      ThreadPool.QueueUserWorkItem(o => DoWork(work, future));
       return future;
     }
 
@@ -51,7 +51,7 @@ namespace SupaCharge.Core.ThreadingAbstractions {
         future.Failed(e);
       }
     }
-    
+
     private static void DoWork<T>(T data, Action<T> work, EmptyFuture future) {
       try {
         work(data);
