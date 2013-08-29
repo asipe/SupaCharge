@@ -55,6 +55,7 @@
     <Compile Include="DiagnosticAbstractions\ITickCountProvider.cs" />
     <Compile Include="DiagnosticAbstractions\RecordingEventList.cs" />
     <Compile Include="DiagnosticAbstractions\StopwatchTickCountProvider.cs" />
+    <Compile Include="ExceptionHandling\SupaChargeException.cs" />
     <Compile Include="Net\NoOpDotNetDns.cs" />
     <Compile Include="IOAbstractions\DotNetDirectory.cs" />
     <Compile Include="Net\DotNetDns.cs" />
@@ -69,6 +70,11 @@
     <Compile Include="SystemAbstractions\ISystemConsole.cs" />
     <Compile Include="Text\Extensions\IsNullOrEmptyTrimExtension.cs" />
     <Compile Include="ExceptionHandling\ExceptionDump.cs" />
+    <Compile Include="ThreadingAbstractions\EmptyFuture.cs" />
+    <Compile Include="ThreadingAbstractions\IWorkQueue.cs" />
+    <Compile Include="ThreadingAbstractions\ResultFuture.cs" />
+    <Compile Include="ThreadingAbstractions\FutureException.cs" />
+    <Compile Include="ThreadingAbstractions\ThreadPoolWorkQueue.cs" />
     <Compile Include="Web\Utility\FormUrlEncodedDataParser.cs" />
     <Compile Include="Web\Utility\MultipartFormDataBuilder.cs" />
     <Compile Include="Web\Utility\MultipartFormDataParser.cs" />
