@@ -72,6 +72,7 @@
     <Compile Include="Core\ThreadingAbstractions\ResultFutureTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\SynchronousWorkQueueTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\ThreadPoolWorkQueueTest.cs" />
+    <Compile Include="Core\ThreadingAbstractions\WorkQueueBatchTest.cs" />
     <Compile Include="Web\Utility\FormUrlEncodedDataParserTest.cs" />
     <Compile Include="Web\Utility\MultipartFormDataParserTest.cs" />
     <Compile Include="Web\Utility\MultipartFormDataBuilderTest.cs" />
