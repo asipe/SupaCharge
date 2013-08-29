@@ -43,24 +43,24 @@ function CleanAll() {
 
 function RunUnitTestsVS() {
   Write-Host -ForegroundColor Cyan '----------VS Unit Tests (3.5)-----------'
-  .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\src\SupaCharge.UnitTests\bin\debug\SupaCharge.UnitTests.dll /nologo | Write-Host
+  .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\src\SupaCharge.UnitTests\bin\debug\SupaCharge.UnitTests.dll /nologo /framework:net-3.5 | Write-Host
   CheckLastExitCode
   Write-Host -ForegroundColor Cyan '----------------------------------'
 }
 
 function RunUnitTests() {
   Write-Host -ForegroundColor Cyan '-------Debug Unit Tests (3.5)-----------'
-  .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\debug\net-3.5\SupaCharge.UnitTests\SupaCharge.UnitTests.dll /nologo | Write-Host
+  .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\debug\net-3.5\SupaCharge.UnitTests\SupaCharge.UnitTests.dll /nologo /framework:net-3.5 | Write-Host
   CheckLastExitCode
   Write-Host -ForegroundColor Cyan '----------------------------------'
 
   Write-Host -ForegroundColor Cyan '-------Debug Unit Tests (4.0)-----------'
-  .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\debug\net-4.0\SupaCharge.UnitTests\SupaCharge.UnitTests.dll /nologo | Write-Host
+  .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\debug\net-4.0\SupaCharge.UnitTests\SupaCharge.UnitTests.dll /nologo /framework:net-4.0 | Write-Host
   CheckLastExitCode
   Write-Host -ForegroundColor Cyan '----------------------------------'
 
   Write-Host -ForegroundColor Cyan '-------Debug Unit Tests (4.5)-----------'
-  .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\debug\net-4.5\SupaCharge.UnitTests\SupaCharge.UnitTests.dll /nologo | Write-Host
+  .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\debug\net-4.5\SupaCharge.UnitTests\SupaCharge.UnitTests.dll /nologo /framework:net-4.0 | Write-Host
   CheckLastExitCode
   Write-Host -ForegroundColor Cyan '----------------------------------'
 }
@@ -71,7 +71,7 @@ function RunAllTests() {
 }
 
 function Build() {
-  C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe .\src\SupaCharge.Build\SupaCharge.proj /ds /maxcpucount:4 | Write-Host
+  C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe .\src\SupaCharge.Build\SupaCharge.proj /ds /maxcpucount:6 | Write-Host
   CheckLastExitCode
 }
 
