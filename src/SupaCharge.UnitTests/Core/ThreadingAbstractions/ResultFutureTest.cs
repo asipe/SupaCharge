@@ -74,9 +74,23 @@ namespace SupaCharge.UnitTests.Core.ThreadingAbstractions {
       Assert.That(actualEx.InnerException, Is.EqualTo(originalEx));
     }
 
+    [Test]
+    public void TestDisposing() {
+      mFuture.Dispose();
+      Assert.Throws<NullReferenceException>(() => mFuture.Set(15));
+      mFuture.Dispose();
+      mFuture = null;
+    }
+
     [SetUp]
     public void DoSetup() {
       mFuture = new ResultFuture<int>();
+    }
+
+    [TearDown]
+    public void DoTeardown() {
+      if (mFuture != null)
+        mFuture.Dispose();
     }
 
     private static long TimeThis(Action work) {
