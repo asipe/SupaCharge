@@ -66,6 +66,11 @@
     <Compile Include="IOAbstractions\IFile.cs" />
     <Compile Include="OID\GuidOIDProvider.cs" />
     <Compile Include="OID\IOIDProvider.cs" />
+    <Compile Include="Patterns\CancelToken.cs" />
+    <Compile Include="Patterns\IPipeline.cs" />
+    <Compile Include="Patterns\IStage.cs" />
+    <Compile Include="Patterns\Pipeline.cs" />
+    <Compile Include="Patterns\Stage.cs" />
     <Compile Include="SystemAbstractions\DotNetConsole.cs" />
     <Compile Include="SystemAbstractions\ISystemConsole.cs" />
     <Compile Include="Text\Extensions\IsNullOrEmptyTrimExtension.cs" />
