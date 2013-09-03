@@ -5,7 +5,7 @@ using NUnit.Framework;
 using SupaCharge.Core.Patterns;
 using SupaCharge.Testing;
 
-namespace SupaCharge.UnitTests.Patterns {
+namespace SupaCharge.UnitTests.Core.Patterns {
   [TestFixture]
   public class PipelineTest : BaseTestCase {
     [Test]
