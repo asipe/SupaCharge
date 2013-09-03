@@ -44,6 +44,7 @@
     <Compile Include="..\Common.Properties\AssemblyInfo.cs">
       <Link>AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Collections\Args.cs" />
     <Compile Include="Collections\Extensions\ToQueueExtension.cs" />
     <Compile Include="Config\AppConfig.cs" />
     <Compile Include="Config\ConfigWriter.cs" />

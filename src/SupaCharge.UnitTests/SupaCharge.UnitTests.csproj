@@ -52,6 +52,7 @@
     <Compile Include="..\Common.Properties\AssemblyInfo.cs">
       <Link>AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Core\Collections\ArgsTest.cs" />
     <Compile Include="Core\Collections\Extensions\ElementsAtExtensionTest.cs" />
     <Compile Include="Core\Collections\Extensions\ToQueueTest.cs" />
     <Compile Include="Core\Config\AppConfigTest.cs" />
