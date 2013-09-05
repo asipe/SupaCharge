@@ -17,6 +17,7 @@ namespace SupaCharge.UnitTests.Core.Patterns {
     [Test]
     public void TestExecuteWithSingleStage() {
       var stage = Mok<IStage<int>>();
+      stage.Setup(s => s.Priority).Returns(10);
       stage.Setup(s => s.Execute(It.Is<CancelToken>(t => !t.Cancelled), 44));
       InitPipeline(stage.Object);
       mPipeline.Execute(44);
@@ -25,7 +26,10 @@ namespace SupaCharge.UnitTests.Core.Patterns {
     [Test]
     public void TestExecuteWithMultipleStages() {
       var stages = BA(Mok<IStage<int>>(), Mok<IStage<int>>(), Mok<IStage<int>>());
-      Array.ForEach(stages, stage => stage.Setup(s => s.Execute(It.Is<CancelToken>(t => !t.Cancelled), 44)));
+      Array.ForEach(stages, stage => {
+        stage.Setup(s => s.Priority).Returns(10);
+        stage.Setup(s => s.Execute(It.Is<CancelToken>(t => !t.Cancelled), 44));
+      });
       InitPipeline(stages.Select(s => s.Object).ToArray());
       mPipeline.Execute(44);
     }
@@ -33,7 +37,21 @@ namespace SupaCharge.UnitTests.Core.Patterns {
     [Test]
     public void TestExecuteWithMultipleStagesWhenOneCancelsToken() {
       var stages = BA(Mok<IStage<int>>(), Mok<IStage<int>>(), Mok<IStage<int>>());
+      Array.ForEach(stages, stage => stage.Setup(s => s.Priority).Returns(10));
       stages[0].Setup(s => s.Execute(It.Is<CancelToken>(t => !t.Cancelled), 44));
+      stages[1]
+        .Setup(s => s.Execute(It.Is<CancelToken>(t => !t.Cancelled), 44))
+        .Callback<CancelToken, int>((c, x) => c.Cancel());
+      InitPipeline(stages.Select(s => s.Object).ToArray());
+      mPipeline.Execute(44);
+    }
+
+    [Test]
+    public void TestExecuteWithMultipleStagesOrderedCorrectly() {
+      var stages = BA(Mok<IStage<int>>(), Mok<IStage<int>>(), Mok<IStage<int>>());
+      var idx = 5;
+      Array.ForEach(stages, stage => stage.Setup(s => s.Priority).Returns(--idx));
+      stages[2].Setup(s => s.Execute(It.Is<CancelToken>(t => !t.Cancelled), 44));
       stages[1]
         .Setup(s => s.Execute(It.Is<CancelToken>(t => !t.Cancelled), 44))
         .Callback<CancelToken, int>((c, x) => c.Cancel());
