@@ -80,6 +80,7 @@
     <Compile Include="ThreadingAbstractions\IWorkQueue.cs" />
     <Compile Include="ThreadingAbstractions\ResultFuture.cs" />
     <Compile Include="ThreadingAbstractions\FutureException.cs" />
+    <Compile Include="ThreadingAbstractions\Retry.cs" />
     <Compile Include="ThreadingAbstractions\SynchronousWorkQueue.cs" />
     <Compile Include="ThreadingAbstractions\ThreadPoolWorkQueue.cs" />
     <Compile Include="ThreadingAbstractions\WorkQueueBatch.cs" />
