@@ -8,11 +8,8 @@ namespace SupaCharge.Core.Monitoring {
     }
 
     public void Start() {
-      mWatcher.EnableRaisingEvents = true;
-    }
-
-    public void SetChangedFunctionality() {
       mWatcher.Changed += new FileSystemEventHandler(OnFileChange);
+      mWatcher.EnableRaisingEvents = true;
     }
 
     public void Stop() {

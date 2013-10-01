@@ -10,10 +10,9 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
   [TestFixture]
   public class FileMonitoringTest : BaseTestCase {
     [Test]
-    public void TestChangesToAFileResultInChangeEventBeingThrown() {
+    public void TestChangesToAFileResultInChangeEventBeingRaised() {
       var seen = new List<string>();
       mMonitor.OnFileChange += (o, a) => seen.Add(a.Name);
-      mMonitor.SetChangedFunctionality();
       mMonitor.Start();
 
       using (var strm = File.OpenWrite(mFile1Path)) {
