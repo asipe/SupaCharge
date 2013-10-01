@@ -15,17 +15,21 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
       mMonitor.OnFileChange += (o, a) => seen.Add(a.Name);
       mMonitor.Start();
 
-      using (var strm = File.OpenWrite(mFile1Path)) {
-        var buf = Encoding.ASCII.GetBytes("Hello");
-        strm.Write(buf, 0, buf.Length);
-        strm.Close();
-      }
+      WriteAnEntryToTempDirFile();
 
       new Retry(100, 50)
         .WithWork(m => Assert.That(seen, Is.EqualTo(BA("file1.txt"))))
         .Start();
 
       mMonitor.Stop();
+    }
+
+    private void WriteAnEntryToTempDirFile() {
+      using (var strm = File.OpenWrite(mFile1Path)) {
+        var buf = Encoding.ASCII.GetBytes("Hello");
+        strm.Write(buf, 0, buf.Length);
+        strm.Close();
+      } 
     }
 
     [SetUp]
