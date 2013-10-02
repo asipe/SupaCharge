@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,7 +19,7 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
       WriteAnEntryToSpecifiedFile(mFilePath);
 
       new Retry(100, 50)
-        .WithWork(m => Assert.That(seen.Select(c => c.FileName), Is.EqualTo(BA("file1.txt"))))
+        .WithWork(m => Assert.That(seen.Select(c => c.FileName), Is.EqualTo(BA(mFilePath))))
         .Start();
 
       mMonitor.Stop();
@@ -34,7 +33,7 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
       Directory.CreateDirectory(subDir);
       Assert.That(Directory.Exists(subDir));
       var subPath = Path.Combine(subDir, "file2.txt");
-      File.WriteAllText(subPath, "yo");
+      File.WriteAllText(subPath, "file");
 
       mMonitor.OnFileChange += (o, a) => seen.Add(a);
       mMonitor.Start();
@@ -42,7 +41,7 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
       WriteAnEntryToSpecifiedFile(subPath);
 
       new Retry(100, 50)
-        .WithWork(m => Assert.That(seen.Select(c => c.FileName), Is.EqualTo(BA("subDir\\file2.txt"))))
+        .WithWork(m => Assert.That(seen.Select(c => c.FileName), Is.EqualTo(BA(subPath))))
         .Start();
 
       mMonitor.Stop();
