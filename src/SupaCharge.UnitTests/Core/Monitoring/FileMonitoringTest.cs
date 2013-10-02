@@ -48,6 +48,21 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
       mMonitor.Stop();
     }
 
+    [Test]
+    public void TestDeletingAFileDoesNotRaiseAChangEvent() {
+      var seen = new List<ChangedEvent>();
+      mMonitor.OnFileChange += (o, a) => seen.Add(a);
+      mMonitor.Start();
+
+      File.Delete(mFilePath);
+
+      new Retry(100, 50)
+        .WithWork(m => Assert.IsEmpty(seen))
+        .Start();
+
+      mMonitor.Stop();
+    }
+
     [SetUp]
     public void DoSetup() {
       CreateTempDir();
