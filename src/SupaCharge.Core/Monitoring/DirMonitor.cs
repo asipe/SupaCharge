@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using SupaCharge.Core.Events;
 
 namespace SupaCharge.Core.Monitoring {
   public class DirMonitor {
@@ -13,7 +14,7 @@ namespace SupaCharge.Core.Monitoring {
     }
 
     private void WatcherOnChanged(object sender, FileSystemEventArgs e) {
-      OnFileChange.Invoke(null, new ChangedEvent(e.Name));
+      OnFileChange.RaiseEvent(null, new ChangedEvent(e.Name));
     }
 
     public void Stop() {
