@@ -61,6 +61,7 @@
     <Compile Include="Core\ExceptionHandling\ExceptionDumpTest.cs" />
     <Compile Include="Core\IOAbstractions\DotNetDirectoryTest.cs" />
     <Compile Include="Core\IOAbstractions\DotNetFileTest.cs" />
+    <Compile Include="Core\Monitoring\ChangedEventTest.cs" />
     <Compile Include="Core\Net\DynamicPathTest.cs" />
     <Compile Include="Core\Net\NoOpDotDnsTest.cs" />
     <Compile Include="Core\OID\GuidOIDProviderTest.cs" />
