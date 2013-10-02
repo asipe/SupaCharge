@@ -49,9 +49,6 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Common.Properties\AssemblyInfo.cs">
-      <Link>AssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="Core\Collections\ArgsTest.cs" />
     <Compile Include="Core\Collections\Extensions\ElementsAtExtensionTest.cs" />
     <Compile Include="Core\Collections\Extensions\ToQueueTest.cs" />
@@ -64,6 +61,7 @@
     <Compile Include="Core\ExceptionHandling\ExceptionDumpTest.cs" />
     <Compile Include="Core\IOAbstractions\DotNetDirectoryTest.cs" />
     <Compile Include="Core\IOAbstractions\DotNetFileTest.cs" />
+    <Compile Include="Core\Monitoring\ChangedEventTest.cs" />
     <Compile Include="Core\Net\DynamicPathTest.cs" />
     <Compile Include="Core\Net\NoOpDotDnsTest.cs" />
     <Compile Include="Core\OID\GuidOIDProviderTest.cs" />
@@ -78,6 +76,8 @@
     <Compile Include="Core\ThreadingAbstractions\SynchronousWorkQueueTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\ThreadPoolWorkQueueTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\WorkQueueBatchTest.cs" />
+    <Compile Include="Core\Monitoring\FileMonitoringTest.cs" />
+    <Compile Include="Events\RaiseEventTest.cs" />
     <Compile Include="Web\Utility\FormUrlEncodedDataParserTest.cs" />
     <Compile Include="Web\Utility\MultipartFormDataParserTest.cs" />
     <Compile Include="Web\Utility\MultipartFormDataBuilderTest.cs" />
