@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using SupaCharge.Core.Monitoring;
@@ -11,25 +12,17 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
   public class FileMonitoringTest : BaseTestCase {
     [Test]
     public void TestChangesToAFileResultInChangeEventBeingRaised() {
-      var seen = new List<string>();
-      mMonitor.OnFileChange += (o, a) => seen.Add(a.Name);
+      var seen = new List<ChangedEvent>();
+      mMonitor.OnFileChange += (o, a) => seen.Add(a);
       mMonitor.Start();
 
       WriteAnEntryToTempDirFile();
 
       new Retry(100, 50)
-        .WithWork(m => Assert.That(seen, Is.EqualTo(BA("file1.txt"))))
+        .WithWork(m => Assert.That(seen.Select(c => c.FileName), Is.EqualTo(BA("file1.txt"))))
         .Start();
 
       mMonitor.Stop();
-    }
-
-    private void WriteAnEntryToTempDirFile() {
-      using (var strm = File.OpenWrite(mFile1Path)) {
-        var buf = Encoding.ASCII.GetBytes("Hello");
-        strm.Write(buf, 0, buf.Length);
-        strm.Close();
-      } 
     }
 
     [SetUp]
@@ -38,6 +31,14 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
       mFile1Path = Path.Combine(TempDir, "file1.txt");
       File.WriteAllText(mFile1Path, "file.txt");
       mMonitor = new DirMonitor(TempDir);
+    }
+
+    private void WriteAnEntryToTempDirFile() {
+      using (var strm = File.OpenWrite(mFile1Path)) {
+        var buf = Encoding.ASCII.GetBytes("Hello");
+        strm.Write(buf, 0, buf.Length);
+        strm.Close();
+      }
     }
 
     private string mFile1Path;

@@ -56,6 +56,7 @@
     <Compile Include="DiagnosticAbstractions\ITickCountProvider.cs" />
     <Compile Include="DiagnosticAbstractions\RecordingEventList.cs" />
     <Compile Include="DiagnosticAbstractions\StopwatchTickCountProvider.cs" />
+    <Compile Include="Monitoring\ChangedEvent.cs" />
     <Compile Include="Monitoring\DirMonitor.cs" />
     <Compile Include="ExceptionHandling\SupaChargeException.cs" />
     <Compile Include="Net\NoOpDotNetDns.cs" />
