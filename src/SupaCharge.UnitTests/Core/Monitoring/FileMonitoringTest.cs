@@ -63,6 +63,22 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
       mMonitor.Stop();
     }
 
+    [Test]
+    public void TestRenamingDoesNotRaiseAChangeEvent() {
+      var seen = new List<ChangedEvent>();
+      mMonitor.OnFileChange += (o, a) => seen.Add(a);
+      mMonitor.Start();
+
+      File.Move(mFilePath, Path.Combine(TempDir, "newFile"));
+      Assert.False(File.Exists(mFilePath));
+
+      new Retry(100, 50)
+        .WithWork(m => Assert.IsEmpty(seen))
+        .Start();
+
+      mMonitor.Stop();
+    }
+
     [SetUp]
     public void DoSetup() {
       CreateTempDir();
