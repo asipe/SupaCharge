@@ -87,7 +87,7 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
       mMonitor = new DirMonitor(TempDir);
     }
 
-    private void WriteAnEntryToSpecifiedFile(string fileToWriteTo) {
+    private static void WriteAnEntryToSpecifiedFile(string fileToWriteTo) {
       using (var strm = File.OpenWrite(fileToWriteTo)) {
         var buf = Encoding.ASCII.GetBytes("Hello");
         strm.Write(buf, 0, buf.Length);

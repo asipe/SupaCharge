@@ -14,7 +14,7 @@ namespace SupaCharge.Core.Monitoring {
       mWatcher.EnableRaisingEvents = true;
     }
 
-    private void WatcherOnChanged(object sender, FileSystemEventArgs e) {    
+    private void WatcherOnChanged(object sender, FileSystemEventArgs e) {
       OnFileChange.RaiseEvent(null, new ChangedEvent(Path.GetFullPath(e.FullPath)));
     }
 
