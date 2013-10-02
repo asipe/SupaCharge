@@ -15,7 +15,6 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
       var seen = new List<ChangedEvent>();
       mMonitor.OnFileChange += (o, a) => seen.Add(a);
       mMonitor.Start();
-
       WriteAnEntryToSpecifiedFile(mFilePath);
 
       new Retry(100, 50)
@@ -34,6 +33,7 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
       Assert.That(Directory.Exists(subDir));
       var subPath = Path.Combine(subDir, "file2.txt");
       File.WriteAllText(subPath, "file");
+      subPath = Path.GetFullPath(subPath);
 
       mMonitor.OnFileChange += (o, a) => seen.Add(a);
       mMonitor.Start();
@@ -83,6 +83,7 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
       CreateTempDir();
       mFilePath = Path.Combine(TempDir, "file1.txt");
       File.WriteAllText(mFilePath, "file.txt");
+      mFilePath = Path.GetFullPath(mFilePath);
       mMonitor = new DirMonitor(TempDir);
     }
 
