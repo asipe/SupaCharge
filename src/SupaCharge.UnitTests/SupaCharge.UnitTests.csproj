@@ -77,6 +77,7 @@
     <Compile Include="Core\ThreadingAbstractions\ThreadPoolWorkQueueTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\WorkQueueBatchTest.cs" />
     <Compile Include="Core\Monitoring\FileMonitoringTest.cs" />
+    <Compile Include="Events\RaiseEventTest.cs" />
     <Compile Include="Web\Utility\FormUrlEncodedDataParserTest.cs" />
     <Compile Include="Web\Utility\MultipartFormDataParserTest.cs" />
     <Compile Include="Web\Utility\MultipartFormDataBuilderTest.cs" />
