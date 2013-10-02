@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
       mMonitor.OnFileChange += (o, a) => seen.Add(a);
       mMonitor.Start();
 
-      WriteAnEntryToTempDirFile();
+      WriteAnEntryToSpecifiedFile(mFilePath);
 
       new Retry(100, 50)
         .WithWork(m => Assert.That(seen.Select(c => c.FileName), Is.EqualTo(BA("file1.txt"))))
@@ -25,23 +26,45 @@ namespace SupaCharge.UnitTests.Core.Monitoring {
       mMonitor.Stop();
     }
 
+    [Test]
+    public void TestChangesToAFileAreRaisedInSubdirectories() {
+      var seen = new List<ChangedEvent>();
+
+      var subDir = Path.Combine(TempDir, "subDir");
+      Directory.CreateDirectory(subDir);
+      Assert.That(Directory.Exists(subDir));
+      var subPath = Path.Combine(subDir, "file2.txt");
+      File.WriteAllText(subPath, "yo");
+
+      mMonitor.OnFileChange += (o, a) => seen.Add(a);
+      mMonitor.Start();
+
+      WriteAnEntryToSpecifiedFile(subPath);
+
+      new Retry(100, 50)
+        .WithWork(m => Assert.That(seen.Select(c => c.FileName), Is.EqualTo(BA("subDir\\file2.txt"))))
+        .Start();
+
+      mMonitor.Stop();
+    }
+
     [SetUp]
     public void DoSetup() {
       CreateTempDir();
-      mFile1Path = Path.Combine(TempDir, "file1.txt");
-      File.WriteAllText(mFile1Path, "file.txt");
+      mFilePath = Path.Combine(TempDir, "file1.txt");
+      File.WriteAllText(mFilePath, "file.txt");
       mMonitor = new DirMonitor(TempDir);
     }
 
-    private void WriteAnEntryToTempDirFile() {
-      using (var strm = File.OpenWrite(mFile1Path)) {
+    private void WriteAnEntryToSpecifiedFile(string fileToWriteTo) {
+      using (var strm = File.OpenWrite(fileToWriteTo)) {
         var buf = Encoding.ASCII.GetBytes("Hello");
         strm.Write(buf, 0, buf.Length);
         strm.Close();
       }
     }
 
-    private string mFile1Path;
+    private string mFilePath;
     private DirMonitor mMonitor;
   }
 }

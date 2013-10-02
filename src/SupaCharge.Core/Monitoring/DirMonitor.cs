@@ -10,6 +10,7 @@ namespace SupaCharge.Core.Monitoring {
 
     public void Start() {
       mWatcher.Changed += WatcherOnChanged;
+      mWatcher.IncludeSubdirectories = true;
       mWatcher.EnableRaisingEvents = true;
     }
 
