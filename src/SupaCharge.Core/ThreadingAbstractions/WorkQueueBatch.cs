@@ -9,21 +9,28 @@ namespace SupaCharge.Core.ThreadingAbstractions {
     }
 
     public WorkQueueBatch Add(params Action[] work) {
-      mFutures.AddRange(work.Select(w => mQueue.Enqueue(w)).ToArray());
+      lock (mLock) {
+        mFutures.AddRange(work.Select(w => mQueue.Enqueue(w)).ToArray());
+      }
       return this;
     }
 
     public WorkQueueBatch Add<T>(T data, Action<T> work) {
-      mFutures.Add(mQueue.Enqueue(data, work));
+      lock (mLock) {
+        mFutures.Add(mQueue.Enqueue(data, work));
+      }
       return this;
     }
 
     public WorkQueueBatch Wait(int millisecondsTimeout) {
-      Array.ForEach(mFutures.ToArray(), future => future.Wait(millisecondsTimeout));
+      lock (mLock) {
+        Array.ForEach(mFutures.ToArray(), future => future.Wait(millisecondsTimeout));
+      }
       return this;
     }
 
     private readonly List<EmptyFuture> mFutures = new List<EmptyFuture>();
+    private readonly object mLock = new object();
     private readonly IWorkQueue mQueue;
   }
 }
