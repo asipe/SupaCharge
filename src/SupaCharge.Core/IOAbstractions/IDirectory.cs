@@ -7,5 +7,7 @@ namespace SupaCharge.Core.IOAbstractions {
     DirectoryInfo CreateDirectory(string path);
     bool Exists(string path);
     string[] GetDirectories(string path);
+    void Delete(string path);
+    void Delete(string path, bool recursive);
   }
 }

@@ -42,6 +42,20 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(mDir.GetDirectories(TempDir), Is.EqualTo(BA(Path.Combine(TempDir, "a"), Path.Combine(TempDir, "b"))));
     }
 
+    [Test]
+    public void TestDeleteDirectory() {
+      mDir.Delete(TempDir);
+      Assert.That(mDir.Exists(TempDir), Is.False);
+    } 
+    
+    [Test]
+    public void TestDeleteDirectoryRecursive() {
+      mDir.CreateDirectory(Path.Combine(TempDir, "a"));
+      mDir.CreateDirectory(Path.Combine(TempDir, "b"));
+      mDir.Delete(TempDir, true);
+      Assert.That(mDir.Exists(TempDir), Is.False);
+    }
+
     [SetUp]
     public void DoSetup() {
       CreateTempDir();

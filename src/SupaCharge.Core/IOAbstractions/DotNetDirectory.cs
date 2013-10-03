@@ -21,5 +21,13 @@ namespace SupaCharge.Core.IOAbstractions {
     public string[] GetDirectories(string path) {
       return Directory.GetDirectories(path);
     }
+
+    public void Delete(string path) {
+      Directory.Delete(path);
+    }
+
+    public void Delete(string path, bool recursive) {
+      Directory.Delete(path, recursive);
+    }
   }
 }
