@@ -1,7 +1,13 @@
-﻿using System.IO;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading;
 using NUnit.Framework;
+using SupaCharge.Core.ExceptionHandling;
 using SupaCharge.Core.IOAbstractions;
+using SupaCharge.Core.ThreadingAbstractions;
 using SupaCharge.Testing;
 
 namespace SupaCharge.UnitTests.Core.IOAbstractions {
@@ -83,6 +89,54 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(mFile.Exists(mPath), Is.False);
     }
 
+    [TestCase(0)]
+    [TestCase(100)]
+    public void TestDeleteWithWaitWhenNoWaitNecessary(int waitMilliseconds) {
+      mFile.Delete(mPath, waitMilliseconds);
+      Assert.That(mFile.Exists(mPath), Is.False);
+    }
+
+    [Test]
+    public void TestDeleteWithWaitWhenUnableToDeleteInTimeThrows() {
+      using (var strm = File.Open(mPath, FileMode.Open, FileAccess.Read, FileShare.Delete)) {
+        var ex = Assert.Throws<SupaChargeException>(() => mFile.Delete(mPath, 100));
+        Assert.That(ex.Message, Is.StringMatching("Unable to verify delete of .+abc.txt in 100ms"));
+        Assert.That(mFile.Exists(mPath), Is.True);
+        strm.Close();
+      }
+    }
+
+    [TestCase(1)]
+    [TestCase(2)]
+    [TestCase(5)]
+    public void TestDeleteWithWaitWhenAbleToDeleteInTime(int readerCount) {
+      var batch = new WorkQueueBatch(new ThreadPoolWorkQueue());
+      var random = new Random();
+      var execArgs = Enumerable
+        .Range(0, readerCount)
+        .Select(x => new {
+                           Evt = new ManualResetEvent(false),
+                           Delay = random.Next(500)
+                         })
+        .ToArray();
+
+      Array.ForEach(execArgs, a => batch.Add(a, args => {
+                                                  using (var strm = File.Open(mPath, FileMode.Open, FileAccess.Read, FileShare.Delete | FileShare.Read)) {
+                                                    args.Evt.Set();
+                                                    Thread.Sleep(args.Delay);
+                                                    strm.Close();
+                                                  }
+                                                }));
+      Array.ForEach(execArgs, a => Assert.That(a.Evt.WaitOne(1000), Is.True));
+      var sw = Stopwatch.StartNew();
+      mFile.Delete(mPath, 1000);
+      batch.Wait(1000);
+      sw.Stop();
+      var min = execArgs.Min(a => a.Delay);
+      Assert.That(sw.ElapsedMilliseconds, Is.GreaterThanOrEqualTo(min).And.LessThan(1000));
+      Assert.That(mFile.Exists(mPath), Is.False);
+    }
+
     [Test]
     public void TestSize() {
       Assert.That(mFile.GetSize(mPath), Is.EqualTo(4));
@@ -101,6 +155,11 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       mFile = new DotNetFile();
       mPath = Path.Combine(TempDir, "abc.txt");
       File.WriteAllText(mPath, "data");
+    }
+
+    [TearDown]
+    public void DoTearDown() {
+      new DotNetFile().Delete(mPath, 5000);
     }
 
     private DotNetFile mFile;

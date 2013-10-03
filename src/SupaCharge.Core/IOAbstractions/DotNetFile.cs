@@ -1,4 +1,7 @@
+using System.Diagnostics;
 using System.IO;
+using System.Threading;
+using SupaCharge.Core.ExceptionHandling;
 
 namespace SupaCharge.Core.IOAbstractions {
   public class DotNetFile : IFile {
@@ -44,6 +47,23 @@ namespace SupaCharge.Core.IOAbstractions {
 
     public void Delete(string path) {
       File.Delete(path);
+    }
+
+    public void Delete(string path, int waitMilliseconds) {
+      Delete(path);
+
+      if (!Exists(path))
+        return;
+
+      var watch = Stopwatch.StartNew();
+      while (true)
+        if (!Exists(path))
+          return;
+        else if ((watch.ElapsedMilliseconds < waitMilliseconds))
+          Thread.Sleep(15);
+        else
+          break;
+      throw new SupaChargeException("Unable to verify delete of {0} in {1}ms", path, waitMilliseconds);
     }
 
     public long GetSize(string path) {
