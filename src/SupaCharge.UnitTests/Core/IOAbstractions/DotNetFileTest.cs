@@ -133,7 +133,7 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       batch.Wait(1000);
       sw.Stop();
       var min = execArgs.Min(a => a.Delay);
-      Assert.That(sw.ElapsedMilliseconds, Is.GreaterThanOrEqualTo(min).And.LessThan(1000));
+      Assert.That(sw.ElapsedMilliseconds, Is.GreaterThanOrEqualTo(min - 10).And.LessThan(1000));
       Assert.That(mFile.Exists(mPath), Is.False);
     }
 
