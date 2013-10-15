@@ -34,7 +34,10 @@ namespace SupaCharge.Core.IOAbstractions {
 
     public void Delete(string path, int waitMilliseconds) {
       new Retry((int)Math.Ceiling(waitMilliseconds / 15d) + 1, 15)
-        .WithWork(x => Delete(path, true))
+        .WithWork(x => {
+                    if (Exists(path))
+                      Delete(path, true);
+                  })
         .Start();
     }
   }
