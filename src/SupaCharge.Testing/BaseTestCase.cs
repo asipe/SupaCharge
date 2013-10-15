@@ -65,7 +65,7 @@ namespace SupaCharge.Testing {
     }
 
     protected string CreateTempDir() {
-      TempDir = Guid.NewGuid().ToString("N");
+      TempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
       Directory.CreateDirectory(TempDir);
       return TempDir;
     }
