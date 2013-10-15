@@ -24,19 +24,24 @@ namespace SupaCharge.Core.ThreadingAbstractions {
     }
 
     public WorkQueueBatch Wait(int millisecondsTimeout) {
-      lock (mLock) {
-        Array.ForEach(mFutures.ToArray(), future => future.Wait(millisecondsTimeout));
-      }
+      Array.ForEach(CopyAndClearFutures(), future => future.Wait(millisecondsTimeout));
       return this;
     }
-    
+
     public WorkQueueBatch WaitAll(int millisecondsTimeout) {
-      lock (mLock) {
-        var activityMonitor = new ActivityMonitor();
-        Array.ForEach(mFutures.ToArray(), future => activityMonitor.Monitor(() => future.Wait(millisecondsTimeout)));
-        activityMonitor.Resolve();
-      }
+      var activityMonitor = new ActivityMonitor();
+      Array.ForEach(CopyAndClearFutures(), future => activityMonitor.Monitor(() => future.Wait(millisecondsTimeout)));
+      activityMonitor.Resolve();
       return this;
+    }
+
+    private EmptyFuture[] CopyAndClearFutures() {
+      EmptyFuture[] futures;
+      lock (mLock) {
+        futures = mFutures.ToArray();
+        mFutures.Clear();
+      }
+      return futures;
     }
 
     private readonly List<EmptyFuture> mFutures = new List<EmptyFuture>();
