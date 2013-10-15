@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SupaCharge.Core.ExceptionHandling;
 
 namespace SupaCharge.Core.ThreadingAbstractions {
   public class WorkQueueBatch {
@@ -25,6 +26,15 @@ namespace SupaCharge.Core.ThreadingAbstractions {
     public WorkQueueBatch Wait(int millisecondsTimeout) {
       lock (mLock) {
         Array.ForEach(mFutures.ToArray(), future => future.Wait(millisecondsTimeout));
+      }
+      return this;
+    }
+    
+    public WorkQueueBatch WaitAll(int millisecondsTimeout) {
+      lock (mLock) {
+        var activityMonitor = new ActivityMonitor();
+        Array.ForEach(mFutures.ToArray(), future => activityMonitor.Monitor(() => future.Wait(millisecondsTimeout)));
+        activityMonitor.Resolve();
       }
       return this;
     }
