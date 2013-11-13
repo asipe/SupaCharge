@@ -60,7 +60,7 @@ function RunUnitTests() {
   Write-Host -ForegroundColor Cyan '----------------------------------'
 
   Write-Host -ForegroundColor Cyan '-------Debug Unit Tests (4.5)-----------'
-  .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\debug\net-4.5\SupaCharge.UnitTests\SupaCharge.UnitTests.dll /nologo /framework:net-4.0 | Write-Host
+  .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\debug\net-4.5\SupaCharge.UnitTests\SupaCharge.UnitTests.dll /nologo /framework:net-4.5 | Write-Host
   CheckLastExitCode
   Write-Host -ForegroundColor Cyan '----------------------------------'
 }
