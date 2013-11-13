@@ -33,8 +33,10 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
     public void TestResolveThrowsIfSingleActivityFailed() {
       mList.Monitor(() => {throw new Exception("test error");});
       var ex = Assert.Throws<AggregatedException>(() => mList.Resolve());
-      Assert.That(ex.Message, Is.EqualTo("1 Activities Failed"));
-      Assert.That(ex.ToString(), Is.StringContaining("test error"));
+      Assert.That(ex.Message, Is
+                                .StringStarting("1 Activities Failed")
+                                .And
+                                .StringContaining("test error"));
     }
 
     [Test]
@@ -43,13 +45,14 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
       mList.Monitor(() => {throw new Exception("test error 2");});
       mList.Monitor(() => {throw new Exception("test error 3");});
       var ex = Assert.Throws<AggregatedException>(() => mList.Resolve());
-      Assert.That(ex.Message, Is.EqualTo("3 Activities Failed"));
-      Assert.That(ex.ToString(), Is
-                                   .StringContaining("test error 1")
-                                   .And
-                                   .StringContaining("test error 2")
-                                   .And
-                                   .StringContaining("test error 3"));
+      Assert.That(ex.Message, Is
+                                .StringStarting("3 Activities Failed")
+                                .And
+                                .StringContaining("test error 1")
+                                .And
+                                .StringContaining("test error 2")
+                                .And
+                                .StringContaining("test error 3"));
     }
 
     [SetUp]

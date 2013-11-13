@@ -7,12 +7,38 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
   [TestFixture]
   public class AggregatedExceptionTest : BaseTestCase {
     [Test]
-    public void TestToString() {
+    public void TestCreateWithNoMessageSingleException() {
+      var ex = new AggregatedException(BA(GetException("one")));
+      Assert.That(ex.Message, Is
+                                .StringStarting("-------------------------------------" + Environment.NewLine + Environment.NewLine + Environment.NewLine)
+                                .And
+                                .StringContaining("one")
+                                .And
+                                .StringEnding("-------------------------------------" + Environment.NewLine));
+    }
+
+    [Test]
+    public void TestCreateWithNoMessageMultipleExceptions() {
       var ex = new AggregatedException(BA(GetException("one"), GetException("two")));
-      Assert.That(ex.ToString(), Is
-                                   .StringContaining("one")
-                                   .And
-                                   .StringContaining("two"));
+      Assert.That(ex.Message, Is
+                                .StringStarting("-------------------------------------" + Environment.NewLine + Environment.NewLine + Environment.NewLine)
+                                .And
+                                .StringContaining("one")
+                                .And
+                                .StringContaining("two")
+                                .And
+                                .StringEnding("-------------------------------------" + Environment.NewLine));
+    }
+
+    [Test]
+    public void TestCreateWithMessageSingleException() {
+      var ex = new AggregatedException(BA(GetException("one")), "hello world");
+      Assert.That(ex.Message, Is
+                                .StringStarting("hello world" + Environment.NewLine + "-------------------------------------" + Environment.NewLine + Environment.NewLine + Environment.NewLine)
+                                .And
+                                .StringContaining("one")
+                                .And
+                                .StringEnding("-------------------------------------" + Environment.NewLine));
     }
 
     private static Exception GetException(string msg) {

@@ -80,7 +80,7 @@ namespace SupaCharge.UnitTests.Core.ThreadingAbstractions {
       var ex = Assert.Throws<AggregatedException>(() => mBatch
                                                           .Add(() => {throw new Exception("test error 1");})
                                                           .WaitAll(0));
-      Assert.That(ex.Message, Is.EqualTo("1 Activities Failed"));
+      Assert.That(ex.Message, Is.StringStarting("1 Activities Failed"));
       Assert.That(ex.Exceptions.Length, Is.EqualTo(1));
       Assert.That(mCount, Is.EqualTo(0));
     }
@@ -93,7 +93,7 @@ namespace SupaCharge.UnitTests.Core.ThreadingAbstractions {
                                                           .Add(() => {throw new Exception("test error 2");})
                                                           .Add(Inc, () => {throw new Exception("test error 2");})
                                                           .WaitAll(0));
-      Assert.That(ex.Message, Is.EqualTo("3 Activities Failed"));
+      Assert.That(ex.Message, Is.StringStarting("3 Activities Failed"));
       Assert.That(ex.Exceptions.Length, Is.EqualTo(3));
       Assert.That(mCount, Is.EqualTo(4));
     }
