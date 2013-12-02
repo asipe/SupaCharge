@@ -32,6 +32,10 @@ namespace SupaCharge.Core.IOAbstractions {
       Directory.Delete(path, recursive);
     }
 
+    public string[] GetFiles(string path, string searchPattern, SearchOption searchOption) {
+      return Directory.GetFiles(path, searchPattern, searchOption);
+    }
+
     public void Delete(string path, int waitMilliseconds) {
       new Retry((int)Math.Ceiling(waitMilliseconds / 15d) + 1, 15)
         .WithWork(x => {

@@ -21,8 +21,23 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(mDir.GetFiles(TempDir, "*.*"), Is.Empty);
       var path = Path.Combine(TempDir, "abc.txt");
       File.WriteAllText(path, "data");
-      Assert.That(mDir.GetFiles(TempDir, "*.txt").Length, Is.EqualTo(1));
-      Assert.That(mDir.GetFiles(TempDir, "*.txt")[0], Is.StringEnding("abc.txt"));
+      Assert.That(mDir.GetFiles(TempDir, "*.txt"), Is.EqualTo(BA(path)));
+    }
+
+    [Test]
+    public void TestGetFilesSearchOption() {
+      Assert.That(mDir.GetFiles(TempDir, "*.*", SearchOption.AllDirectories), Is.Empty);
+      Assert.That(mDir.GetFiles(TempDir, "*.*", SearchOption.TopDirectoryOnly), Is.Empty);
+      var path = Path.Combine(TempDir, "abc.txt");
+      File.WriteAllText(path, "data");
+      Assert.That(mDir.GetFiles(TempDir, "*.txt", SearchOption.AllDirectories), Is.EqualTo(BA(path)));
+      Assert.That(mDir.GetFiles(TempDir, "*.txt", SearchOption.TopDirectoryOnly), Is.EqualTo(BA(path)));
+      var dir = Path.Combine(TempDir, "dir1");
+      Directory.CreateDirectory(dir);
+      var path2 = Path.Combine(dir, "abc.txt");
+      File.WriteAllText(path2, "data");
+      Assert.That(mDir.GetFiles(TempDir, "*.txt", SearchOption.AllDirectories), Is.EquivalentTo(BA(path, path2)));
+      Assert.That(mDir.GetFiles(TempDir, "*.txt", SearchOption.TopDirectoryOnly), Is.EqualTo(BA(path)));
     }
 
     [Test]
