@@ -51,6 +51,7 @@
     <Compile Include="Converter\ValueConverter.cs" />
     <Compile Include="Collections\Extensions\ElementsAtExtension.cs" />
     <Compile Include="Collections\Extensions\TruncateExtension.cs" />
+    <Compile Include="DateAndTime\Extensions\GetMonthEndExtension.cs" />
     <Compile Include="DiagnosticAbstractions\DotNetStopwatch.cs" />
     <Compile Include="DiagnosticAbstractions\IStopwatch.cs" />
     <Compile Include="DiagnosticAbstractions\ITickCountProvider.cs" />
