@@ -23,11 +23,6 @@ namespace SupaCharge.Core.ThreadingAbstractions {
       return this;
     }
 
-    public WorkQueueBatch Wait(int millisecondsTimeout) {
-      Array.ForEach(CopyAndClearFutures(), future => future.Wait(millisecondsTimeout));
-      return this;
-    }
-
     public WorkQueueBatch WaitAll(int millisecondsTimeout) {
       var activityMonitor = new ActivityMonitor();
       Array.ForEach(CopyAndClearFutures(), future => activityMonitor.Monitor(() => future.Wait(millisecondsTimeout)));

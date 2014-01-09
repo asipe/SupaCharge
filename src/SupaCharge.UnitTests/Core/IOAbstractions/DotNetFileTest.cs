@@ -130,7 +130,7 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Array.ForEach(execArgs, a => Assert.That(a.Evt.WaitOne(1000), Is.True));
       var sw = Stopwatch.StartNew();
       mFile.Delete(mPath, 1000);
-      batch.Wait(1000);
+      batch.WaitAll(1000);
       sw.Stop();
       var min = execArgs.Min(a => a.Delay);
       Assert.That(sw.ElapsedMilliseconds, Is.GreaterThanOrEqualTo(min - 10).And.LessThan(1000));
