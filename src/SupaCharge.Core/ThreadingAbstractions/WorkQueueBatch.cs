@@ -9,6 +9,14 @@ namespace SupaCharge.Core.ThreadingAbstractions {
       mQueue = queue;
     }
 
+    public int PendingFutureCount {
+      get {
+        lock (mLock) {
+          return mFutures.Count();
+        }
+      }
+    }
+
     public WorkQueueBatch Add(params Action[] work) {
       lock (mLock) {
         mFutures.AddRange(work.Select(w => mQueue.Enqueue(w)).ToArray());

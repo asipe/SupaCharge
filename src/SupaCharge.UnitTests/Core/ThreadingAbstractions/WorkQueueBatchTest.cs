@@ -8,8 +8,23 @@ namespace SupaCharge.UnitTests.Core.ThreadingAbstractions {
   [TestFixture]
   public class WorkQueueBatchTest : BaseTestCase {
     [Test]
+    public void TestDefaultHas0FutureCount() {
+      Assert.That(mBatch.PendingFutureCount, Is.EqualTo(0));
+    }
+
+    [Test]
     public void TestWaitAllWithNoItems() {
       mBatch.WaitAll(0);
+    }
+
+    [Test]
+    public void TestPendingFutureCountWithUnresolvedFutures() {
+      mBatch.Add(100, Add);
+      Assert.That(mBatch.PendingFutureCount, Is.EqualTo(1));
+      mBatch.Add(100, Add);
+      Assert.That(mBatch.PendingFutureCount, Is.EqualTo(2));
+      mBatch.WaitAll(0);
+      Assert.That(mBatch.PendingFutureCount, Is.EqualTo(0));
     }
 
     [Test]
