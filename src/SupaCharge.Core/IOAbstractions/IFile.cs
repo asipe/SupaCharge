@@ -17,5 +17,6 @@ namespace SupaCharge.Core.IOAbstractions {
     void Delete(string path);
     void Delete(string path, int waitMilliseconds);
     long GetSize(string path);
+    void Move(string sourceFileName, string destFileName);
   }
 }

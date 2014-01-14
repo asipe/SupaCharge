@@ -74,6 +74,10 @@ namespace SupaCharge.Core.IOAbstractions {
       return new FileInfo(path).Length;
     }
 
+    public void Move(string sourceFileName, string destFileName) {
+      File.Move(sourceFileName, destFileName);
+    }
+
     public Stream Open(string path, FileMode mode, FileAccess access) {
       return File.Open(path, mode, access);
     }

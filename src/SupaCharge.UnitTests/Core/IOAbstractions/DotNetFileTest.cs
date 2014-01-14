@@ -166,6 +166,13 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.Throws<FileNotFoundException>(() => mFile.GetSize(mPath + "_"));
     }
 
+    [Test]
+    public void TestMove() {
+      mFile.Move(mPath, mPath + ".1");
+      Assert.That(mFile.Exists(mPath), Is.False);
+      Assert.That(mFile.ReadAllText(mPath + ".1"), Is.EqualTo("data"));
+    }
+
     [SetUp]
     public void DoSetup() {
       CreateTempDir();
