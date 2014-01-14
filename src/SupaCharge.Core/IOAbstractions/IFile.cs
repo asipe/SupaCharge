@@ -12,6 +12,7 @@ namespace SupaCharge.Core.IOAbstractions {
     void WriteAllText(string path, string text);
     void WriteAllLines(string path, params string[] contents);
     void Copy(string sourceFileName, string destFileName);
+    void Copy(string sourceFileName, string destFileName, bool overwrite);
     bool Exists(string path);
     void Delete(string path);
     void Delete(string path, int waitMilliseconds);

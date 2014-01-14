@@ -41,6 +41,10 @@ namespace SupaCharge.Core.IOAbstractions {
       File.Copy(sourceFileName, destFileName);
     }
 
+    public void Copy(string sourceFileName, string destFileName, bool overwrite) {
+      File.Copy(sourceFileName, destFileName, overwrite);
+    }
+
     public bool Exists(string path) {
       return File.Exists(path);
     }

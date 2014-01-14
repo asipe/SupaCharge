@@ -78,6 +78,23 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
     }
 
     [Test]
+    public void TestCopyOverwriteTrue() {
+      var dest = mPath + ".1";
+      mFile.Copy(mPath, dest);
+      mFile.Copy(mPath, dest, true);
+      Assert.That(File.ReadAllText(mPath), Is.EqualTo("data"));
+    }
+
+    [Test]
+    public void TestCopyOverwriteFalse() {
+      var dest = mPath + ".1";
+      mFile.Copy(mPath, dest);
+      var ex = Assert.Throws<IOException>(() => mFile.Copy(mPath, dest, false));
+      Assert.That(ex.Message, Is.StringStarting("The file").And.StringEnding("already exists."));
+      Assert.That(File.ReadAllText(mPath), Is.EqualTo("data"));
+    }
+
+    [Test]
     public void TestExists() {
       Assert.That(mFile.Exists(mPath + ".tmp"), Is.False);
       Assert.That(mFile.Exists(mPath), Is.True);
