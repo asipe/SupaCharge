@@ -59,6 +59,7 @@
     <Compile Include="Core\Config\ConfigWriterTest.cs" />
     <Compile Include="Core\Converter\ValueConverterTest.cs" />
     <Compile Include="Core\DateAndTime\Extensions\GetMonthEndDateExtensionTest.cs" />
+    <Compile Include="Core\DateAndTime\Extensions\GetMonthStartDateExtensionTest.cs" />
     <Compile Include="Core\DiagnosticAbstractions\DotNetStopWatchTest.cs" />
     <Compile Include="Core\DiagnosticAbstractions\RecordingEventListTest.cs" />
     <Compile Include="Core\DiagnosticAbstractions\StopwatchTickCountProviderTest.cs" />
