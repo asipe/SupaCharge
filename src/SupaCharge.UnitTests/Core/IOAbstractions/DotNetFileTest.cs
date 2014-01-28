@@ -173,6 +173,13 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(mFile.ReadAllText(mPath + ".1"), Is.EqualTo("data"));
     }
 
+    [Test]
+    public void TestReadAllTextTrimmed() {
+      Assert.That(mFile.ReadAllTextTrimmed(mPath), Is.EqualTo("data"));
+      mFile.WriteAllLines(mPath, "1", "2", "", "   ", "3  ", "   4  ");
+      Assert.That(mFile.ReadAllTextTrimmed(mPath), Is.EqualTo("1234"));
+    }
+
     [SetUp]
     public void DoSetup() {
       CreateTempDir();

@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using SupaCharge.Core.ExceptionHandling;
 
@@ -11,6 +12,12 @@ namespace SupaCharge.Core.IOAbstractions {
 
     public string ReadAllText(string path) {
       return File.ReadAllText(path);
+    }
+
+    public string ReadAllTextTrimmed(string path) {
+      return string.Join("", ReadAllLines(path)
+                               .Select(line => line.Trim())
+                               .ToArray());
     }
 
     public string[] ReadAllLines(string path) {

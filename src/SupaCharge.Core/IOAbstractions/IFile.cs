@@ -5,6 +5,7 @@ namespace SupaCharge.Core.IOAbstractions {
     Stream Open(string path, FileMode mode);
     Stream Open(string path, FileMode mode, FileAccess access);
     string ReadAllText(string path);
+    string ReadAllTextTrimmed(string path);
     string[] ReadAllLines(string path);
     StreamReader OpenText(string path);
     byte[] ReadAllBytes(string path);
