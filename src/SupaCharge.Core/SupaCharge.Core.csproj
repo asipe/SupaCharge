@@ -80,7 +80,12 @@
     <Compile Include="SystemAbstractions\ISystemConsole.cs" />
     <Compile Include="Text\Extensions\IsNullOrEmptyTrimExtension.cs" />
     <Compile Include="ExceptionHandling\ExceptionDump.cs" />
+    <Compile Include="ThreadingAbstractions\DotNetSleep.cs" />
     <Compile Include="ThreadingAbstractions\EmptyFuture.cs" />
+    <Compile Include="ThreadingAbstractions\FixedPausePolicy.cs" />
+    <Compile Include="ThreadingAbstractions\IncreasingPausePolicy.cs" />
+    <Compile Include="ThreadingAbstractions\IRetryPausePolicy.cs" />
+    <Compile Include="ThreadingAbstractions\ISleep.cs" />
     <Compile Include="ThreadingAbstractions\IWorkQueue.cs" />
     <Compile Include="ThreadingAbstractions\ResultFuture.cs" />
     <Compile Include="ThreadingAbstractions\FutureException.cs" />

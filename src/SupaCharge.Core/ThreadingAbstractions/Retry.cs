@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Threading;
 
 namespace SupaCharge.Core.ThreadingAbstractions {
   public class Retry {
-    public Retry(int numberOfAttempts, int millisBetweenAttempts) {
+    public Retry(int numberOfAttempts, IRetryPausePolicy pausePolicy) {
       mNumberOfAttempts = numberOfAttempts;
-      mMillisBetweenAttempts = millisBetweenAttempts;
+      mPausePolicy = pausePolicy;
     }
+
+    public Retry(int numberOfAttempts, int millisBetweenAttempts) : this(numberOfAttempts, new FixedPausePolicy(millisBetweenAttempts)) {}
 
     public Retry WithWork(Action<int> work) {
       mWork = work;
@@ -29,12 +30,12 @@ namespace SupaCharge.Core.ThreadingAbstractions {
             mErrorHandler(ex);
             break;
           }
-          Thread.Sleep(mMillisBetweenAttempts);
+          mPausePolicy.Pause();
         }
     }
 
-    private readonly int mMillisBetweenAttempts;
     private readonly int mNumberOfAttempts;
+    private readonly IRetryPausePolicy mPausePolicy;
     private Action<Exception> mErrorHandler = ex => {throw ex;};
     private Action<int> mWork;
   }
