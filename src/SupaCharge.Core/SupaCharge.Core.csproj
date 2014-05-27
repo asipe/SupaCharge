@@ -54,6 +54,7 @@
     <Compile Include="DateAndTime\Extensions\GetMonthEndExtension.cs" />
     <Compile Include="DateAndTime\Extensions\GetMonthStartExtension.cs" />
     <Compile Include="DiagnosticAbstractions\DotNetStopwatch.cs" />
+    <Compile Include="DiagnosticAbstractions\IRecordingEventList.cs" />
     <Compile Include="DiagnosticAbstractions\IStopwatch.cs" />
     <Compile Include="DiagnosticAbstractions\ITickCountProvider.cs" />
     <Compile Include="DiagnosticAbstractions\RecordingEventList.cs" />
