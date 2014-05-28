@@ -11,18 +11,18 @@ namespace SupaCharge.UnitTests.Core.ThreadingAbstractions {
     [Test]
     public void TestEnqueueWithWorkThatSetsFutureWithResult() {
       var future = mQueue.Enqueue(() => {
-        CheckDifferentThread();
-        return 55;
-      });
+                                    CheckDifferentThread();
+                                    return 55;
+                                  });
       Assert.That(future.Wait(), Is.EqualTo(55));
     }
 
     [Test]
     public void TestEnqueueWithWorkThatThrowsFutureWithResult() {
       var future = mQueue.Enqueue(() => {
-        CheckDifferentThread();
-        throw new Exception("something bad");
-      });
+                                    CheckDifferentThread();
+                                    throw new Exception("something bad");
+                                  });
       var actualEx = Assert.Throws<FutureException>(future.Wait);
       Assert.That(actualEx.Message, Is.EqualTo("Error Resolving Future"));
       Assert.That(actualEx.InnerException.Message, Is.EqualTo("something bad"));
@@ -31,18 +31,18 @@ namespace SupaCharge.UnitTests.Core.ThreadingAbstractions {
     [Test]
     public void TestEnqueueWithWorkWithDataThatSetsFutureWithResult() {
       var future = mQueue.Enqueue(2, x => {
-        CheckDifferentThread();
-        return 55 * x;
-      });
+                                       CheckDifferentThread();
+                                       return 55 * x;
+                                     });
       Assert.That(future.Wait(), Is.EqualTo(110));
     }
 
     [Test]
     public void TestEnqueueWithWorkWithDataThatThrowsFutureWithResult() {
       var future = mQueue.Enqueue<int, int>(2, x => {
-        CheckDifferentThread();
-        throw new Exception("something bad");
-      });
+                                                 CheckDifferentThread();
+                                                 throw new Exception("something bad");
+                                               });
       var actualEx = Assert.Throws<FutureException>(() => future.Wait());
       Assert.That(actualEx.Message, Is.EqualTo("Error Resolving Future"));
       Assert.That(actualEx.InnerException.Message, Is.EqualTo("something bad"));
@@ -52,9 +52,9 @@ namespace SupaCharge.UnitTests.Core.ThreadingAbstractions {
     public void TestEnqueueWithWorkThatSetsFutureWithNoResult() {
       var ctr = 0;
       mQueue.Enqueue(() => {
-        CheckDifferentThread();
-        Interlocked.Increment(ref ctr);
-      }).Wait();
+                       CheckDifferentThread();
+                       Interlocked.Increment(ref ctr);
+                     }).Wait();
       var val = 1;
       Interlocked.CompareExchange(ref val, 0, ctr);
       Assert.That(val, Is.EqualTo(0));
@@ -63,9 +63,9 @@ namespace SupaCharge.UnitTests.Core.ThreadingAbstractions {
     [Test]
     public void TestEnqueueWithWorkThatThrowsFutureWithNoResult() {
       var future = mQueue.Enqueue(() => {
-        CheckDifferentThread();
-        throw new Exception("something bad");
-      });
+                                    CheckDifferentThread();
+                                    throw new Exception("something bad");
+                                  });
       var actualEx = Assert.Throws<FutureException>(future.Wait);
       Assert.That(actualEx.Message, Is.EqualTo("Error Resolving Future"));
       Assert.That(actualEx.InnerException.Message, Is.EqualTo("something bad"));
@@ -75,9 +75,9 @@ namespace SupaCharge.UnitTests.Core.ThreadingAbstractions {
     public void TestEnqueueWithWorkWithDataThatSetsFutureWithNoResult() {
       var ctr = 0;
       mQueue.Enqueue(10, x => {
-        CheckDifferentThread();
-        Interlocked.Add(ref ctr, x);
-      }).Wait();
+                           CheckDifferentThread();
+                           Interlocked.Add(ref ctr, x);
+                         }).Wait();
       var val = 10;
       Interlocked.CompareExchange(ref val, 0, ctr);
       Assert.That(val, Is.EqualTo(0));
@@ -86,9 +86,9 @@ namespace SupaCharge.UnitTests.Core.ThreadingAbstractions {
     [Test]
     public void TestEnqueueWithWorkWithDataThatThrowsFutureWithNoResult() {
       var future = mQueue.Enqueue(15, x => {
-        CheckDifferentThread();
-        throw new Exception("something bad " + x);
-      });
+                                        CheckDifferentThread();
+                                        throw new Exception("something bad " + x);
+                                      });
       var actualEx = Assert.Throws<FutureException>(future.Wait);
       Assert.That(actualEx.Message, Is.EqualTo("Error Resolving Future"));
       Assert.That(actualEx.InnerException.Message, Is.EqualTo("something bad 15"));

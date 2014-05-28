@@ -101,16 +101,16 @@ namespace SupaCharge.UnitTests.Core.ThreadingAbstractions {
 
     private void SetValueIn(int millis) {
       ThreadPool.QueueUserWorkItem(o => {
-        Thread.Sleep(millis);
-        mFuture.Set(10);
-      });
+                                     Thread.Sleep(millis);
+                                     mFuture.Set(10);
+                                   });
     }
 
     private void SetFailedIn(int millis, Exception ex) {
       ThreadPool.QueueUserWorkItem(o => {
-        Thread.Sleep(millis);
-        mFuture.Failed(ex);
-      });
+                                     Thread.Sleep(millis);
+                                     mFuture.Failed(ex);
+                                   });
     }
 
     private ResultFuture<int> mFuture;
