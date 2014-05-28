@@ -1,5 +1,5 @@
 ﻿namespace SupaCharge.Core.Patterns {
-  public abstract class Stage<T> {
+  public abstract class Stage<T> : IStage<T> {
     protected Stage(int priority) {
       Priority = priority;
     }
