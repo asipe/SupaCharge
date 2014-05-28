@@ -41,7 +41,7 @@ namespace SupaCharge.UnitTests.Core.Patterns {
       stages[0].Setup(s => s.Execute(44, It.Is<CancelToken>(t => !t.Cancelled)));
       stages[1]
         .Setup(s => s.Execute(44, It.Is<CancelToken>(t => !t.Cancelled)))
-        .Callback<CancelToken, int>((c, x) => c.Cancel());
+        .Callback<int, CancelToken>((x, c) => c.Cancel());
       InitPipeline(stages.Select(s => s.Object).ToArray());
       mPipeline.Execute(44);
     }
@@ -54,7 +54,7 @@ namespace SupaCharge.UnitTests.Core.Patterns {
       stages[2].Setup(s => s.Execute(44, It.Is<CancelToken>(t => !t.Cancelled)));
       stages[1]
         .Setup(s => s.Execute(44, It.Is<CancelToken>(t => !t.Cancelled)))
-        .Callback<CancelToken, int>((c, x) => c.Cancel());
+        .Callback<int, CancelToken>((x, c) => c.Cancel());
       InitPipeline(stages.Select(s => s.Object).ToArray());
       mPipeline.Execute(44);
     }
