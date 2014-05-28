@@ -4,8 +4,8 @@ using SupaCharge.Testing;
 
 namespace SupaCharge.UnitTests.Core.Patterns {
   [TestFixture]
-  public class StageTest : BaseTestCase {
-    private class StubStage : Stage<int> {
+  public class CancellableStageTest : BaseTestCase {
+    private class StubStage : CancellableStage<int> {
       public StubStage(int priority) : base(priority) {}
       public override void Execute(int context, CancelToken token) {}
     }

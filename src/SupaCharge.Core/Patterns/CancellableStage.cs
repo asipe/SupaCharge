@@ -1,6 +1,6 @@
 ﻿namespace SupaCharge.Core.Patterns {
-  public abstract class Stage<T> : IStage<T> {
-    protected Stage(int priority) {
+  public abstract class CancellableStage<T> : IStage<T> {
+    protected CancellableStage(int priority) {
       Priority = priority;
     }
 
