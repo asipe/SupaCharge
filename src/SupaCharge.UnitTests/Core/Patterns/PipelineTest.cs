@@ -27,9 +27,9 @@ namespace SupaCharge.UnitTests.Core.Patterns {
     public void TestExecuteWithMultipleStages() {
       var stages = BA(Mok<IStage<int>>(), Mok<IStage<int>>(), Mok<IStage<int>>());
       Array.ForEach(stages, stage => {
-        stage.Setup(s => s.Priority).Returns(10);
-        stage.Setup(s => s.Execute(44, It.Is<CancelToken>(t => !t.Cancelled)));
-      });
+                              stage.Setup(s => s.Priority).Returns(10);
+                              stage.Setup(s => s.Execute(44, It.Is<CancelToken>(t => !t.Cancelled)));
+                            });
       InitPipeline(stages.Select(s => s.Object).ToArray());
       mPipeline.Execute(44);
     }

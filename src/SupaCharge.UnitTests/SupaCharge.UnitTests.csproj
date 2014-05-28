@@ -74,6 +74,7 @@
     <Compile Include="Core\Patterns\CancelTokenTest.cs" />
     <Compile Include="Core\Patterns\PipelineTest.cs" />
     <Compile Include="Core\Patterns\CancellableStageTest.cs" />
+    <Compile Include="Core\Patterns\StageTest.cs" />
     <Compile Include="Core\Text\Extensions\IsNullOrEmptyTrimExtensionTest.cs" />
     <Compile Include="Core\Collections\Extensions\TruncateExtensionTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\DotNetSleepTest.cs" />
