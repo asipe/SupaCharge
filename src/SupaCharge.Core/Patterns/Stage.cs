@@ -5,6 +5,6 @@
     }
 
     public int Priority{get;private set;}
-    public abstract void Execute(CancelToken token, T context);
+    public abstract void Execute(T context, CancelToken token);
   }
 }

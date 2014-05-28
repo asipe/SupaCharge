@@ -7,7 +7,7 @@ namespace SupaCharge.UnitTests.Core.Patterns {
   public class StageTest : BaseTestCase {
     private class StubStage : Stage<int> {
       public StubStage(int priority) : base(priority) {}
-      public override void Execute(CancelToken token, int context) {}
+      public override void Execute(int context, CancelToken token) {}
     }
 
     [Test]

@@ -18,7 +18,7 @@ namespace SupaCharge.UnitTests.Core.Patterns {
     public void TestExecuteWithSingleStage() {
       var stage = Mok<IStage<int>>();
       stage.Setup(s => s.Priority).Returns(10);
-      stage.Setup(s => s.Execute(It.Is<CancelToken>(t => !t.Cancelled), 44));
+      stage.Setup(s => s.Execute(44, It.Is<CancelToken>(t => !t.Cancelled)));
       InitPipeline(stage.Object);
       mPipeline.Execute(44);
     }
@@ -28,7 +28,7 @@ namespace SupaCharge.UnitTests.Core.Patterns {
       var stages = BA(Mok<IStage<int>>(), Mok<IStage<int>>(), Mok<IStage<int>>());
       Array.ForEach(stages, stage => {
         stage.Setup(s => s.Priority).Returns(10);
-        stage.Setup(s => s.Execute(It.Is<CancelToken>(t => !t.Cancelled), 44));
+        stage.Setup(s => s.Execute(44, It.Is<CancelToken>(t => !t.Cancelled)));
       });
       InitPipeline(stages.Select(s => s.Object).ToArray());
       mPipeline.Execute(44);
@@ -38,9 +38,9 @@ namespace SupaCharge.UnitTests.Core.Patterns {
     public void TestExecuteWithMultipleStagesWhenOneCancelsToken() {
       var stages = BA(Mok<IStage<int>>(), Mok<IStage<int>>(), Mok<IStage<int>>());
       Array.ForEach(stages, stage => stage.Setup(s => s.Priority).Returns(10));
-      stages[0].Setup(s => s.Execute(It.Is<CancelToken>(t => !t.Cancelled), 44));
+      stages[0].Setup(s => s.Execute(44, It.Is<CancelToken>(t => !t.Cancelled)));
       stages[1]
-        .Setup(s => s.Execute(It.Is<CancelToken>(t => !t.Cancelled), 44))
+        .Setup(s => s.Execute(44, It.Is<CancelToken>(t => !t.Cancelled)))
         .Callback<CancelToken, int>((c, x) => c.Cancel());
       InitPipeline(stages.Select(s => s.Object).ToArray());
       mPipeline.Execute(44);
@@ -51,9 +51,9 @@ namespace SupaCharge.UnitTests.Core.Patterns {
       var stages = BA(Mok<IStage<int>>(), Mok<IStage<int>>(), Mok<IStage<int>>());
       var idx = 5;
       Array.ForEach(stages, stage => stage.Setup(s => s.Priority).Returns(--idx));
-      stages[2].Setup(s => s.Execute(It.Is<CancelToken>(t => !t.Cancelled), 44));
+      stages[2].Setup(s => s.Execute(44, It.Is<CancelToken>(t => !t.Cancelled)));
       stages[1]
-        .Setup(s => s.Execute(It.Is<CancelToken>(t => !t.Cancelled), 44))
+        .Setup(s => s.Execute(44, It.Is<CancelToken>(t => !t.Cancelled)))
         .Callback<CancelToken, int>((c, x) => c.Cancel());
       InitPipeline(stages.Select(s => s.Object).ToArray());
       mPipeline.Execute(44);
