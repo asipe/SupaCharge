@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SupaCharge.Core.Patterns {
   public class Pipeline<T> : IPipeline<T> {
-    public Pipeline(IStage<T>[] stages) {
+    public Pipeline(params IStage<T>[] stages) {
       mStages = SortStages(stages);
     }
 
