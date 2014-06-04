@@ -1,6 +1,9 @@
 ### Supacharge
 C# utility library
 
+[![SupaCharge.Core on NuGet](http://img.shields.io/nuget/v/SupaCharge.Core.svg?style=flat)](https://www.nuget.org/packages/SupaCharge.Core/)
+[![SupaCharge.Core tag](http://img.shields.io/github/tag/asipe/supacharge.svg?style=flat)](https://www.nuget.org/packages/SupaCharge.Core/)
+[![SupaCharge.Core license](http://img.shields.io/badge/licsense-mit-blue.svg?style=flat)](https://www.nuget.org/packages/SupaCharge.Core/)
 
 ### License
 
