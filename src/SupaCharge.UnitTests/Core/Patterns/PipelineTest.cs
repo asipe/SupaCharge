@@ -59,6 +59,18 @@ namespace SupaCharge.UnitTests.Core.Patterns {
       mPipeline.Execute(44);
     }
 
+    [Test]
+    public void TestExecuteWithMultipleStagesWithExternalTokenWhenOneCancelsToken() {
+      var stages = BA(Mok<IStage<int>>(), Mok<IStage<int>>(), Mok<IStage<int>>());
+      Array.ForEach(stages, stage => stage.Setup(s => s.Priority).Returns(10));
+      stages[0].Setup(s => s.Execute(44, It.Is<ICancelToken>(t => !t.Cancelled)));
+      stages[1]
+        .Setup(s => s.Execute(44, It.Is<ICancelToken>(t => !t.Cancelled)))
+        .Callback<int, ICancelToken>((x, c) => c.Cancel());
+      InitPipeline(stages.Select(s => s.Object).ToArray());
+      mPipeline.Execute(44, new CancelToken());
+    }
+
     [SetUp]
     public void DoSetup() {
       mPipeline = null;
