@@ -5,7 +5,7 @@
     }
 
     public int Priority{get;private set;}
-    public abstract void Execute(T context, CancelToken token);
+    public abstract void Execute(T context, ICancelToken token);
 
     public virtual void Execute(T context) {
       Execute(context, null);

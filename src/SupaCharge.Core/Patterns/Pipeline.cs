@@ -17,7 +17,7 @@ namespace SupaCharge.Core.Patterns {
         .ToArray();
     }
 
-    private void Execute(T context, CancelToken token) {
+    private void Execute(T context, ICancelToken token) {
       foreach (var stage in mStages) {
         stage.Execute(context, token);
         if (token.Cancelled)

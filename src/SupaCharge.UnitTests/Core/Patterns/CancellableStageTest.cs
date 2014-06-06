@@ -7,10 +7,10 @@ namespace SupaCharge.UnitTests.Core.Patterns {
   public class CancellableStageTest : BaseTestCase {
     private class StubStage : CancellableStage<int> {
       public StubStage(int priority) : base(priority) {}
-      public CancelToken LastToken{get;private set;}
+      public ICancelToken LastToken{get;private set;}
       public int LastContext{get;private set;}
 
-      public override void Execute(int context, CancelToken token) {
+      public override void Execute(int context, ICancelToken token) {
         LastContext = context;
         LastToken = token;
       }
