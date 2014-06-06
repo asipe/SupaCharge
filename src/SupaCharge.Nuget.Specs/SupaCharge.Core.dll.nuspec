@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SupaCharge.Core</id>
-    <version>1.0.0.21</version>
+    <version>1.0.0.22</version>
     <authors>asipe</authors>
     <owners>asipe</owners>
     <licenseUrl>https://github.com/asipe/SupaCharge/blob/master/LICENSE.txt</licenseUrl>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Utility Library</description>
     <releaseNotes></releaseNotes>
-    <copyright>Copyright 2013</copyright>
+    <copyright>Copyright 2014</copyright>
     <tags>utility</tags>
     <dependencies/>
   </metadata>
