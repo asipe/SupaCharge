@@ -3,7 +3,7 @@ C# utility library
 
 [![SupaCharge.Core on NuGet](http://img.shields.io/nuget/v/SupaCharge.Core.svg?style=flat)](https://www.nuget.org/packages/SupaCharge.Core)
 [![SupaCharge.Core tag](http://img.shields.io/github/tag/asipe/supacharge.svg?style=flat)](https://github.com/asipe/SupaCharge/tags)
-[![SupaCharge.Core license](http://img.shields.io/badge/licsense-mit-blue.svg?style=flat)](https://raw.githubusercontent.com/asipe/SupaCharge/master/LICENSE.txt)
+[![SupaCharge.Core license](http://img.shields.io/badge/license-mit-blue.svg?style=flat)](https://raw.githubusercontent.com/asipe/SupaCharge/master/LICENSE.txt)
 
 ### License
 
