@@ -88,5 +88,9 @@ namespace SupaCharge.Core.IOAbstractions {
     public Stream Open(string path, FileMode mode, FileAccess access) {
       return File.Open(path, mode, access);
     }
+
+    public Stream Open(string path, FileMode mode, FileAccess access, FileShare share) {
+      return File.Open(path, mode, access, share);
+    }
   }
 }

@@ -26,6 +26,13 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       using (var rdr = new StreamReader(strm))
         Assert.That(rdr.ReadToEnd(), Is.EqualTo("data"));
     }
+    
+    [Test]
+    public void TestOpenWithAccessAndShare() {
+      using (var strm = mFile.Open(mPath, FileMode.Open, FileAccess.Read, FileShare.Read))
+      using (var rdr = new StreamReader(strm))
+        Assert.That(rdr.ReadToEnd(), Is.EqualTo("data"));
+    }
 
     [Test]
     public void TestReadAllText() {

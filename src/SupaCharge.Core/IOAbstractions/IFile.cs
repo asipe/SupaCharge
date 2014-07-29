@@ -4,6 +4,7 @@ namespace SupaCharge.Core.IOAbstractions {
   public interface IFile {
     Stream Open(string path, FileMode mode);
     Stream Open(string path, FileMode mode, FileAccess access);
+    Stream Open(string path, FileMode mode, FileAccess access, FileShare share);
     string ReadAllText(string path);
     string ReadAllTextTrimmed(string path);
     string[] ReadAllLines(string path);
