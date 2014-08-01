@@ -48,6 +48,8 @@
     <Compile Include="Collections\Extensions\ToQueueExtension.cs" />
     <Compile Include="Config\AppConfig.cs" />
     <Compile Include="Config\ConfigWriter.cs" />
+    <Compile Include="ConsoleAbstractions\DotNetConsole.cs" />
+    <Compile Include="ConsoleAbstractions\IConsole.cs" />
     <Compile Include="Converter\ValueConverter.cs" />
     <Compile Include="Collections\Extensions\ElementsAtExtension.cs" />
     <Compile Include="Collections\Extensions\TruncateExtension.cs" />
