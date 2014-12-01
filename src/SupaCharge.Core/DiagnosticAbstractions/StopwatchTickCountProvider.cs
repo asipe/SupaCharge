@@ -5,5 +5,11 @@ namespace SupaCharge.Core.DiagnosticAbstractions {
     public long GetTicks() {
       return Stopwatch.GetTimestamp();
     }
+
+    public long GetFrequency() {
+      return _Frequency;
+    }
+
+    private static readonly long _Frequency = Stopwatch.Frequency;
   }
 }
