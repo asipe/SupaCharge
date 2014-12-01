@@ -8,8 +8,8 @@ namespace SupaCharge.Core.DiagnosticAbstractions {
       AddEvent(0, "Created");
     }
 
-    public void AddEvent(string msg) {
-      AddEvent(mProvider.GetTicks() - mStart, msg);
+    public void AddEvent(string msg, params object[] args) {
+      AddEvent(mProvider.GetTicks() - mStart, msg, args);
     }
 
     public string[] GetEvents() {
@@ -18,8 +18,8 @@ namespace SupaCharge.Core.DiagnosticAbstractions {
       }
     }
 
-    private void AddEvent(long ticks, string msg) {
-      msg = string.Format("{0}: {1}", ticks, msg);
+    private void AddEvent(long ticks, string msg, params object[] args) {
+      msg = string.Format("{0}: {1}", ticks, string.Format(msg, args));
       lock (mLock) {
         mEvents.Add(msg);
       }

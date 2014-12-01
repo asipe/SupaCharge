@@ -17,8 +17,8 @@ namespace SupaCharge.UnitTests.Core.DiagnosticAbstractions {
       mList.AddEvent("event1");
       Assert.That(mList.GetEvents(), Is.EqualTo(BA("0: Created", "500: event1")));
       mProvider.Setup(p => p.GetTicks()).Returns(1750);
-      mList.AddEvent("event2");
-      Assert.That(mList.GetEvents(), Is.EqualTo(BA("0: Created", "500: event1", "750: event2")));
+      mList.AddEvent("event2 {0} {1}", "a", 1);
+      Assert.That(mList.GetEvents(), Is.EqualTo(BA("0: Created", "500: event1", "750: event2 a 1")));
     }
 
     [SetUp]
