@@ -34,7 +34,7 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
       mList.Monitor(() => {throw new Exception("test error");});
       var ex = Assert.Throws<AggregatedException>(() => mList.Resolve());
       Assert.That(ex.Message, Is
-                                .StringStarting("1 Activities Failed")
+                                .StringStarting("1 of 1 Activities Failed")
                                 .And
                                 .StringContaining("test error"));
     }
@@ -46,7 +46,7 @@ namespace SupaCharge.UnitTests.Core.ExceptionHandling {
       mList.Monitor(() => {throw new Exception("test error 3");});
       var ex = Assert.Throws<AggregatedException>(() => mList.Resolve());
       Assert.That(ex.Message, Is
-                                .StringStarting("3 Activities Failed")
+                                .StringStarting("3 of 3 Activities Failed")
                                 .And
                                 .StringContaining("test error 1")
                                 .And
