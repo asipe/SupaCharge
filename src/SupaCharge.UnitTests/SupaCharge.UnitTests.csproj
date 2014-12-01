@@ -63,6 +63,7 @@
     <Compile Include="Core\DiagnosticAbstractions\DotNetStopWatchTest.cs" />
     <Compile Include="Core\DiagnosticAbstractions\RecordingEventListTest.cs" />
     <Compile Include="Core\DiagnosticAbstractions\StopwatchTickCountProviderTest.cs" />
+    <Compile Include="Core\DiagnosticAbstractions\StopwatchTimestampConversionTest.cs" />
     <Compile Include="Core\ExceptionHandling\AggregatedExceptionTest.cs" />
     <Compile Include="Core\ExceptionHandling\ExceptionDumpTest.cs" />
     <Compile Include="Core\ExceptionHandling\ActivityMonitorTest.cs" />
