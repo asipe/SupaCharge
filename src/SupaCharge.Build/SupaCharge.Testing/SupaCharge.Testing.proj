@@ -33,6 +33,12 @@
     <Reference Include="$(PackagesDir)\nunit\lib\nunit.framework.dll" />
     <Reference Include="$(PackagesDir)\autofixture\lib\net40\ploeh.autofixture.dll" />
   </ItemGroup>
+  
+  <ItemGroup Condition="'$(FrameworkVersion)' == 'v4.5.1'">
+    <Reference Include="$(PackagesDir)\moq\lib\net40\moq.dll" />
+    <Reference Include="$(PackagesDir)\nunit\lib\nunit.framework.dll" />
+    <Reference Include="$(PackagesDir)\autofixture\lib\net40\ploeh.autofixture.dll" />
+  </ItemGroup>  
 
   <ItemGroup>
     <Compile Include="$(SrcDir)\SupaCharge.Testing\**\*.cs"/>

@@ -31,6 +31,7 @@ function Bootstrap() {
   .\thirdparty\nuget\nuget.exe install .\src\SupaCharge.Nuget.Packages\net-3.5\packages.config -OutputDirectory .\thirdparty\packages\net-3.5 -ExcludeVersion | Write-Host
   .\thirdparty\nuget\nuget.exe install .\src\SupaCharge.Nuget.Packages\net-4.0\packages.config -OutputDirectory .\thirdparty\packages\net-4.0 -ExcludeVersion | Write-Host
   .\thirdparty\nuget\nuget.exe install .\src\SupaCharge.Nuget.Packages\net-4.5\packages.config -OutputDirectory .\thirdparty\packages\net-4.5 -ExcludeVersion | Write-Host
+  .\thirdparty\nuget\nuget.exe install .\src\SupaCharge.Nuget.Packages\net-4.5.1\packages.config -OutputDirectory .\thirdparty\packages\net-4.5.1 -ExcludeVersion | Write-Host
 }
 
 function Clean() {
@@ -63,6 +64,11 @@ function RunUnitTests() {
   .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\debug\net-4.5\SupaCharge.UnitTests\SupaCharge.UnitTests.dll /nologo /framework:net-4.5 | Write-Host
   CheckLastExitCode
   Write-Host -ForegroundColor Cyan '----------------------------------'
+  
+  Write-Host -ForegroundColor Cyan '-------Debug Unit Tests (4.5.1)-----------'
+  .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\debug\net-4.5.1\SupaCharge.UnitTests\SupaCharge.UnitTests.dll /nologo /framework:net-4.5.1 | Write-Host
+  CheckLastExitCode
+  Write-Host -ForegroundColor Cyan '----------------------------------'  
 }
 
 function RunAllTests() {
@@ -91,19 +97,23 @@ function BuildNugetPackages() {
   New-Item .\nugetworking\core\lib\net35 -ItemType directory -Verbose
   New-Item .\nugetworking\core\lib\net40 -ItemType directory -Verbose
   New-Item .\nugetworking\core\lib\net45 -ItemType directory -Verbose
+  New-Item .\nugetworking\core\lib\net451 -ItemType directory -Verbose
   
   New-Item .\nugetworking\testing\lib\net35 -ItemType directory -Verbose
   New-Item .\nugetworking\testing\lib\net40 -ItemType directory -Verbose
   New-Item .\nugetworking\testing\lib\net45 -ItemType directory -Verbose
+  New-Item .\nugetworking\testing\lib\net451 -ItemType directory -Verbose
   
   Copy-Item .\debug\net-3.5\supacharge.core\supacharge.core.dll .\nugetworking\core\lib\net35 -Verbose
   Copy-Item .\debug\net-4.0\supacharge.core\supacharge.core.dll .\nugetworking\core\lib\net40 -Verbose
   Copy-Item .\debug\net-4.5\supacharge.core\supacharge.core.dll .\nugetworking\core\lib\net45 -Verbose
+  Copy-Item .\debug\net-4.5.1\supacharge.core\supacharge.core.dll .\nugetworking\core\lib\net451 -Verbose
   Copy-Item .\src\supacharge.nuget.specs\supacharge.core.dll.nuspec .\nugetworking\core -Verbose
   
   Copy-Item .\debug\net-3.5\supacharge.testing\supacharge.testing.dll .\nugetworking\testing\lib\net35 -Verbose
   Copy-Item .\debug\net-4.0\supacharge.testing\supacharge.testing.dll .\nugetworking\testing\lib\net40 -Verbose
   Copy-Item .\debug\net-4.5\supacharge.testing\supacharge.testing.dll .\nugetworking\testing\lib\net45 -Verbose
+  Copy-Item .\debug\net-4.5.1\supacharge.testing\supacharge.testing.dll .\nugetworking\testing\lib\net451 -Verbose
   Copy-Item .\src\supacharge.nuget.specs\supacharge.testing.dll.nuspec .\nugetworking\testing -Verbose
   
   thirdparty\nuget\nuget.exe pack .\nugetworking\core\supacharge.core.dll.nuspec -OutputDirectory .\nugetworking\core | Write-Host

@@ -35,6 +35,12 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(FrameworkVersion)' == 'v4.5.1'">
+    <TargetFrameworkVersionName>net-4.5.1</TargetFrameworkVersionName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>  
+
   <PropertyGroup>
     <DebugDir>$(Rootdir)\debug\$(TargetFrameworkVersionName)</DebugDir>
     <PackagesDir>$(Rootdir)\thirdparty\packages\$(TargetFrameworkVersionName)</PackagesDir>
