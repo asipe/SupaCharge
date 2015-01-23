@@ -42,7 +42,7 @@
 
   <ItemGroup>
     <Compile Include="$(SrcDir)\SupaCharge.Testing\**\*.cs"/>
-    <Compile Include="$(SrcDir)\Common.Properties\*.cs"/>
+    <Compile Include="$(SrcDir)\SupaCharge.Properties\*.cs"/>
   </ItemGroup>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

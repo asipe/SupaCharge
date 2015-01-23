@@ -14,9 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "license", "license", "{8141
 		..\LICENSE.txt = ..\LICENSE.txt
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common.Properties", "Common.Properties", "{8976A41E-ED1D-4078-90E3-97D496B6517F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SupaCharge.Properties", "SupaCharge.Properties", "{8976A41E-ED1D-4078-90E3-97D496B6517F}"
 	ProjectSection(SolutionItems) = preProject
-		Common.Properties\AssemblyInfo.cs = Common.Properties\AssemblyInfo.cs
+		SupaCharge.Properties\AssemblyInfo.cs = SupaCharge.Properties\AssemblyInfo.cs
 	EndProjectSection
 EndProject
 Global
