@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupaCharge.Core", "SupaCharge.Core\SupaCharge.Core.csproj", "{D3795B3A-FA2E-446B-BB08-6971B82C73BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupaCharge.UnitTests", "SupaCharge.UnitTests\SupaCharge.UnitTests.csproj", "{79649E83-3599-478D-9B9A-26CC15860686}"

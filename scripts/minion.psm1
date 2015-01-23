@@ -43,8 +43,8 @@ function CleanAll() {
 }
 
 function RunUnitTestsVS() {
-  Write-Host -ForegroundColor Cyan '----------VS Unit Tests (3.5)-----------'
-  .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\src\SupaCharge.UnitTests\bin\debug\SupaCharge.UnitTests.dll /nologo /framework:net-3.5 | Write-Host
+  Write-Host -ForegroundColor Cyan '----------VS Unit Tests (4.5.1)-----------'
+  .\thirdparty\packages\common\nunit.runners\tools\nunit-console.exe .\src\SupaCharge.UnitTests\bin\debug\SupaCharge.UnitTests.dll /nologo /framework:net-4.5.1 | Write-Host
   CheckLastExitCode
   Write-Host -ForegroundColor Cyan '----------------------------------'
 }
