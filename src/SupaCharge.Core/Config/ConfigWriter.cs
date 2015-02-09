@@ -19,17 +19,19 @@ namespace SupaCharge.Core.Config {
       mPath = filePath;
     }
 
-    public void Save() {
+    public ConfigWriter Save() {
       using (var strWriter = new NullEncodeStrWriter()) {
         mDoc.Save(strWriter);
         mFile.WriteAllText(mPath, strWriter.ToString());
         strWriter.Close();
       }
+      return this;
     }
 
-    public void Set(string key, string value) {
+    public ConfigWriter Set(string key, string value) {
       var node = mDoc.XPathSelectElement(BuildQuery(key));
       node.Attribute("value").Value = value;
+      return this;
     }
 
     private static string BuildQuery(string key) {
