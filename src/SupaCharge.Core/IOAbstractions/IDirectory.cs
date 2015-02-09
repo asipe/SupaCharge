@@ -9,6 +9,7 @@ namespace SupaCharge.Core.IOAbstractions {
     string[] GetDirectories(string path);
     void Delete(string path);
     void Delete(string path, bool recursive);
+    void Delete(string path, int waitMilliseconds);
     string[] GetFiles(string path, string searchPattern, SearchOption searchOption);
   }
 }
