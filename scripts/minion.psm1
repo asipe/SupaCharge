@@ -132,10 +132,10 @@ function PushNugetPackages() {
   if ($response -eq 'YES') {
     Write-Host -ForegroundColor Yellow 'Pushing'
 
-    thirdparty\nuget\nuget.exe push .\nugetworking\core\SupaCharge.Core.1.0.0.25.nupkg | Write-Host
+    thirdparty\nuget\nuget.exe push .\nugetworking\core\SupaCharge.Core.1.0.0.26.nupkg | Write-Host
     CheckLastExitCode
 
-    thirdparty\nuget\nuget.exe push .\nugetworking\testing\SupaCharge.Testing.1.0.0.25.nupkg | Write-Host
+    thirdparty\nuget\nuget.exe push .\nugetworking\testing\SupaCharge.Testing.1.0.0.26.nupkg | Write-Host
     CheckLastExitCode
   } else {
     Write-Host -ForegroundColor Yellow 'Cancelled - Nothing Pushed'
