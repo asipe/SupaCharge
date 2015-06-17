@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -91,6 +92,14 @@ namespace SupaCharge.Core.IOAbstractions {
 
     public Stream Open(string path, FileMode mode, FileAccess access, FileShare share) {
       return File.Open(path, mode, access, share);
+    }
+
+    public void AppendAllLines(string path, params string[] contents) {
+      AppendAllText(path, string.Join(Environment.NewLine, contents));
+    }
+
+    public void AppendAllText(string path, string contents) {
+      File.AppendAllText(path, contents);
     }
   }
 }

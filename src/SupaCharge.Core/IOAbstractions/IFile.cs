@@ -20,5 +20,7 @@ namespace SupaCharge.Core.IOAbstractions {
     void Delete(string path, int waitMilliseconds);
     long GetSize(string path);
     void Move(string sourceFileName, string destFileName);
+    void AppendAllLines(string path, params string[] contents);
+    void AppendAllText(string path, string contents);
   }
 }

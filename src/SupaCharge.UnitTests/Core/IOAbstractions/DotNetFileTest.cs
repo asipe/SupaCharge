@@ -26,7 +26,7 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       using (var rdr = new StreamReader(strm))
         Assert.That(rdr.ReadToEnd(), Is.EqualTo("data"));
     }
-    
+
     [Test]
     public void TestOpenWithAccessAndShare() {
       using (var strm = mFile.Open(mPath, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -185,6 +185,20 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
       Assert.That(mFile.ReadAllTextTrimmed(mPath), Is.EqualTo("data"));
       mFile.WriteAllLines(mPath, "1", "2", "", "   ", "3  ", "   4  ");
       Assert.That(mFile.ReadAllTextTrimmed(mPath), Is.EqualTo("1234"));
+    }
+
+    [Test]
+    public void TestAppendAllText() {
+      Assert.That(mFile.ReadAllText(mPath), Is.EqualTo("data"));
+      mFile.AppendAllText(mPath, "some more data");
+      Assert.That(mFile.ReadAllText(mPath), Is.EqualTo("datasome more data"));
+    }
+
+    [Test]
+    public void TestAppendAllLines() {
+      Assert.That(mFile.ReadAllText(mPath), Is.EqualTo("data"));
+      mFile.AppendAllLines(mPath, "some", "more", "data");
+      Assert.That(mFile.ReadAllLines(mPath), Is.EqualTo(BA("datasome", "more", "data")));
     }
 
     [SetUp]
