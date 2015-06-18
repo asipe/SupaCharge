@@ -95,7 +95,14 @@ namespace SupaCharge.Core.IOAbstractions {
     }
 
     public void AppendAllLines(string path, params string[] contents) {
-      AppendAllText(path, string.Join(Environment.NewLine, contents));
+#if NET35
+      using (var strm = new StreamWriter(path, true)) {
+        Array.ForEach(contents, strm.WriteLine);
+        strm.Close();
+      }
+#else
+      File.AppendAllLines(path, contents);
+#endif
     }
 
     public void AppendAllText(string path, string contents) {

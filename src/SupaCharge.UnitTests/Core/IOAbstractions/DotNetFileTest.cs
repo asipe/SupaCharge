@@ -195,10 +195,31 @@ namespace SupaCharge.UnitTests.Core.IOAbstractions {
     }
 
     [Test]
-    public void TestAppendAllLines() {
+    public void TestAppendAllLinesWithNoLinesGivesEmptyFile() {
+      mFile.Delete(mPath);
+      mFile.AppendAllLines(mPath);
+      Assert.That(mFile.ReadAllText(mPath), Is.Empty);
+    }
+
+    [Test]
+    public void TestAppendAllLinesWithSingleLines() {
+      mFile.Delete(mPath);
+      mFile.AppendAllLines(mPath, "some");
+      Assert.That(mFile.ReadAllText(mPath), Is.EqualTo("some" + Environment.NewLine));
+    }
+
+    [Test]
+    public void TestAppendAllLinesWithMultipleLines() {
+      mFile.Delete(mPath);
+      mFile.AppendAllLines(mPath, "some", "more", "data");
+      Assert.That(mFile.ReadAllText(mPath), Is.EqualTo(string.Format("some{0}more{0}data{0}", Environment.NewLine)));
+    }
+
+    [Test]
+    public void TestAppendAllLinesWithMultipleLinesDoesAppend() {
       Assert.That(mFile.ReadAllText(mPath), Is.EqualTo("data"));
       mFile.AppendAllLines(mPath, "some", "more", "data");
-      Assert.That(mFile.ReadAllLines(mPath), Is.EqualTo(BA("datasome", "more", "data")));
+      Assert.That(mFile.ReadAllText(mPath), Is.EqualTo(string.Format("datasome{0}more{0}data{0}", Environment.NewLine)));
     }
 
     [SetUp]
