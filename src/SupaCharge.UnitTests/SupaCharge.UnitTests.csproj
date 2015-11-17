@@ -84,6 +84,7 @@
     <Compile Include="Core\Patterns\StageTest.cs" />
     <Compile Include="Core\Text\Extensions\IsNullOrEmptyTrimExtensionTest.cs" />
     <Compile Include="Core\Collections\Extensions\TruncateExtensionTest.cs" />
+    <Compile Include="Core\Text\StringSplitterTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\DotNetSleepTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\EmptyFutureTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\FixedPausePolicyTest.cs" />

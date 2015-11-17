@@ -88,6 +88,8 @@
     <Compile Include="SystemAbstractions\ISystemConsole.cs" />
     <Compile Include="Text\Extensions\IsNullOrEmptyTrimExtension.cs" />
     <Compile Include="ExceptionHandling\ExceptionDump.cs" />
+    <Compile Include="Text\IStringSplitter.cs" />
+    <Compile Include="Text\StringSplitter.cs" />
     <Compile Include="ThreadingAbstractions\DotNetSleep.cs" />
     <Compile Include="ThreadingAbstractions\EmptyFuture.cs" />
     <Compile Include="ThreadingAbstractions\FixedPausePolicy.cs" />
