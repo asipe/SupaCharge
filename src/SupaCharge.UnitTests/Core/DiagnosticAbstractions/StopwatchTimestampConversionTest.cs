@@ -14,7 +14,7 @@ namespace SupaCharge.UnitTests.Core.DiagnosticAbstractions {
       Thread.Sleep(250);
       var sample2 = Stopwatch.GetTimestamp();
       Assert.That((sample2 - sample1) / ticksPerMillisecond, Is
-                                                               .GreaterThan(245)
+                                                               .GreaterThan(240)
                                                                .And
                                                                .LessThan(255));
       Thread.Sleep(125);
