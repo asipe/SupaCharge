@@ -22,7 +22,7 @@ namespace SupaCharge.UnitTests.Core.DiagnosticAbstractions {
       Assert.That((sample3 - sample1) / ticksPerMillisecond, Is
                                                                .GreaterThan(370)
                                                                .And
-                                                               .LessThan(395));
+                                                               .LessThan(400));
       Assert.That((sample3 - sample2) / ticksPerMillisecond, Is
                                                                .GreaterThan(120)
                                                                .And
