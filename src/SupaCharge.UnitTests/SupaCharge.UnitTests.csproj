@@ -79,6 +79,7 @@
     <Compile Include="Core\Net\NoOpDotDnsTest.cs" />
     <Compile Include="Core\OID\GuidOIDProviderTest.cs" />
     <Compile Include="Core\Patterns\CancelTokenTest.cs" />
+    <Compile Include="Core\Patterns\CircuitBreakerTest.cs" />
     <Compile Include="Core\Patterns\PipelineTest.cs" />
     <Compile Include="Core\Patterns\CancellableStageTest.cs" />
     <Compile Include="Core\Patterns\StageTest.cs" />

@@ -78,7 +78,9 @@
     <Compile Include="OID\GuidOIDProvider.cs" />
     <Compile Include="OID\IOIDProvider.cs" />
     <Compile Include="Patterns\CancelToken.cs" />
+    <Compile Include="Patterns\CircuitBreaker.cs" />
     <Compile Include="Patterns\ICancelToken.cs" />
+    <Compile Include="Patterns\ICircuitBreaker.cs" />
     <Compile Include="Patterns\IPipeline.cs" />
     <Compile Include="Patterns\IStage.cs" />
     <Compile Include="Patterns\Pipeline.cs" />
