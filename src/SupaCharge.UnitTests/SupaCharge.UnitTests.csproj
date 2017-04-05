@@ -89,6 +89,7 @@
     <Compile Include="Core\ThreadingAbstractions\DotNetSleepTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\EmptyFutureTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\FixedPausePolicyTest.cs" />
+    <Compile Include="Core\ThreadingAbstractions\HaltEventTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\IncreasingPausePolicyTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\ResultFutureTest.cs" />
     <Compile Include="Core\ThreadingAbstractions\RetryTest.cs" />
