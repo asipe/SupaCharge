@@ -2,7 +2,7 @@
 C# utility library
 
 ### Build Command
-    `> .\scripts\init_minion.ps1; minion clean,bootstrap,build.all`
+    > .\scripts\init_minion.ps1; minion clean,bootstrap,build.all
 
 [![SupaCharge.Core on NuGet](http://img.shields.io/nuget/v/SupaCharge.Core.svg?style=flat)](https://www.nuget.org/packages/SupaCharge.Core)
 [![SupaCharge.Core tag](http://img.shields.io/github/tag/asipe/supacharge.svg?style=flat)](https://github.com/asipe/SupaCharge/tags)
