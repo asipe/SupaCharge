@@ -69,16 +69,35 @@ namespace SupaCharge.UnitTests.Core.ThreadingAbstractions {
       Assert.That(mList.Skip(1).Select(i => i.Millis), Is.All.GreaterThan(40).And.All.LessThan(100));
     }
 
+    [Test]
+    public void TestHaltStopsTheWork() {
+      mHaltOn = 3;
+      mThrowUntil = 8;
+      new Retry(10, 50)
+        .WithWork(DoWork)
+        .WithHaltEvent(mHalt)
+        .Start();
+
+      Assert.That(mList.Count, Is.EqualTo(4));
+      Assert.That(mList.Select(i => i.Iteration), Is.EqualTo(BA(0, 1, 2, 3)));
+      Assert.That(mList[0].Millis, Is.LessThan(25));
+      Assert.That(mList.Skip(1).Select(i => i.Millis), Is.All.GreaterThan(40).And.All.LessThan(100));
+    }
+
     [SetUp]
     public void DoSetup() {
       mWatch = Stopwatch.StartNew();
       mList = new List<WorkInfo>();
+      mHalt = new HaltEvent();
       mThrowUntil = -1;
+      mHaltOn = -1;
     }
 
     private Stopwatch mWatch;
     private List<WorkInfo> mList;
     private int mThrowUntil;
+    private HaltEvent mHalt;
+    private int mHaltOn;
 
     private void DoWork(int x) {
       mList.Add(new WorkInfo {Iteration = x, Millis = mWatch.ElapsedMilliseconds});
@@ -87,6 +106,9 @@ namespace SupaCharge.UnitTests.Core.ThreadingAbstractions {
 
       if (mThrowUntil == -1)
         return;
+
+      if (mHaltOn == x)
+        mHalt.Set();
 
       if (x != mThrowUntil)
         throw new Exception("throwing on iteration: " + x);

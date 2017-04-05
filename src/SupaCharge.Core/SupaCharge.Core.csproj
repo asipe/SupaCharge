@@ -95,6 +95,8 @@
     <Compile Include="ThreadingAbstractions\DotNetSleep.cs" />
     <Compile Include="ThreadingAbstractions\EmptyFuture.cs" />
     <Compile Include="ThreadingAbstractions\FixedPausePolicy.cs" />
+    <Compile Include="ThreadingAbstractions\HaltEvent.cs" />
+    <Compile Include="ThreadingAbstractions\IHaltEvent.cs" />
     <Compile Include="ThreadingAbstractions\IncreasingPausePolicy.cs" />
     <Compile Include="ThreadingAbstractions\IRetryPausePolicy.cs" />
     <Compile Include="ThreadingAbstractions\ISleep.cs" />

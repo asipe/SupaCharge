@@ -19,10 +19,17 @@ namespace SupaCharge.Core.ThreadingAbstractions {
       return this;
     }
 
+    public Retry WithHaltEvent(IHaltEvent haltEvent) {
+      mHaltEvent = haltEvent;
+      return this;
+    }
+
     public void Start() {
       var iteration = 0;
       while (true)
         try {
+          if (mHaltEvent != null && mHaltEvent.IsSet())
+            return;
           mWork(iteration++);
           break;
         } catch (Exception ex) {
@@ -37,6 +44,7 @@ namespace SupaCharge.Core.ThreadingAbstractions {
     private readonly int mNumberOfAttempts;
     private readonly IRetryPausePolicy mPausePolicy;
     private Action<Exception> mErrorHandler = ex => {throw ex;};
+    private IHaltEvent mHaltEvent;
     private Action<int> mWork;
   }
 }
